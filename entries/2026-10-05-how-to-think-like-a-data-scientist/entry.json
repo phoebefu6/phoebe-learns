@@ -1,0 +1,24 @@
+{
+  "id": "2026-10-05-how-to-think-like-a-data-scientist",
+  "topic": "How to Think Like a Data Scientist",
+  "domain": "ds",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "data",
+    "scientist"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-10-05",
+  "updated": "2026-10-05"
+}

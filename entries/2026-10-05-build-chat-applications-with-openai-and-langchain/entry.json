@@ -1,0 +1,26 @@
+{
+  "id": "2026-10-05-build-chat-applications-with-openai-and-langchain",
+  "topic": "Build Chat Applications with OpenAI and LangChain",
+  "domain": "ai",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "chat",
+    "applications",
+    "openai",
+    "langchain"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-10-05",
+  "updated": "2026-10-05"
+}

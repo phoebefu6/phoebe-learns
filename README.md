@@ -1,0 +1,105 @@
+# phoebe-learns
+
+Phoebe Fu's personal learning knowledge base, published at
+https://phoebefu6.github.io/phoebe-learns/
+
+## The problem
+
+Courses get finished and the notes vanish into a folder. Six months later the
+same question comes back and the work is done twice. This repo keeps one record
+per thing learned, researched once, and shows the records three ways: a
+Notion-looking learning DB, one page per entry, and a knowledge network that
+links entries through the courses they bundle and the references behind them.
+
+## What it is
+
+A static site. Entries are JSON + Markdown in the repo; `python3 build.py`
+renders everything into plain HTML with no server, no framework and no build
+dependency beyond Python 3.11's standard library. GitHub Pages serves the
+`main` branch root.
+
+```
+build.py                 renders the site (validates first)
+domains.json             the 18 learning domains, generated from the learn-with-phoebe hub
+templates/               base.html, index.html, entry.html, network.html
+entries/<id>/            one folder per entry: entry.json, notes.md, research.md, source/ (optional)
+scripts/validate.py      schema rules, usable standalone
+scripts/check_links.py   curls every url and doi in data.json
+scripts/import_365_tracker.py   one-off import of the 365 Data Science finish tracker
+assets/                  d3 v7 (ISC licence) kept for provenance; network.html inlines it
+index.html network.html entries/<id>/index.html data.json   generated, committed
+```
+
+## How an entry is shaped
+
+Folder name = entry id = `yyyy-mm-dd-slug`. Inside:
+
+- `entry.json` - the record. Topic, domain (an id from `domains.json`), platform,
+  source type, url, tags, status, dates, three main ideas, key points (each with
+  three supporting references, three other angles and one unresolved
+  disagreement), five support readings, a five-course bundle, and
+  `research_status` (`full` or `none`).
+- `notes.md` - Phoebe's own notes. Always present.
+- `research.md` - the research write-up. Required when `research_status` is `full`.
+- `source/` - optional original material, pointed to by `source_file`.
+
+`scripts/validate.py` enforces every rule, including: id matches the folder,
+domain exists, dates are ISO, `end_date` is set when status is `done`,
+exact counts when research is `full`, every reference id a key point cites
+exists, every reference has a url or doi, and no em dash, en dash or cross
+mark anywhere in the JSON.
+
+```
+python3 scripts/validate.py entries/2026-10-05-evaluating-ai-agents
+python3 scripts/validate.py --all
+```
+
+## Build
+
+```
+python3 build.py
+```
+
+It validates every entry (and aborts with a list of `path: rule` lines if any
+fail), refreshes `domains.json` from the learn-with-phoebe hub when that file
+is readable (otherwise it keeps the committed copy and prints a warning), then
+writes `index.html`, `network.html`, one `entries/<id>/index.html` per entry
+and `data.json`. The pages embed their data inline, so they open straight from
+`file://` as well as from GitHub Pages.
+
+```
+python3 scripts/check_links.py data.json
+```
+
+Curls every url and doi. 2xx passes; a 403 from udemy.com or coursera.org is
+reported as "verify by WebFetch" and does not fail; anything else fails.
+
+## How status works
+
+Three states, always shown as colour plus a glyph so colour is never the only
+signal:
+
+| status | chip | glyph |
+|---|---|---|
+| `to-do` | 1px plum outline | outline square |
+| `in-progress` | soft tint fill | half-filled square |
+| `done` | solid plum fill, white text | filled square |
+
+The DB page's hero number is the count of `done` entries. The board view has
+exactly three columns, one per status; the table view groups by domain.
+
+## First real entry
+
+`entries/2026-10-05-evaluating-ai-agents/` is the first entry written by the `learning-buddy`
+skill: 6 key points, 36 references with API citation counts and source-checker tiers, 5
+readings and a 5-course bundle, one per platform. The 64 `to-do` entries under 365 Data
+Science were imported from a finish tracker and carry `research_status: none` until taken.
+
+## Companion skill
+
+Entries are written by the `learning-buddy` skill. This repo only stores and
+renders them; it does no research itself.
+
+## Licence
+
+MIT, copyright 2026 Phoebe Fu. d3 is ISC, see `assets/D3-LICENSE.txt`.

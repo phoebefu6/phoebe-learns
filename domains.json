@@ -1,0 +1,77 @@
+{
+  "_generated": "from learn-with-phoebe/courses.json buckets on 2026-10-05; do not edit by hand",
+  "domains": [
+    {
+      "id": "data",
+      "name": "Data & Analytics"
+    },
+    {
+      "id": "ds",
+      "name": "Data Science"
+    },
+    {
+      "id": "deng",
+      "name": "Data Engineering & Infra"
+    },
+    {
+      "id": "ai",
+      "name": "AI & LLMs"
+    },
+    {
+      "id": "aiap",
+      "name": "Applied AI"
+    },
+    {
+      "id": "viz",
+      "name": "Visual Thinking & Storytelling"
+    },
+    {
+      "id": "dsec",
+      "name": "Data Ops & Security"
+    },
+    {
+      "id": "gov",
+      "name": "Data & AI Governance"
+    },
+    {
+      "id": "ship",
+      "name": "Let's Ship It End to End"
+    },
+    {
+      "id": "prog",
+      "name": "Programming & Dev Tools"
+    },
+    {
+      "id": "sys",
+      "name": "System & Product Design"
+    },
+    {
+      "id": "emrg",
+      "name": "Emerging Tech"
+    },
+    {
+      "id": "docs",
+      "name": "Markup, Docs & Diagrams"
+    },
+    {
+      "id": "lead",
+      "name": "Leadership & Decision-making"
+    },
+    {
+      "id": "biz",
+      "name": "Entrepreneurship & Business"
+    },
+    {
+      "id": "comm",
+      "name": "Communications"
+    },
+    {
+      "id": "prod",
+      "name": "Productivity & Knowledge Systems"
+    },
+    {
+      "id": "move",
+      "name": "Mind & Movement"
+    }
+  ]
+}

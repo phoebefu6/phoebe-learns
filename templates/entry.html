@@ -1,0 +1,59 @@
+<!-- @css -->
+.entry-head{padding:48px 0 36px;border-bottom:1px solid var(--hair)}
+.entry-head .kick{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+.entry-head h1{max-width:24ch}
+.entry-head .meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:18px;font-size:13.5px;color:var(--muted)}
+.entry-head .meta .tags{display:flex;flex-wrap:wrap;gap:4px}
+.back{display:inline-block;margin:22px 0 0;font-size:13px;font-weight:500}
+.ideas{list-style:none;margin:0;padding:0;counter-reset:idea}
+.ideas li{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--hair);font-size:17px;line-height:1.5}
+.ideas li:last-child{border-bottom:0}
+.ideas li::before{counter-increment:idea;content:counter(idea);font-family:var(--head);font-weight:500;font-size:48px;line-height:1;color:var(--plum);font-variant-numeric:tabular-nums}
+.prose{max-width:72ch}
+.prose h1{font-size:26px;margin:0 0 14px}
+.prose h2{margin:26px 0 10px}
+.prose h3{margin:20px 0 8px}
+.prose ul,.prose ol{padding-left:22px;margin:0 0 12px}
+.prose li{margin:3px 0}
+.prose table{margin:0 0 16px}
+.kp{margin:0 0 36px}
+.kp h3{margin:0 0 12px;max-width:70ch}
+.kp .tablewrap{overflow-x:auto}
+.kp table{min-width:720px}
+.kp td.num{white-space:nowrap}
+.kp .disagree{font-style:italic;color:var(--muted);margin:10px 0 0;font-size:14px}
+.readings{list-style:none;margin:0;padding:0}
+.readings li{padding:14px 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:40px 1fr;gap:14px}
+.readings li:last-child{border-bottom:0}
+.readings .n{font-family:var(--head);font-weight:500;font-size:20px;color:var(--plum);font-variant-numeric:tabular-nums;line-height:1.2}
+.readings .t{font-weight:500}
+.readings .by{font-size:13px;color:var(--muted);margin:2px 0 6px}
+.readings .why{font-size:14px;margin:0}
+.courses{list-style:none;margin:0;padding:0}
+.courses li{padding:14px 0;border-bottom:1px solid var(--hair)}
+.courses li:last-child{border-bottom:0}
+.courses .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:4px}
+.courses .t{font-weight:500}
+.courses .facts{font-size:13px;color:var(--muted);margin:0 0 4px}
+.courses .why{font-size:14px;margin:0}
+.refs{margin:0;padding-left:0;list-style:none;counter-reset:ref}
+.refs li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair);font-size:14px}
+.refs li:last-child{border-bottom:0}
+.refs .rid{font-family:var(--body);font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.refs .by{color:var(--muted)}
+<!-- @content -->
+<header class="entry-head">
+  <div class="kick rise d1"><span class="kicker">{{domain_name}}</span><span class="kicker">&middot;</span><span class="kicker">{{platform}}</span><span class="kicker">&middot;</span>{{status_chip}}</div>
+  <h1 class="rise d2">{{topic}}</h1>
+  <div class="meta rise d3"><span class="num">{{dates}}</span>{{source_link}}<div class="tags">{{tag_chips}}</div></div>
+  <a class="back rise d3" href="{{root}}index.html">Back to the learning DB</a>
+</header>
+{{ideas_block}}
+<section class="block" id="notes">
+  <p class="kicker">Notes</p>
+  <div class="prose">{{notes_html}}</div>
+</section>
+{{research_block}}
+<p><a class="back" href="{{root}}index.html">Back to the learning DB</a></p>
+<!-- @script -->
+/* entry pages are fully rendered by build.py; nothing to run */

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;--plum:#9333EA;--ink:#2A1B3D;--tint:#FAF5FF;--tint2:#F3E8FF;
+  --hair:#EAE8F0;--muted:#6B6480;--peach:#FDBA74;
+  --head:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --maxw:1120px;--gutter:24px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased}
+a{color:var(--plum);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--plum)}
+h1,h2,h3,h4{font-family:var(--head);font-weight:500;margin:0;line-height:1.15;letter-spacing:-0.01em}
+h1{font-weight:600;font-size:clamp(28px,4vw,44px)}
+h2{font-size:22px}
+h3{font-size:17px}
+p{margin:0 0 12px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:var(--tint);padding:1px 4px;border-radius:2px}
+pre{background:var(--tint);padding:12px 14px;overflow:auto;border-radius:2px}
+pre code{background:none;padding:0}
+blockquote{margin:0 0 12px;padding:8px 14px;border-left:3px solid var(--plum);color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-family:var(--body);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.num,.tabular{font-variant-numeric:tabular-nums}
+.top-rule{height:4px;background:var(--plum)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+nav.site{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--hair)}
+nav.site .mark{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink)}
+nav.site ul{list-style:none;margin:0;padding:0;display:flex;gap:22px}
+nav.site a{color:var(--ink);font-weight:500;font-size:14px;padding-bottom:2px}
+nav.site a.active{border-bottom:2px solid var(--plum)}
+nav.site a:hover{border-bottom-color:var(--plum)}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:500}
+.muted{color:var(--muted)}
+.hair{border:0;border-top:1px solid var(--hair);margin:0}
+section.block{padding:48px 0;border-bottom:1px solid var(--hair)}
+section.block:last-of-type{border-bottom:0}
+section.block>.kicker{margin-bottom:14px}
+/* chips: square corners, colour always paired with a glyph or a word */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;font-family:var(--body);font-weight:500;font-size:12px;line-height:1.4;border:1px solid var(--hair);border-radius:2px;background:var(--paper);color:var(--ink);white-space:nowrap;vertical-align:middle}
+button.chip{cursor:pointer}
+button.chip:hover{border-color:var(--plum)}
+.chip.active{background:var(--plum);border-color:var(--plum);color:#fff}
+.chip.tag{color:var(--muted);font-weight:400}
+.chip .glyph{color:var(--plum)}
+.chip.active .glyph{color:#fff}
+.chip.tint{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
+.chip.solid{background:var(--plum);border-color:var(--plum);color:#fff}
+.chip.outline-plum{border-color:var(--plum);color:var(--ink)}
+.chip.outline-muted{border-color:var(--muted);color:var(--muted)}
+.glyph{display:inline-block;width:9px;height:9px;border:1.5px solid currentColor;border-radius:1px;position:relative;flex:none}
+.glyph.full{background:currentColor}
+.glyph.half::after{content:"";position:absolute;left:0;top:0;bottom:0;width:50%;background:currentColor}
+.status{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;font-family:var(--body);font-weight:500;font-size:12px;line-height:1.4;border:1px solid var(--plum);border-radius:2px;color:var(--ink);white-space:nowrap;background:var(--paper)}
+.status.done{background:var(--plum);border-color:var(--plum);color:#fff}
+.status.in-progress{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
+.status.in-progress .glyph,.status.to-do .glyph{color:var(--plum)}
+.btn{font-family:var(--body);font-weight:500;font-size:13px;padding:6px 12px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--plum);color:var(--plum)}
+.btn.active{background:var(--plum);border-color:var(--plum);color:#fff}
+.panel-tint{background:var(--tint);border:1px solid var(--tint2);border-radius:2px;padding:18px 20px}
+footer.site{padding:36px 0 56px;border-top:1px solid var(--hair);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+/* motion: one entrance stagger on load, hover responses, nothing else */
+.rise{opacity:0;transform:translateY(10px);animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards}
+.rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}*{transition:none!important}}
+@media (max-width:600px){:root{--gutter:16px}section.block{padding:36px 0}}
+</style>
+<style>{{page_css}}</style>
+</head>
+<body>
+<div class="top-rule"></div>
+<div class="wrap">
+<nav class="site" aria-label="Site">
+  <a class="mark" href="{{root}}index.html">Phoebe learns</a>
+  <ul>
+    <li><a href="{{root}}index.html" class="{{active_db}}">Learning DB</a></li>
+    <li><a href="{{root}}network.html" class="{{active_net}}">Network</a></li>
+    <li><a href="https://github.com/phoebefu6/phoebe-learns">GitHub</a></li>
+  </ul>
+</nav>
+{{content}}
+<footer class="site">
+  <span>Built with build.py. Entries are JSON + Markdown in the repo.</span>
+  <span><a href="https://github.com/phoebefu6/phoebe-learns">github.com/phoebefu6/phoebe-learns</a> &middot; generated {{generated}}</span>
+</footer>
+</div>
+<script type="application/json" id="data">{{data_json}}</script>
+<script>{{page_script}}</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "id": "2026-10-05-llm-engineering-with-streamlit-and-openai",
+  "topic": "LLM Engineering with Streamlit and OpenAI",
+  "domain": "aiap",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "llm",
+    "engineering",
+    "streamlit",
+    "openai"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-10-05",
+  "updated": "2026-10-05"
+}

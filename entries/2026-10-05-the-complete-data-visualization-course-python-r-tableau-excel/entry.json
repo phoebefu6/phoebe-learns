@@ -1,0 +1,26 @@
+{
+  "id": "2026-10-05-the-complete-data-visualization-course-python-r-tableau-excel",
+  "topic": "The Complete Data Visualization Course (Python/R/Tableau/Excel)",
+  "domain": "viz",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "data-visualization",
+    "python",
+    "tableau",
+    "excel"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-10-05",
+  "updated": "2026-10-05"
+}

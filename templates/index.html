@@ -1,0 +1,278 @@
+<!-- @css -->
+.hero{padding:56px 0 40px}
+.hero h1{max-width:18ch;margin-top:14px}
+.hero-num{display:flex;align-items:baseline;gap:18px;margin-top:34px;flex-wrap:wrap}
+.hero-num .big{font-family:var(--head);font-weight:500;font-size:clamp(72px,10vw,120px);line-height:.95;letter-spacing:-0.03em;color:var(--plum);font-variant-numeric:tabular-nums}
+.hero-num .of{color:var(--muted);font-size:17px}
+.schem{padding:28px 0 36px}
+.schem svg{width:100%;height:auto;max-width:900px;display:block;overflow:visible}
+.schem .sk{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.schem .sk-tint{fill:var(--tint2);stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.schem .sk-peach{fill:var(--peach);stroke:var(--ink);stroke-width:1.2}
+.schem .lbl{font-family:var(--head);font-weight:500;font-size:12.5px;fill:var(--ink);text-anchor:middle}
+.schem .cap{font-family:var(--body);font-weight:400;font-size:11px;fill:var(--muted);text-anchor:middle}
+.schem .kick{font-family:var(--body);font-weight:500;font-size:11px;letter-spacing:.08em;text-transform:uppercase;fill:var(--muted)}
+.controls{padding:28px 0 20px}
+.controls .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
+.controls .row .kicker{min-width:72px}
+.controls .chips{display:flex;flex-wrap:wrap;gap:6px}
+.view-toggle{display:inline-flex;border:1px solid var(--plum);border-radius:2px}
+.view-toggle .btn{border:0;border-radius:0;color:var(--ink)}
+.view-toggle .btn+.btn{border-left:1px solid var(--plum)}
+.view-toggle .btn.active{background:var(--plum);color:#fff}
+.controls .meta{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:6px;font-size:13px;color:var(--muted)}
+.controls .meta a{cursor:pointer}
+.views{padding:12px 0 56px;border-bottom:0}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.column{min-width:0}
+.column>header{display:flex;align-items:center;gap:8px;padding:0 0 10px;border-bottom:1px solid var(--ink);margin-bottom:14px;font-family:var(--head);font-weight:500;font-size:14px}
+.column>header .glyph{color:var(--plum);width:10px;height:10px}
+.column>header .count{margin-left:auto;color:var(--muted);font-family:var(--body);font-size:13px}
+.group-header{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:500;margin:18px 0 8px}
+.group-header:first-of-type{margin-top:0}
+.card{position:relative;display:block;background:var(--paper);border:1px solid var(--hair);border-radius:2px;padding:14px 14px 12px;margin-bottom:10px;color:var(--ink)}
+.card::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:1px;background:var(--plum);opacity:0;transition:height .15s ease,opacity .15s ease}
+.card:hover::before{height:3px;opacity:1}
+.card .topic{font-family:var(--head);font-weight:500;font-size:15px;line-height:1.3;margin:0 0 6px}
+.card .topic a{color:var(--ink)}
+.card .topic a:hover{color:var(--plum);border-bottom-color:transparent}
+.card .line{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+.card .tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+.card .ideas{margin:0 0 10px;padding-left:18px;font-size:13px;line-height:1.45}
+.card .ideas li{margin:2px 0}
+.card .more{font-size:12.5px;font-weight:500}
+.empty{color:var(--muted);font-size:13px;padding:8px 0}
+.tablewrap{overflow-x:auto}
+table.db thead th{position:sticky;top:0;background:var(--paper);z-index:1;border-bottom:1px solid var(--ink)}
+table.db td{font-size:14px}
+table.db .group-row td{padding-top:22px;padding-bottom:6px;border-bottom:1px solid var(--hair)}
+table.db .group-row:first-child td{padding-top:4px}
+table.db .tags{display:flex;flex-wrap:wrap;gap:4px}
+table.db .links a+a{margin-left:10px}
+.hidden{display:none!important}
+@media (max-width:820px){.board{grid-template-columns:1fr}.hero{padding:36px 0 28px}}
+<!-- @content -->
+<header class="hero">
+  <p class="kicker rise d1">Phoebe learns</p>
+  <h1 class="rise d2">Every course finished here turns into three ideas, five readings and a map.</h1>
+  <div class="hero-num rise d3">
+    <span class="big num" id="hero-count" data-target="{{done_count}}">{{done_count}}</span>
+    <span class="of">of <span class="num">{{total}}</span> logged</span>
+  </div>
+</header>
+
+<section class="block schem rise d4" aria-label="How an entry is made">
+<svg id="schematic" viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="schem-title">
+  <title id="schem-title">How an entry is made: notes or a course URL, tidied, researched, bundled, filed here</title>
+  <text class="kick" x="20" y="18">How an entry is made</text>
+  <g transform="translate(20,36)">
+    <path class="sk" d="M2 3 C 40 0, 100 1, 139 2 C 141 20, 140 44, 138 63 C 100 65, 40 64, 2 62 C 0 44, 1 20, 2 3 Z"/>
+    <text class="lbl" x="70" y="30">Notes file</text>
+    <text class="lbl" x="70" y="46">or course URL</text>
+    <text class="cap" x="70" y="88">what Phoebe brings in</text>
+  </g>
+  <path class="sk" d="M164 68 c 8 -3 18 2 30 0"/>
+  <path class="sk" d="M187 63 l 8 5 l -8 5"/>
+  <g transform="translate(200,36)">
+    <path class="sk" d="M3 2 C 45 1, 95 0, 138 3 C 140 22, 139 42, 139 62 C 95 64, 45 63, 2 63 C 1 42, 2 22, 3 2 Z"/>
+    <text class="lbl" x="70" y="38">Tidy</text>
+    <text class="cap" x="70" y="88">entry.json + notes.md</text>
+  </g>
+  <path class="sk" d="M344 68 c 10 2 20 -3 30 0"/>
+  <path class="sk" d="M367 63 l 8 5 l -8 5"/>
+  <g transform="translate(380,36)">
+    <path class="sk" d="M2 2 C 40 2, 100 0, 139 2 C 140 20, 141 44, 138 63 C 100 63, 40 65, 2 63 C 1 44, 0 20, 2 2 Z"/>
+    <text class="lbl" x="70" y="30">Research</text>
+    <text class="lbl" x="70" y="46">3 support + 3 angles</text>
+    <text class="cap" x="70" y="88">per key point, each</text>
+    <text class="cap" x="70" y="103">with its disagreement</text>
+  </g>
+  <path class="sk" d="M524 68 c 8 -2 20 2 30 0"/>
+  <path class="sk" d="M547 63 l 8 5 l -8 5"/>
+  <g transform="translate(560,36)">
+    <path class="sk" d="M3 3 C 45 0, 95 2, 138 2 C 139 20, 140 44, 139 62 C 95 63, 45 65, 2 63 C 0 44, 2 20, 3 3 Z"/>
+    <text class="lbl" x="70" y="30">5 readings +</text>
+    <text class="lbl" x="70" y="46">5-course bundle</text>
+    <text class="cap" x="70" y="88">deepen, widen, prereq</text>
+  </g>
+  <path class="sk" d="M704 68 c 10 3 18 -3 30 0"/>
+  <path class="sk" d="M727 63 l 8 5 l -8 5"/>
+  <g transform="translate(740,36)">
+    <path class="sk-tint" d="M2 3 C 40 1, 100 0, 139 3 C 140 20, 141 44, 138 63 C 100 65, 40 63, 3 62 C 1 44, 0 20, 2 3 Z"/>
+    <path class="sk-peach" d="M131 -2 c 5 -4 11 0 10 6 c -1 5 -8 7 -11 3 c -2 -3 -2 -7 1 -9 Z"/>
+    <text class="lbl" x="70" y="30">This</text>
+    <text class="lbl" x="70" y="46">knowledge base</text>
+    <text class="cap" x="70" y="88">DB, entry pages, network</text>
+  </g>
+</svg>
+</section>
+
+<section class="block controls" aria-label="Filters">
+  <div class="row">
+    <span class="kicker">View</span>
+    <div class="view-toggle" role="group" aria-label="View">
+      <button class="btn" type="button" data-view="board">Board</button>
+      <button class="btn" type="button" data-view="table">Table</button>
+    </div>
+  </div>
+  <div class="row"><span class="kicker">Domain</span><div class="chips" data-group="domain"></div></div>
+  <div class="row"><span class="kicker">Platform</span><div class="chips" data-group="platform"></div></div>
+  <div class="row"><span class="kicker">Status</span><div class="chips" data-group="status"></div></div>
+  <div class="row"><span class="kicker">Tag</span><div class="chips" data-group="tag"></div></div>
+  <div class="meta"><span id="showing" class="num"></span><a id="clear" href="#" role="button">clear</a></div>
+</section>
+
+<section class="block views">
+  <div id="board" class="board"></div>
+  <div id="table" class="tablewrap hidden"></div>
+</section>
+<!-- @script -->
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var entries = D.entries || [];
+  var domains = D.domains || [];
+  var domName = {};
+  domains.forEach(function (d) { domName[d.id] = d.name; });
+  var STATUS = [
+    { id: 'to-do', label: 'To do', glyph: 'glyph' },
+    { id: 'in-progress', label: 'In progress', glyph: 'glyph half' },
+    { id: 'done', label: 'Done', glyph: 'glyph full' }
+  ];
+  var KEY = 'phoebe-learns-db';
+  var state = { view: 'board', f: { domain: [], platform: [], status: [], tag: [] } };
+  try {
+    var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (saved && saved.f) { state.view = saved.view === 'table' ? 'table' : 'board'; ['domain', 'platform', 'status', 'tag'].forEach(function (g) { if (Array.isArray(saved.f[g])) state.f[g] = saved.f[g]; }); }
+  } catch (e) {}
+  function persist() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function statusChip(id) {
+    var s = STATUS.filter(function (x) { return x.id === id; })[0] || STATUS[0];
+    return '<span class="status ' + s.id + '"><span class="' + s.glyph + '"></span>' + s.label + '</span>';
+  }
+  function dates(e) {
+    if (e.start_date && e.end_date) return e.start_date + ' to ' + e.end_date;
+    if (e.start_date) return 'started ' + e.start_date;
+    if (e.end_date) return 'finished ' + e.end_date;
+    return 'not started';
+  }
+  function entryHref(e) { return 'entries/' + encodeURIComponent(e.id) + '/index.html'; }
+
+  // Chip groups: domain (from domains.json), platform, status, tag (top 20 by frequency).
+  function uniq(key) { var seen = {}; entries.forEach(function (e) { seen[e[key]] = 1; }); return Object.keys(seen).sort(); }
+  var tagCount = {};
+  entries.forEach(function (e) { (e.tags || []).forEach(function (t) { tagCount[t] = (tagCount[t] || 0) + 1; }); });
+  var topTags = Object.keys(tagCount).sort(function (a, b) { return tagCount[b] - tagCount[a] || a.localeCompare(b); }).slice(0, 20);
+  var groups = {
+    domain: domains.filter(function (d) { return entries.some(function (e) { return e.domain === d.id; }); }).map(function (d) { return { v: d.id, label: d.name }; }),
+    platform: uniq('platform').map(function (p) { return { v: p, label: p }; }),
+    status: STATUS.map(function (s) { return { v: s.id, label: s.label, glyph: s.glyph }; }),
+    tag: topTags.map(function (t) { return { v: t, label: t }; })
+  };
+  Object.keys(groups).forEach(function (g) {
+    var box = document.querySelector('.chips[data-group="' + g + '"]');
+    box.innerHTML = groups[g].map(function (o) {
+      return '<button class="chip" type="button" data-group="' + g + '" data-value="' + esc(o.v) + '" aria-pressed="false">' + (o.glyph ? '<span class="' + o.glyph + '"></span>' : '') + esc(o.label) + '</button>';
+    }).join('');
+  });
+  document.querySelector('.controls').addEventListener('click', function (ev) {
+    var b = ev.target.closest('button.chip');
+    if (!b) return;
+    var g = b.getAttribute('data-group'), v = b.getAttribute('data-value');
+    var i = state.f[g].indexOf(v);
+    if (i >= 0) state.f[g].splice(i, 1); else state.f[g].push(v);
+    render();
+  });
+  document.getElementById('clear').addEventListener('click', function (ev) {
+    ev.preventDefault();
+    state.f = { domain: [], platform: [], status: [], tag: [] };
+    render();
+  });
+  document.querySelectorAll('[data-view]').forEach(function (b) {
+    b.addEventListener('click', function () { state.view = b.getAttribute('data-view'); render(); });
+  });
+
+  // AND across groups, OR within a group.
+  function visible() {
+    return entries.filter(function (e) {
+      var f = state.f;
+      if (f.domain.length && f.domain.indexOf(e.domain) < 0) return false;
+      if (f.platform.length && f.platform.indexOf(e.platform) < 0) return false;
+      if (f.status.length && f.status.indexOf(e.status) < 0) return false;
+      if (f.tag.length && !(e.tags || []).some(function (t) { return f.tag.indexOf(t) >= 0; })) return false;
+      return true;
+    });
+  }
+  function newestFirst(a, b) { return (b.updated || '').localeCompare(a.updated || '') || (b.id || '').localeCompare(a.id || ''); }
+  function byDomain(list) {
+    var out = [];
+    domains.forEach(function (d) {
+      var items = list.filter(function (e) { return e.domain === d.id; }).sort(newestFirst);
+      if (items.length) out.push({ id: d.id, name: d.name, items: items });
+    });
+    var known = domains.map(function (d) { return d.id; });
+    var stray = list.filter(function (e) { return known.indexOf(e.domain) < 0; }).sort(newestFirst);
+    if (stray.length) out.push({ id: 'other', name: 'Other', items: stray });
+    return out;
+  }
+  function card(e) {
+    var tags = (e.tags || []).slice(0, 4).map(function (t) { return '<span class="chip tag">' + esc(t) + '</span>'; }).join('');
+    var ideas = (e.main_ideas || []).length ? '<ol class="ideas">' + e.main_ideas.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ol>' : '';
+    return '<article class="card">' +
+      '<h3 class="topic"><a href="' + entryHref(e) + '">' + esc(e.topic) + '</a></h3>' +
+      '<div class="line">' + esc(e.platform) + ' &middot; ' + esc(dates(e)) + '</div>' +
+      (tags ? '<div class="tags">' + tags + '</div>' : '') + ideas +
+      '<a class="more" href="' + entryHref(e) + '">Open entry</a></article>';
+  }
+  function renderBoard(list) {
+    var el = document.getElementById('board');
+    el.innerHTML = STATUS.map(function (s) {
+      var items = list.filter(function (e) { return e.status === s.id; });
+      var body = byDomain(items).map(function (g) {
+        return '<div class="group-header">' + esc(g.name) + '</div>' + g.items.map(card).join('');
+      }).join('');
+      return '<section class="column" data-status="' + s.id + '"><header><span class="' + s.glyph + '"></span>' + s.label + '<span class="count num">' + items.length + '</span></header>' + (body || '<p class="empty">Nothing here with these filters.</p>') + '</section>';
+    }).join('');
+  }
+  function renderTable(list) {
+    var rows = byDomain(list).map(function (g) {
+      return '<tr class="group-row"><td colspan="7"><span class="group-header">' + esc(g.name) + '</span></td></tr>' + g.items.map(function (e) {
+        var src = e.url ? '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">source</a>' : '<span class="muted">-</span>';
+        return '<tr><td><a href="' + entryHref(e) + '">' + esc(e.topic) + '</a></td><td>' + esc(e.platform) + '</td>' +
+          '<td><div class="tags">' + (e.tags || []).map(function (t) { return '<span class="chip tag">' + esc(t) + '</span>'; }).join('') + '</div></td>' +
+          '<td class="num">' + esc(e.start_date || '-') + '</td><td class="num">' + esc(e.end_date || '-') + '</td><td>' + statusChip(e.status) + '</td>' +
+          '<td class="links">' + src + '<a href="' + entryHref(e) + '">notes</a></td></tr>';
+      }).join('');
+    }).join('');
+    document.getElementById('table').innerHTML = '<table class="db"><thead><tr><th>Topic</th><th>Platform</th><th>Tags</th><th>Start</th><th>End</th><th>Status</th><th>Links</th></tr></thead><tbody>' + (rows || '<tr><td colspan="7" class="empty">Nothing here with these filters.</td></tr>') + '</tbody></table>';
+  }
+  function render() {
+    var list = visible();
+    document.querySelectorAll('button.chip').forEach(function (b) {
+      var on = state.f[b.getAttribute('data-group')].indexOf(b.getAttribute('data-value')) >= 0;
+      b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-view]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-view') === state.view); });
+    document.getElementById('showing').textContent = 'showing ' + list.length + ' of ' + entries.length;
+    document.getElementById('board').classList.toggle('hidden', state.view !== 'board');
+    document.getElementById('table').classList.toggle('hidden', state.view !== 'table');
+    if (state.view === 'board') renderBoard(list); else renderTable(list);
+    persist();
+  }
+  render();
+
+  // Hero count-up, once, skipped under reduced motion.
+  var hero = document.getElementById('hero-count');
+  var target = parseInt(hero.getAttribute('data-target'), 10) || 0;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduce && target > 0) {
+    var t0 = null;
+    hero.textContent = '0';
+    requestAnimationFrame(function step(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / 900), eased = 1 - Math.pow(1 - p, 3);
+      hero.textContent = String(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(step); else hero.textContent = String(target);
+    });
+  }
+})();
