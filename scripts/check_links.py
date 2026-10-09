@@ -3,7 +3,8 @@
 
 Usage: python3 scripts/check_links.py data.json
 
-Pass: HTTP 200-299. A 403 from udemy.com, coursera.org, datacamp.com or a doi.org link prints
+Pass: HTTP 200-299. A HEAD 404/405/000 is retried with a ranged GET. A 403 from udemy.com, coursera.org,
+datacamp.com, iso.org or a doi.org link prints
 "verify by WebFetch" and does not fail (those hosts block curl).
 Anything else fails. Exit 1 on any failure.
 Python 3.11 stdlib only; needs curl on PATH.
@@ -16,7 +17,7 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlparse
 
-SOFT_403_HOSTS = ("udemy.com", "coursera.org", "datacamp.com", "doi.org")
+SOFT_403_HOSTS = ("udemy.com", "coursera.org", "datacamp.com", "doi.org", "iso.org")
 
 
 def collect(data: dict) -> list[tuple[str, str]]:
@@ -41,14 +42,30 @@ def collect(data: dict) -> list[tuple[str, str]]:
     return list(seen.items())
 
 
-def probe(url: str) -> str:
-    cmd = ["curl", "-sIL", "-A", "Mozilla/5.0", "--max-time", "15",
+def _curl(url: str, head: bool) -> str:
+    cmd = ["curl", "-sL", "-A", "Mozilla/5.0", "--max-time", "20",
            "-o", "/dev/null", "-w", "%{http_code}", url]
+    if head:
+        cmd.insert(1, "-I")
+    else:
+        cmd[1:1] = ["-r", "0-2047"]  # GET the first 2 KB only
     try:
-        out = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
-        code = out.stdout.strip() or "000"
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        return out.stdout.strip() or "000"
     except (subprocess.TimeoutExpired, OSError):
-        code = "000"
+        return "000"
+
+
+def probe(url: str) -> str:
+    """HEAD first; retry with a ranged GET when HEAD says 404, 405 or 000.
+
+    NIST DOIs and some PDF hosts answer 404 to HEAD and 200 to GET.
+    """
+    code = _curl(url, head=True)
+    if code in ("404", "405", "000"):
+        get = _curl(url, head=False)
+        if get.startswith("2") or get == "206":
+            return get
     return code
 
 

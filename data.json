@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-05",
+ "generated": "2026-10-09",
  "site": "https://phoebefu6.github.io/phoebe-learns/",
  "domains": [
   {
@@ -76,6 +76,798 @@
   }
  ],
  "entries": [
+  {
+   "id": "2026-10-08-responsible-ai-foundations",
+   "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle",
+   "domain": "gov",
+   "platform": "DataCamp",
+   "source_type": "course",
+   "url": "https://www.datacamp.com/tracks/responsible-ai-foundations",
+   "tags": [
+    "responsible-ai",
+    "ai-ethics",
+    "ai-governance",
+    "ai-security",
+    "data-management",
+    "eu-ai-act"
+   ],
+   "status": "in-progress",
+   "start_date": "2026-10-08",
+   "end_date": null,
+   "supporting_doc": "notes.md",
+   "main_ideas": [
+    "Responsible AI is four disciplines, not one: ethics sets the principles (transparency, fairness, accountability), governance turns them into roles, committees and lifecycle checkpoints, security and risk management decide what can go wrong and how much risk the business will carry, and data management makes sure the inputs were sourced, licensed and validated before a model exists.",
+    "Regulation now classifies AI by risk, with the EU AI Act's high-risk tier carrying conformity assessment, documentation and traceability duties; model cards, data sheets, audit trails and KPIs are the artefacts that prove compliance and let governance scale.",
+    "Bias and risk are lifecycle properties: they enter at data sourcing, are caught by audits and subgroup analysis, are mitigated before, during and after training, and reappear after deployment, so monitoring and continuous improvement are part of the design, not a follow-up."
+   ],
+   "key_points": [
+    {
+     "id": "kp1",
+     "claim": "Ethical AI rests on transparency, fairness and accountability; explainable AI (XAI) is the technique that embeds them in a system.",
+     "supporting": [
+      "r1",
+      "r2",
+      "r3"
+     ],
+     "other_angles": [
+      "r4",
+      "r5",
+      "r6"
+     ],
+     "disagreement": "Explainability tools embed ethics into black-box systems (course, Adadi) vs post-hoc explanations are unreliable in high stakes and interpretable models should be used instead (Rudin); settled by measuring, on one high-stakes task, whether post-hoc explanations change expert decisions as reliably as an interpretable model does."
+    },
+    {
+     "id": "kp2",
+     "claim": "AI governance is a system of roles, committees and lifecycle checkpoints, distinct from AI ethics and from risk management.",
+     "supporting": [
+      "r7",
+      "r8",
+      "r9"
+     ],
+     "other_angles": [
+      "r10",
+      "r11",
+      "r12"
+     ],
+     "disagreement": "Governance is a separate operational layer that makes ethics real (course, Mantymaki) vs formal governance structures can become ethics washing that deflects regulation (Green); settled by tracking whether organisations with formal AI governance log fewer documented incidents than peers without, controlling for size and sector."
+    },
+    {
+     "id": "kp3",
+     "claim": "Regulation classifies AI by risk (the EU AI Act high-risk tier); conformity assessment, model cards and traceability are the compliance artefacts.",
+     "supporting": [
+      "r13",
+      "r14",
+      "r15"
+     ],
+     "other_angles": [
+      "r16",
+      "r17",
+      "r18"
+     ],
+     "disagreement": "Risk tiers plus conformity assessment and documentation deliver compliance and trust (course, Mokander) vs the tiers and self-assessment leave enforcement gaps and conflate acceptable risk with trustworthiness (Veale, Laux); settled by counting, once high-risk obligations apply, how many systems with completed conformity assessments still produce documented harms."
+    },
+    {
+     "id": "kp4",
+     "claim": "AI security has its own risk classes (model risks plus external threats) and risk appetite must tie to business goals.",
+     "supporting": [
+      "r19",
+      "r20",
+      "r21"
+     ],
+     "other_angles": [
+      "r22",
+      "r23",
+      "r24"
+     ],
+     "disagreement": "AI security needs its own model-level risk classes managed against a stated risk appetite (course, Barreno, NIST) vs real attackers use ordinary means and the academic adversarial threat model misprioritises defences (Apruzzese); settled by matching an organisation's incident log against its AI risk register to see which classes actually fired."
+    },
+    {
+     "id": "kp5",
+     "claim": "Responsible data starts before modelling: licensing, data use agreements, regulation compliance and a data management plan.",
+     "supporting": [
+      "r25",
+      "r26",
+      "r27"
+     ],
+     "other_angles": [
+      "r28",
+      "r29",
+      "r30"
+     ],
+     "disagreement": "Licences, agreements and consent-based compliance make data use responsible (course, Longpre) vs consent cannot carry that weight and trained models themselves stay regulated personal data (Solove, Veale); settled by auditing whether datasets with clean licences and DUAs produce fewer downstream privacy or rights complaints than those without."
+    },
+    {
+     "id": "kp6",
+     "claim": "Data acquisition and validation: source diversity, bias audits, subgroup analysis, bias mitigation across the lifecycle, and post-deployment bias.",
+     "supporting": [
+      "r31",
+      "r32",
+      "r33"
+     ],
+     "other_angles": [
+      "r34",
+      "r35",
+      "r36"
+     ],
+     "disagreement": "Bias is found and fixed in the data through audits and mitigation (course, Hort) vs bias also comes from model and deployment choices and from abstracting away context (Hooker, Selbst); settled by holding the dataset fixed and measuring how much subgroup disparity moves with model and deployment choices alone."
+    }
+   ],
+   "linked_references": [
+    {
+     "id": "r1",
+     "title": "The global landscape of AI ethics guidelines",
+     "authors": "Anna Jobin, Marcello Ienca, Effy Vayena",
+     "year": 2019,
+     "venue": "Nature Machine Intelligence",
+     "doi": "10.1038/s42256-019-0088-2",
+     "url": "https://doi.org/10.1038/s42256-019-0088-2",
+     "cited_by": 6047,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Reviewed 84 AI ethics guidelines worldwide and found convergence on transparency, justice and fairness, non-maleficence, responsibility and privacy; the empirical base for naming transparency, fairness and accountability as the core."
+    },
+    {
+     "id": "r2",
+     "title": "Peeking Inside the Black-Box: A Survey on Explainable Artificial Intelligence (XAI)",
+     "authors": "Amina Adadi, Mohammed Berrada",
+     "year": 2018,
+     "venue": "IEEE Access",
+     "doi": "10.1109/access.2018.2870052",
+     "url": "https://doi.org/10.1109/access.2018.2870052",
+     "cited_by": 6308,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "SECONDARY",
+     "why": "Survey of XAI methods that frames explainability as the route to trust and transparency in black-box systems, the role the course gives XAI; it does not itself cover fairness or accountability checks."
+    },
+    {
+     "id": "r3",
+     "title": "Connecting the dots in trustworthy Artificial Intelligence: From AI principles, ethics, and key requirements to responsible AI systems and regulation",
+     "authors": "Natalia Díaz-Rodríguez, Javier Del Ser, Mark Coeckelbergh et al.",
+     "year": 2023,
+     "venue": "Information Fusion",
+     "doi": "10.1016/j.inffus.2023.101896",
+     "url": "https://doi.org/10.1016/j.inffus.2023.101896",
+     "cited_by": 765,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Maps the trustworthy AI principles to seven technical requirements and on to regulation and auditing, showing how ethics principles become system-level mechanisms across the lifecycle."
+    },
+    {
+     "id": "r4",
+     "title": "Principles alone cannot guarantee ethical AI",
+     "authors": "Brent Mittelstadt",
+     "year": 2019,
+     "venue": "Nature Machine Intelligence",
+     "doi": "10.1038/s42256-019-0114-4",
+     "url": "https://doi.org/10.1038/s42256-019-0114-4",
+     "cited_by": 1865,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Argues that principles such as fairness and accountability cannot by themselves guarantee ethical AI because AI lacks the professional structures medicine has; principles need enforceable practice."
+    },
+    {
+     "id": "r5",
+     "title": "Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead",
+     "authors": "Cynthia D Rudin",
+     "year": 2019,
+     "venue": "Nature Machine Intelligence",
+     "doi": "10.1038/s42256-019-0048-x",
+     "url": "https://doi.org/10.1038/s42256-019-0048-x",
+     "cited_by": 10446,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Argues that for high-stakes decisions post-hoc explanations of black boxes are unreliable and inherently interpretable models should be used instead, so XAI is not the right embedding technique."
+    },
+    {
+     "id": "r6",
+     "title": "Seeing without knowing: Limitations of the transparency ideal and its application to algorithmic accountability",
+     "authors": "Mike Ananny, Kate Crawford",
+     "year": 2016,
+     "venue": "New Media & Society",
+     "doi": "10.1177/1461444816676645",
+     "url": "https://doi.org/10.1177/1461444816676645",
+     "cited_by": 1815,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "reframes",
+     "tier": "PRIMARY",
+     "why": "Lists ten limits of the transparency ideal (seeing a system is not knowing or governing it), reframing transparency as one accountability mechanism among many rather than a foundation."
+    },
+    {
+     "id": "r7",
+     "title": "Responsible artificial intelligence governance: A review and research framework",
+     "authors": "Emmanouil Papagiannidis, Patrick Mikalef, Kieran Conboy",
+     "year": 2025,
+     "venue": "The Journal of Strategic Information Systems",
+     "doi": "10.1016/j.jsis.2024.101885",
+     "url": "https://doi.org/10.1016/j.jsis.2024.101885",
+     "cited_by": 514,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "SECONDARY",
+     "why": "Scoping review of responsible AI studies that separates the principles from the structural, relational and procedural governance practices that implement them; the governance-versus-risk-management half of the distinction is the course's own."
+    },
+    {
+     "id": "r8",
+     "title": "Defining organizational AI governance",
+     "authors": "Matti Mäntymäki, Matti Minkkinen, Teemu Birkstedt et al.",
+     "year": 2022,
+     "venue": "AI and Ethics",
+     "doi": "10.1007/s43681-022-00143-x",
+     "url": "https://doi.org/10.1007/s43681-022-00143-x",
+     "cited_by": 288,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "SECONDARY",
+     "why": "Defines organizational AI governance as a system of rules, practices, processes and tools that translate ethical principles into practice, which is the course's roles-and-checkpoints view."
+    },
+    {
+     "id": "r9",
+     "title": "AI governance: themes, knowledge gaps and future agendas",
+     "authors": "Teemu Birkstedt, Matti Minkkinen, Anushree Tandon et al.",
+     "year": 2023,
+     "venue": "Internet Research",
+     "doi": "10.1108/intr-01-2022-0042",
+     "url": "https://doi.org/10.1108/intr-01-2022-0042",
+     "cited_by": 302,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Systematic review of AI governance research that treats governance as a distinct layer of structures and processes with its own themes and gaps, separate from ethics guidelines."
+    },
+    {
+     "id": "r10",
+     "title": "Closing the AI accountability gap",
+     "authors": "Inioluwa Deborah Raji, Andrew Smart, Rebecca N. White et al.",
+     "year": 2020,
+     "venue": "ACM Conference on Fairness, Accountability, and Transparency (FAT* 2020)",
+     "doi": "10.1145/3351095.3372873",
+     "url": "https://doi.org/10.1145/3351095.3372873",
+     "cited_by": 1378,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "PRIMARY",
+     "why": "Proposes an end-to-end internal audit framework (SMACTR) with artefacts at each lifecycle stage, adding the audit mechanism that governance checkpoints rely on."
+    },
+    {
+     "id": "r11",
+     "title": "The Contestation of Tech Ethics: A Sociotechnical Approach to Technology Ethics in Practice",
+     "authors": "Ben Green",
+     "year": 2021,
+     "venue": "Journal of Social Computing",
+     "doi": "10.23919/jsc.2021.0018",
+     "url": "https://doi.org/10.23919/jsc.2021.0018",
+     "cited_by": 112,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Argues that tech ethics practice, including corporate ethics and governance structures, is contested and often serves to deflect regulation, so formal structures alone do not make AI responsible."
+    },
+    {
+     "id": "r12",
+     "title": "ISO/IEC 42001:2023 Information technology - Artificial intelligence - Management system",
+     "authors": "ISO/IEC JTC 1/SC 42",
+     "year": 2023,
+     "venue": "International Organization for Standardization",
+     "doi": "",
+     "url": "https://www.iso.org/standard/42001",
+     "cited_by": 0,
+     "source_db": "none",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "SECONDARY",
+     "why": "The first AI management system standard; specifies requirements for establishing, implementing, maintaining and continually improving an AI management system, giving governance an auditable certification shape the course only sketches. Standard, no count."
+    },
+    {
+     "id": "r13",
+     "title": "Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)",
+     "authors": "European Parliament and Council of the European Union",
+     "year": 2024,
+     "venue": "Official Journal of the European Union, L series, 12.7.2024",
+     "doi": "",
+     "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+     "cited_by": 0,
+     "source_db": "none",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "SECONDARY",
+     "why": "The legal text: recital 26 requires a risk-based approach, Article 6 sets classification rules for high-risk AI systems, Article 9 a risk management system and Article 12 record-keeping (automatic logs over the system lifetime); the obligations the course's compliance artefacts answer. Amended by Regulation (EU) 2026/1744 (Digital Omnibus on AI, in force 27 July 2026), which moved high-risk application to December 2027 (Annex III) and August 2028 (Annex I); 2024/1689 remains the operative text. Legal text, no count."
+    },
+    {
+     "id": "r14",
+     "title": "Model Cards for Model Reporting",
+     "authors": "Margaret Mitchell, Simone Wu, Andrew Zaldivar et al.",
+     "year": 2019,
+     "venue": "ACM Conference on Fairness, Accountability, and Transparency (FAT* 2019)",
+     "doi": "10.1145/3287560.3287596",
+     "url": "https://doi.org/10.1145/3287560.3287596",
+     "cited_by": 2121,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Proposes the model card as a standard document stating intended use, evaluation across conditions and ethical considerations; the artefact the course names."
+    },
+    {
+     "id": "r15",
+     "title": "Conformity Assessments and Post-market Monitoring: A Guide to the Role of Auditing in the Proposed European AI Regulation",
+     "authors": "Jakob Mökander, Maria Axente, Federico Casolari et al.",
+     "year": 2021,
+     "venue": "Minds and Machines",
+     "doi": "10.1007/s11023-021-09577-4",
+     "url": "https://doi.org/10.1007/s11023-021-09577-4",
+     "cited_by": 149,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "SECONDARY",
+     "why": "Reads the proposed Act's conformity assessments and post-market monitoring as the two enforcement mechanisms and as an auditing ecosystem, setting out what a conformity assessment of a high-risk system involves; written on the 2021 draft, not the final regulation."
+    },
+    {
+     "id": "r16",
+     "title": "Demystifying the Draft EU Artificial Intelligence Act  -  Analysing the good, the bad, and the unclear elements of the proposed approach",
+     "authors": "Michael Veale, Frederik Zuiderveen Borgesius",
+     "year": 2021,
+     "venue": "Computer Law Review International",
+     "doi": "10.9785/cri-2021-220402",
+     "url": "https://doi.org/10.9785/cri-2021-220402",
+     "cited_by": 791,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Critique of the April 2021 draft Act: the high-risk list, provider self-assessment and reliance on harmonised standards bodies leave enforcement gaps, so classification plus conformity assessment may not deliver protection; the final Act changed details but kept the mechanism."
+    },
+    {
+     "id": "r17",
+     "title": "Trustworthy artificial intelligence and the European Union AI act: On the conflation of trustworthiness and acceptability of risk",
+     "authors": "Johann Moritz Laux, Sandra Wachter, Brent Mittelstadt",
+     "year": 2023,
+     "venue": "Regulation & Governance",
+     "doi": "10.1111/rego.12512",
+     "url": "https://doi.org/10.1111/rego.12512",
+     "cited_by": 348,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Argues the Act conflates trustworthiness with acceptable risk, so passing a risk-tier conformity check does not make a system trustworthy."
+    },
+    {
+     "id": "r18",
+     "title": "Datasheets for datasets",
+     "authors": "Timnit Gebru, Jamie Morgenstern, Briana Vecchione et al.",
+     "year": 2021,
+     "venue": "Communications of the ACM",
+     "doi": "10.1145/3458723",
+     "url": "https://doi.org/10.1145/3458723",
+     "cited_by": 2091,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "PRIMARY",
+     "why": "Adds the dataset-side documentation artefact (motivation, composition, collection, recommended uses) that model cards and traceability depend on."
+    },
+    {
+     "id": "r19",
+     "title": "The security of machine learning",
+     "authors": "Marco Barreno, Blaine A. Nelson, Anthony Douglas Joseph et al.",
+     "year": 2010,
+     "venue": "Machine Learning",
+     "doi": "10.1007/s10994-010-5188-5",
+     "url": "https://doi.org/10.1007/s10994-010-5188-5",
+     "cited_by": 836,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "The classic taxonomy of attacks on machine learning (influence, security violation, specificity) that defines model-level risk classes as distinct from ordinary software risks."
+    },
+    {
+     "id": "r20",
+     "title": "Wild patterns: Ten years after the rise of adversarial machine learning",
+     "authors": "Battista Biggio, Fabio Roli",
+     "year": 2018,
+     "venue": "Pattern Recognition",
+     "doi": "10.1016/j.patcog.2018.07.023",
+     "url": "https://doi.org/10.1016/j.patcog.2018.07.023",
+     "cited_by": 1449,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Ten-year review of adversarial machine learning covering evasion and poisoning attacks and their defences, the model-risk class the course's Risk Management Fundamentals chapter opens with."
+    },
+    {
+     "id": "r21",
+     "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+     "authors": "National Institute of Standards and Technology (Elham Tabassi, ed.)",
+     "year": 2023,
+     "venue": "NIST AI 100-1",
+     "doi": "10.6028/nist.ai.100-1",
+     "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+     "cited_by": 1138,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Defines risk tolerance as the organisation's readiness to bear risk in order to achieve its objectives, highly contextual and use-case specific, which is what the course calls risk appetite tied to business goals; its Govern, Map, Measure and Manage functions structure the assessment. NIST says 1.0 is being revised; it is still the current version."
+    },
+    {
+     "id": "r22",
+     "title": "“Real Attackers Don't Compute Gradients”: Bridging the Gap Between Adversarial ML Research and Practice",
+     "authors": "Giovanni Apruzzese, Hyrum S. Anderson, Savino Dambra et al.",
+     "year": 2023,
+     "venue": "IEEE Conference on Secure and Trustworthy Machine Learning (SaTML)",
+     "doi": "10.1109/satml54575.2023.00031",
+     "url": "https://doi.org/10.1109/satml54575.2023.00031",
+     "cited_by": 73,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Shows from practitioner evidence that real attackers rarely use the gradient-based attacks studied in research, so a model-risk register built from the academic threat model misprioritises."
+    },
+    {
+     "id": "r23",
+     "title": "Integrating Cybersecurity and Enterprise Risk Management (ERM), Revision 1",
+     "authors": "Stephen D. Quinn, Julie Chua, Nahla Ivy et al.",
+     "year": 2025,
+     "venue": "NIST Interagency Report 8286 Rev. 1",
+     "doi": "10.6028/nist.ir.8286r1",
+     "url": "https://csrc.nist.gov/pubs/ir/8286/r1/final",
+     "cited_by": 0,
+     "source_db": "crossref",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "PRIMARY",
+     "why": "Connects cybersecurity risk registers to enterprise risk management so that technical risks roll up into the organisation's risk appetite and risk tolerance statements. Revision 1 (December 2025) superseded the 2020 edition that OpenAlex indexes; no count found for the revision."
+    },
+    {
+     "id": "r24",
+     "title": "Prompt Injection attack against LLM-integrated Applications",
+     "authors": "Yi Liu, Gelei Deng, Yuekang Li et al.",
+     "year": 2023,
+     "venue": "arXiv (Cornell University)",
+     "doi": "10.48550/arxiv.2306.05499",
+     "url": "http://arxiv.org/abs/2306.05499",
+     "cited_by": 83,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "PRIMARY",
+     "why": "Demonstrates prompt injection against LLM-integrated applications, an external threat class that did not exist in the classic taxonomies. arXiv record; OpenAlex under-counts it."
+    },
+    {
+     "id": "r25",
+     "title": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+     "authors": "Nithya Sambasivan, Shivani Kapania, Hannah Highfill et al.",
+     "year": 2021,
+     "venue": "CHI Conference on Human Factors in Computing Systems",
+     "doi": "10.1145/3411764.3445518",
+     "url": "https://doi.org/10.1145/3411764.3445518",
+     "cited_by": 728,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Interviews with 53 AI practitioners in India, East and West Africa and the USA found data cascades, compounding downstream harm from upstream data decisions; 92 percent of practitioners reported at least one. The evidence that data work must come before model work; it does not cover licensing or DMPs."
+    },
+    {
+     "id": "r26",
+     "title": "A large-scale audit of dataset licensing and attribution in AI",
+     "authors": "Shayne Longpre, Robert Mahari, Anthony Chen et al.",
+     "year": 2024,
+     "venue": "Nature Machine Intelligence",
+     "doi": "10.1038/s42256-024-00878-8",
+     "url": "https://doi.org/10.1038/s42256-024-00878-8",
+     "cited_by": 84,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Audit of more than 1,800 text datasets finding widespread licence omission and mis-attribution; the licensing problem the course's compliance chapter addresses."
+    },
+    {
+     "id": "r27",
+     "title": "Ten Simple Rules for Creating a Good Data Management Plan",
+     "authors": "William K. Michener",
+     "year": 2015,
+     "venue": "PLoS Computational Biology",
+     "doi": "10.1371/journal.pcbi.1004525",
+     "url": "https://doi.org/10.1371/journal.pcbi.1004525",
+     "cited_by": 256,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Ten rules for a data management plan (what data, how documented, stored, shared and who is responsible), the DMP the course names as the pre-modelling artefact."
+    },
+    {
+     "id": "r28",
+     "title": "Introduction: Privacy Self-Management and the Consent Dilemma",
+     "authors": "Daniel J. Solove",
+     "year": 2013,
+     "venue": "Harvard Law Review",
+     "doi": "",
+     "url": "https://scholarship.law.gwu.edu/faculty_publications/936",
+     "cited_by": 425,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "SECONDARY",
+     "why": "Argues that consent-based privacy self-management cannot carry the weight regulation puts on it, so compliance built on consent and agreements is structurally weak."
+    },
+    {
+     "id": "r29",
+     "title": "Algorithms that remember: model inversion attacks and data protection law",
+     "authors": "Michael Veale, Reuben Binns, Lilian Edwards",
+     "year": 2018,
+     "venue": "Philosophical Transactions of the Royal Society A Mathematical Physical and Engineering Sciences",
+     "doi": "10.1098/rsta.2018.0083",
+     "url": "https://doi.org/10.1098/rsta.2018.0083",
+     "cited_by": 254,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "PRIMARY",
+     "why": "Shows that trained models can themselves be personal data under GDPR through model inversion and membership inference, so regulation compliance does not end at data acquisition."
+    },
+    {
+     "id": "r30",
+     "title": "Lessons from archives",
+     "authors": "Eun Seo Jo, Timnit Gebru",
+     "year": 2020,
+     "venue": "ACM Conference on Fairness, Accountability, and Transparency (FAT* 2020)",
+     "doi": "10.1145/3351095.3372829",
+     "url": "https://doi.org/10.1145/3351095.3372829",
+     "cited_by": 241,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "reframes",
+     "tier": "PRIMARY",
+     "why": "Reframes data collection as an archival practice with institutional consent, inclusivity and ethics processes, a discipline the machine learning pipeline lacks."
+    },
+    {
+     "id": "r31",
+     "title": "Bias Mitigation for Machine Learning Classifiers: A Comprehensive Survey",
+     "authors": "Max Hort, Zhenpeng Chen, Jie M. Zhang et al.",
+     "year": 2023,
+     "venue": "ACM Journal on Responsible Computing",
+     "doi": "10.1145/3631326",
+     "url": "https://doi.org/10.1145/3631326",
+     "cited_by": 211,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Survey of 341 bias mitigation papers organised as pre-processing, in-processing and post-processing, the lifecycle view of mitigation the course teaches."
+    },
+    {
+     "id": "r32",
+     "title": "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification",
+     "authors": "Joy Buolamwini, Timnit Gebru",
+     "year": 2018,
+     "venue": "Proceedings of Machine Learning Research 81 (FAT* 2018)",
+     "doi": "",
+     "url": "https://proceedings.mlr.press/v81/buolamwini18a.html",
+     "cited_by": 3269,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "Subgroup analysis of commercial gender classifiers found error rates up to 34.7 percent for darker-skinned women against 0.8 percent for lighter-skinned men; the canonical case for subgroup audits."
+    },
+    {
+     "id": "r33",
+     "title": "Dissecting racial bias in an algorithm used to manage the health of populations",
+     "authors": "Ziad Obermeyer, Brian W. Powers, Christine Vogeli et al.",
+     "year": 2019,
+     "venue": "Science",
+     "doi": "10.1126/science.aax2342",
+     "url": "https://doi.org/10.1126/science.aax2342",
+     "cited_by": 7116,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "support",
+     "tier": "PRIMARY",
+     "why": "A deployed health algorithm reduced Black patients' access to care because cost was used as the proxy for need; the post-deployment bias case."
+    },
+    {
+     "id": "r34",
+     "title": "Moving beyond “algorithmic bias is a data problem”",
+     "authors": "Sara Hooker",
+     "year": 2021,
+     "venue": "Patterns",
+     "doi": "10.1016/j.patter.2021.100241",
+     "url": "https://doi.org/10.1016/j.patter.2021.100241",
+     "cited_by": 185,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "opposes",
+     "tier": "PRIMARY",
+     "why": "Argues bias is not only a data problem; model choices such as compression and architecture amplify disparities, so data audits alone miss it."
+    },
+    {
+     "id": "r35",
+     "title": "Fairness and Abstraction in Sociotechnical Systems",
+     "authors": "Andrew D. Selbst, danah boyd, Sorelle A. Friedler et al.",
+     "year": 2019,
+     "venue": "ACM Conference on Fairness, Accountability, and Transparency (FAT* 2019)",
+     "doi": "10.1145/3287560.3287598",
+     "url": "https://doi.org/10.1145/3287560.3287598",
+     "cited_by": 1580,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "reframes",
+     "tier": "PRIMARY",
+     "why": "Identifies five abstraction traps that make technical fairness fixes fail once the system enters a social context."
+    },
+    {
+     "id": "r36",
+     "title": "Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness",
+     "authors": "Michael J. Kearns, Seth Neel, Aaron Roth et al.",
+     "year": 2017,
+     "venue": "arXiv (Cornell University)",
+     "doi": "10.48550/arxiv.1711.05144",
+     "url": "http://arxiv.org/abs/1711.05144",
+     "cited_by": 381,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "extends",
+     "tier": "PRIMARY",
+     "why": "Shows that parity on a few predefined groups can hide unfairness in structured subgroups (fairness gerrymandering) and gives an auditing algorithm. arXiv record; the ICML 2018 version did not surface in OpenAlex."
+    }
+   ],
+   "support_readings": [
+    {
+     "id": "s1",
+     "title": "AI4People - An Ethical Framework for a Good AI Society: Opportunities, Risks, Principles, and Recommendations",
+     "authors": "Luciano Floridi, Josh Cowls, Monica Beltrametti et al.",
+     "year": 2018,
+     "venue": "Minds and Machines",
+     "doi": "10.1007/s11023-018-9482-5",
+     "url": "https://doi.org/10.1007/s11023-018-9482-5",
+     "cited_by": 4597,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "deepen",
+     "tier": "SECONDARY",
+     "why": "Five principles (beneficence, non-maleficence, autonomy, justice, explicability) with 20 concrete recommendations; the synthesis that later guideline reviews such as Jobin's map onto."
+    },
+    {
+     "id": "s2",
+     "title": "A Survey on Bias and Fairness in Machine Learning",
+     "authors": "Ninareh Mehrabi, Fred Morstatter, Nripsuta Ani Saxena et al.",
+     "year": 2021,
+     "venue": "ACM Computing Surveys",
+     "doi": "10.1145/3457607",
+     "url": "https://doi.org/10.1145/3457607",
+     "cited_by": 5511,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "deepen",
+     "tier": "SECONDARY",
+     "why": "A map of bias sources, a taxonomy of fairness definitions and the mitigation methods tried against them; the reference behind the course's bias and mitigation chapters."
+    },
+    {
+     "id": "s3",
+     "title": "The FAIR Guiding Principles for scientific data management and stewardship",
+     "authors": "Mark D. Wilkinson, Michel J. Dumontier, IJsbrand Jan Aalbersberg et al.",
+     "year": 2016,
+     "venue": "Scientific Data",
+     "doi": "10.1038/sdata.2016.18",
+     "url": "https://doi.org/10.1038/sdata.2016.18",
+     "cited_by": 19023,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "widen",
+     "tier": "PRIMARY",
+     "why": "Scientific data stewardship's Findable, Accessible, Interoperable, Reusable principles; the adjacent field that worked out data documentation and reuse rules a decade earlier."
+    },
+    {
+     "id": "s4",
+     "title": "Human-Centered Artificial Intelligence: Reliable, Safe & Trustworthy",
+     "authors": "Ben Shneiderman",
+     "year": 2020,
+     "venue": "International Journal of Human-Computer Interaction",
+     "doi": "10.1080/10447318.2020.1741118",
+     "url": "https://doi.org/10.1080/10447318.2020.1741118",
+     "cited_by": 1625,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "widen",
+     "tier": "PRIMARY",
+     "why": "HCI's governance structures for reliable, safe and trustworthy AI at team, organisation, industry and government level; a different field's view of the same control problem."
+    },
+    {
+     "id": "s5",
+     "title": "Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy",
+     "authors": "Cathy O'Neil",
+     "year": 2016,
+     "venue": "Crown (book)",
+     "doi": "",
+     "url": "https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/",
+     "cited_by": 1938,
+     "source_db": "openalex",
+     "retrieved": "2026-10-08",
+     "role": "practitioner",
+     "tier": "PRIMARY",
+     "why": "Book of cases where opaque, unaccountable models harmed people at scale; the practitioner narrative behind the ethics and fairness chapters. Book record, count is for the 2016 edition."
+    }
+   ],
+   "linked_courses": [
+    {
+     "platform": "Coursera Plus",
+     "title": "AI Governance",
+     "url": "https://www.coursera.org/learn/ai-governance",
+     "level": "Beginner",
+     "hours": "2 weeks at 10 hours a week",
+     "why": "Oxford Said Business School (Matthias Holweg) on why AI systems fail, governance in practice and the Trustworthy AI Cycle; the organisational half of the Collibra course at 20 hours instead of 2.",
+     "fit": "deepen",
+     "taught_by_phoebe": "learn-governance-101-with-phoebe"
+    },
+    {
+     "platform": "365 Data Science",
+     "title": "ChatGPT at Work: Ethical and Secure ChatGPT Use",
+     "url": "https://365datascience.com/courses/chatgpt-at-work-ethical-and-secure-chatgpt-use/",
+     "level": "Basic",
+     "hours": "2 hours",
+     "why": "The only ethics or governance course on the platform: core principles of AI ethics, leadership and management guidelines, and a section on GDPR, the EU AI Act and US state rules, seen from the user side rather than the builder side.",
+     "fit": "widen",
+     "taught_by_phoebe": null
+    },
+    {
+     "platform": "DataCamp",
+     "title": "Understanding the EU AI Act",
+     "url": "https://www.datacamp.com/courses/understanding-the-eu-ai-act",
+     "level": "Beginner",
+     "hours": "1 hour",
+     "why": "Taught by Dan Nechita, lead technical negotiator of the Act: risk categories, provider and deployer obligations and worked business scenarios; the regulation chapter of the governance course at full depth.",
+     "fit": "deepen",
+     "taught_by_phoebe": "learn-ai-governance-with-phoebe"
+    },
+    {
+     "platform": "Udemy",
+     "title": "AI Governance: The Fundamentals of AI Governance",
+     "url": "https://www.udemy.com/course/ai-governance-the-fundamentals-of-ai-governance/",
+     "level": "Beginner (no technical background required)",
+     "hours": "3h 41m",
+     "why": "13 sections with the working documents the track describes but does not hand out: AI system inventory, risk assessment matrix, policy template, model documentation sheet, and a comparison of the EU AI Act, ISO 42001 and the NIST AI RMF.",
+     "fit": "deepen",
+     "taught_by_phoebe": "learn-governance-101-with-phoebe"
+    },
+    {
+     "platform": "DeepLearning.AI",
+     "title": "Red Teaming LLM Applications",
+     "url": "https://www.deeplearning.ai/short-courses/red-teaming-llm-applications/",
+     "level": "Beginner",
+     "hours": "1h 39m",
+     "why": "Hands-on version of the AI security course: prompt-injection attacks on real chatbot apps, manual and automated red teaming with Giskard, and a full assessment; turns the risk classes into things you can test.",
+     "fit": "widen",
+     "taught_by_phoebe": null
+    }
+   ],
+   "research_status": "full",
+   "created": "2026-10-08",
+   "updated": "2026-10-08",
+   "domain_name": "Data & AI Governance"
+  },
   {
    "id": "2026-10-05-working-with-text-files-in-python",
    "topic": "Working with Text Files in Python",
@@ -2463,6 +3255,716 @@
  ],
  "nodes": [
   {
+   "id": "e:2026-10-08-responsible-ai-foundations",
+   "type": "entry",
+   "label": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle",
+   "domain": "gov",
+   "domain_name": "Data & AI Governance",
+   "platform": "DataCamp",
+   "status": "in-progress",
+   "tags": [
+    "responsible-ai",
+    "ai-ethics",
+    "ai-governance",
+    "ai-security",
+    "data-management",
+    "eu-ai-act"
+   ],
+   "url": "https://www.datacamp.com/tracks/responsible-ai-foundations",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 46
+  },
+  {
+   "id": "c:coursera.org/learn/ai-governance",
+   "type": "course",
+   "label": "AI Governance",
+   "platform": "Coursera Plus",
+   "url": "https://www.coursera.org/learn/ai-governance",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "c:365datascience.com/courses/chatgpt-at-work-ethical-and-secure-chatgpt-use",
+   "type": "course",
+   "label": "ChatGPT at Work: Ethical and Secure ChatGPT Use",
+   "platform": "365 Data Science",
+   "url": "https://365datascience.com/courses/chatgpt-at-work-ethical-and-secure-chatgpt-use/",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "c:datacamp.com/courses/understanding-the-eu-ai-act",
+   "type": "course",
+   "label": "Understanding the EU AI Act",
+   "platform": "DataCamp",
+   "url": "https://www.datacamp.com/courses/understanding-the-eu-ai-act",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "c:udemy.com/course/ai-governance-the-fundamentals-of-ai-governance",
+   "type": "course",
+   "label": "AI Governance: The Fundamentals of AI Governance",
+   "platform": "Udemy",
+   "url": "https://www.udemy.com/course/ai-governance-the-fundamentals-of-ai-governance/",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "c:deeplearning.ai/short-courses/red-teaming-llm-applications",
+   "type": "course",
+   "label": "Red Teaming LLM Applications",
+   "platform": "DeepLearning.AI",
+   "url": "https://www.deeplearning.ai/short-courses/red-teaming-llm-applications/",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1038/s42256-019-0088-2",
+   "type": "reference",
+   "label": "The global landscape of AI ethics guidelines",
+   "year": 2019,
+   "cited_by": 6047,
+   "url": "https://doi.org/10.1038/s42256-019-0088-2",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1109/access.2018.2870052",
+   "type": "reference",
+   "label": "Peeking Inside the Black-Box: A Survey on Explainable Artificial Intelligence (XAI)",
+   "year": 2018,
+   "cited_by": 6308,
+   "url": "https://doi.org/10.1109/access.2018.2870052",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1016/j.inffus.2023.101896",
+   "type": "reference",
+   "label": "Connecting the dots in trustworthy Artificial Intelligence: From AI principles, ethics, and key requirements to responsible AI systems and regulation",
+   "year": 2023,
+   "cited_by": 765,
+   "url": "https://doi.org/10.1016/j.inffus.2023.101896",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1038/s42256-019-0114-4",
+   "type": "reference",
+   "label": "Principles alone cannot guarantee ethical AI",
+   "year": 2019,
+   "cited_by": 1865,
+   "url": "https://doi.org/10.1038/s42256-019-0114-4",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1038/s42256-019-0048-x",
+   "type": "reference",
+   "label": "Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead",
+   "year": 2019,
+   "cited_by": 10446,
+   "url": "https://doi.org/10.1038/s42256-019-0048-x",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1177/1461444816676645",
+   "type": "reference",
+   "label": "Seeing without knowing: Limitations of the transparency ideal and its application to algorithmic accountability",
+   "year": 2016,
+   "cited_by": 1815,
+   "url": "https://doi.org/10.1177/1461444816676645",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1016/j.jsis.2024.101885",
+   "type": "reference",
+   "label": "Responsible artificial intelligence governance: A review and research framework",
+   "year": 2025,
+   "cited_by": 514,
+   "url": "https://doi.org/10.1016/j.jsis.2024.101885",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1007/s43681-022-00143-x",
+   "type": "reference",
+   "label": "Defining organizational AI governance",
+   "year": 2022,
+   "cited_by": 288,
+   "url": "https://doi.org/10.1007/s43681-022-00143-x",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1108/intr-01-2022-0042",
+   "type": "reference",
+   "label": "AI governance: themes, knowledge gaps and future agendas",
+   "year": 2023,
+   "cited_by": 302,
+   "url": "https://doi.org/10.1108/intr-01-2022-0042",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3351095.3372873",
+   "type": "reference",
+   "label": "Closing the AI accountability gap",
+   "year": 2020,
+   "cited_by": 1378,
+   "url": "https://doi.org/10.1145/3351095.3372873",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.23919/jsc.2021.0018",
+   "type": "reference",
+   "label": "The Contestation of Tech Ethics: A Sociotechnical Approach to Technology Ethics in Practice",
+   "year": 2021,
+   "cited_by": 112,
+   "url": "https://doi.org/10.23919/jsc.2021.0018",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:iso.org/standard/42001",
+   "type": "reference",
+   "label": "ISO/IEC 42001:2023 Information technology - Artificial intelligence - Management system",
+   "year": 2023,
+   "cited_by": 0,
+   "url": "https://www.iso.org/standard/42001",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+   "type": "reference",
+   "label": "Regulation (EU) 2024/1689 laying down harmonised rules on artificial intelligence (Artificial Intelligence Act)",
+   "year": 2024,
+   "cited_by": 0,
+   "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3287560.3287596",
+   "type": "reference",
+   "label": "Model Cards for Model Reporting",
+   "year": 2019,
+   "cited_by": 2121,
+   "url": "https://doi.org/10.1145/3287560.3287596",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1007/s11023-021-09577-4",
+   "type": "reference",
+   "label": "Conformity Assessments and Post-market Monitoring: A Guide to the Role of Auditing in the Proposed European AI Regulation",
+   "year": 2021,
+   "cited_by": 149,
+   "url": "https://doi.org/10.1007/s11023-021-09577-4",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.9785/cri-2021-220402",
+   "type": "reference",
+   "label": "Demystifying the Draft EU Artificial Intelligence Act  -  Analysing the good, the bad, and the unclear elements of the proposed approach",
+   "year": 2021,
+   "cited_by": 791,
+   "url": "https://doi.org/10.9785/cri-2021-220402",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1111/rego.12512",
+   "type": "reference",
+   "label": "Trustworthy artificial intelligence and the European Union AI act: On the conflation of trustworthiness and acceptability of risk",
+   "year": 2023,
+   "cited_by": 348,
+   "url": "https://doi.org/10.1111/rego.12512",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3458723",
+   "type": "reference",
+   "label": "Datasheets for datasets",
+   "year": 2021,
+   "cited_by": 2091,
+   "url": "https://doi.org/10.1145/3458723",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1007/s10994-010-5188-5",
+   "type": "reference",
+   "label": "The security of machine learning",
+   "year": 2010,
+   "cited_by": 836,
+   "url": "https://doi.org/10.1007/s10994-010-5188-5",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1016/j.patcog.2018.07.023",
+   "type": "reference",
+   "label": "Wild patterns: Ten years after the rise of adversarial machine learning",
+   "year": 2018,
+   "cited_by": 1449,
+   "url": "https://doi.org/10.1016/j.patcog.2018.07.023",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.6028/nist.ai.100-1",
+   "type": "reference",
+   "label": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+   "year": 2023,
+   "cited_by": 1138,
+   "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1109/satml54575.2023.00031",
+   "type": "reference",
+   "label": "“Real Attackers Don't Compute Gradients”: Bridging the Gap Between Adversarial ML Research and Practice",
+   "year": 2023,
+   "cited_by": 73,
+   "url": "https://doi.org/10.1109/satml54575.2023.00031",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.6028/nist.ir.8286r1",
+   "type": "reference",
+   "label": "Integrating Cybersecurity and Enterprise Risk Management (ERM), Revision 1",
+   "year": 2025,
+   "cited_by": 0,
+   "url": "https://csrc.nist.gov/pubs/ir/8286/r1/final",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.48550/arxiv.2306.05499",
+   "type": "reference",
+   "label": "Prompt Injection attack against LLM-integrated Applications",
+   "year": 2023,
+   "cited_by": 83,
+   "url": "http://arxiv.org/abs/2306.05499",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3411764.3445518",
+   "type": "reference",
+   "label": "“Everyone wants to do the model work, not the data work”: Data Cascades in High-Stakes AI",
+   "year": 2021,
+   "cited_by": 728,
+   "url": "https://doi.org/10.1145/3411764.3445518",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1038/s42256-024-00878-8",
+   "type": "reference",
+   "label": "A large-scale audit of dataset licensing and attribution in AI",
+   "year": 2024,
+   "cited_by": 84,
+   "url": "https://doi.org/10.1038/s42256-024-00878-8",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1371/journal.pcbi.1004525",
+   "type": "reference",
+   "label": "Ten Simple Rules for Creating a Good Data Management Plan",
+   "year": 2015,
+   "cited_by": 256,
+   "url": "https://doi.org/10.1371/journal.pcbi.1004525",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:scholarship.law.gwu.edu/faculty_publications/936",
+   "type": "reference",
+   "label": "Introduction: Privacy Self-Management and the Consent Dilemma",
+   "year": 2013,
+   "cited_by": 425,
+   "url": "https://scholarship.law.gwu.edu/faculty_publications/936",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1098/rsta.2018.0083",
+   "type": "reference",
+   "label": "Algorithms that remember: model inversion attacks and data protection law",
+   "year": 2018,
+   "cited_by": 254,
+   "url": "https://doi.org/10.1098/rsta.2018.0083",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3351095.3372829",
+   "type": "reference",
+   "label": "Lessons from archives",
+   "year": 2020,
+   "cited_by": 241,
+   "url": "https://doi.org/10.1145/3351095.3372829",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3631326",
+   "type": "reference",
+   "label": "Bias Mitigation for Machine Learning Classifiers: A Comprehensive Survey",
+   "year": 2023,
+   "cited_by": 211,
+   "url": "https://doi.org/10.1145/3631326",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:proceedings.mlr.press/v81/buolamwini18a.html",
+   "type": "reference",
+   "label": "Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification",
+   "year": 2018,
+   "cited_by": 3269,
+   "url": "https://proceedings.mlr.press/v81/buolamwini18a.html",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1126/science.aax2342",
+   "type": "reference",
+   "label": "Dissecting racial bias in an algorithm used to manage the health of populations",
+   "year": 2019,
+   "cited_by": 7116,
+   "url": "https://doi.org/10.1126/science.aax2342",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1016/j.patter.2021.100241",
+   "type": "reference",
+   "label": "Moving beyond “algorithmic bias is a data problem”",
+   "year": 2021,
+   "cited_by": 185,
+   "url": "https://doi.org/10.1016/j.patter.2021.100241",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3287560.3287598",
+   "type": "reference",
+   "label": "Fairness and Abstraction in Sociotechnical Systems",
+   "year": 2019,
+   "cited_by": 1580,
+   "url": "https://doi.org/10.1145/3287560.3287598",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.48550/arxiv.1711.05144",
+   "type": "reference",
+   "label": "Preventing Fairness Gerrymandering: Auditing and Learning for Subgroup Fairness",
+   "year": 2017,
+   "cited_by": 381,
+   "url": "http://arxiv.org/abs/1711.05144",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1007/s11023-018-9482-5",
+   "type": "reference",
+   "label": "AI4People - An Ethical Framework for a Good AI Society: Opportunities, Risks, Principles, and Recommendations",
+   "year": 2018,
+   "cited_by": 4597,
+   "url": "https://doi.org/10.1007/s11023-018-9482-5",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1145/3457607",
+   "type": "reference",
+   "label": "A Survey on Bias and Fairness in Machine Learning",
+   "year": 2021,
+   "cited_by": 5511,
+   "url": "https://doi.org/10.1145/3457607",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1038/sdata.2016.18",
+   "type": "reference",
+   "label": "The FAIR Guiding Principles for scientific data management and stewardship",
+   "year": 2016,
+   "cited_by": 19023,
+   "url": "https://doi.org/10.1038/sdata.2016.18",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:10.1080/10447318.2020.1741118",
+   "type": "reference",
+   "label": "Human-Centered Artificial Intelligence: Reliable, Safe & Trustworthy",
+   "year": 2020,
+   "cited_by": 1625,
+   "url": "https://doi.org/10.1080/10447318.2020.1741118",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
+   "id": "r:penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil",
+   "type": "reference",
+   "label": "Weapons of Math Destruction: How Big Data Increases Inequality and Threatens Democracy",
+   "year": 2016,
+   "cited_by": 1938,
+   "url": "https://www.penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil/",
+   "entries": [
+    {
+     "id": "2026-10-08-responsible-ai-foundations",
+     "topic": "Responsible AI foundations: ethics, governance, security and data stewardship across the AI lifecycle"
+    }
+   ],
+   "degree": 1
+  },
+  {
    "id": "e:2026-10-05-working-with-text-files-in-python",
    "type": "entry",
    "label": "Working with Text Files in Python",
@@ -4510,6 +6012,236 @@
   }
  ],
  "links": [
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "c:coursera.org/learn/ai-governance",
+   "type": "course"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "c:365datascience.com/courses/chatgpt-at-work-ethical-and-secure-chatgpt-use",
+   "type": "course"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "c:datacamp.com/courses/understanding-the-eu-ai-act",
+   "type": "course"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "c:udemy.com/course/ai-governance-the-fundamentals-of-ai-governance",
+   "type": "course"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "c:deeplearning.ai/short-courses/red-teaming-llm-applications",
+   "type": "course"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1038/s42256-019-0088-2",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1109/access.2018.2870052",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1016/j.inffus.2023.101896",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1038/s42256-019-0114-4",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1038/s42256-019-0048-x",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1177/1461444816676645",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1016/j.jsis.2024.101885",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1007/s43681-022-00143-x",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1108/intr-01-2022-0042",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3351095.3372873",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.23919/jsc.2021.0018",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:iso.org/standard/42001",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:eur-lex.europa.eu/eli/reg/2024/1689/oj/eng",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3287560.3287596",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1007/s11023-021-09577-4",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.9785/cri-2021-220402",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1111/rego.12512",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3458723",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1007/s10994-010-5188-5",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1016/j.patcog.2018.07.023",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.6028/nist.ai.100-1",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1109/satml54575.2023.00031",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.6028/nist.ir.8286r1",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.48550/arxiv.2306.05499",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3411764.3445518",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1038/s42256-024-00878-8",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1371/journal.pcbi.1004525",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:scholarship.law.gwu.edu/faculty_publications/936",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1098/rsta.2018.0083",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3351095.3372829",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3631326",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:proceedings.mlr.press/v81/buolamwini18a.html",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1126/science.aax2342",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1016/j.patter.2021.100241",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3287560.3287598",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.48550/arxiv.1711.05144",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1007/s11023-018-9482-5",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1145/3457607",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1038/sdata.2016.18",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:10.1080/10447318.2020.1741118",
+   "type": "reference"
+  },
+  {
+   "source": "e:2026-10-08-responsible-ai-foundations",
+   "target": "r:penguinrandomhouse.com/books/241363/weapons-of-math-destruction-by-cathy-oneil",
+   "type": "reference"
+  },
   {
    "source": "e:2026-10-05-evaluating-ai-agents",
    "target": "c:coursera.org/learn/evaluating-large-language-model-outputs-a-practical-guide",
