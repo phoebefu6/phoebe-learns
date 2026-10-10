@@ -238,6 +238,130 @@ def build_graph(entries: list[dict], names: dict) -> tuple[list[dict], list[dict
     return list(nodes.values()), list(links.values())
 
 
+# --------------------------------------------------------------------- game ----
+# One XP rule, documented in README.md ("How XP works"). The homepage reads the
+# derived numbers from data.json["game"] and each entry's "game" block; it never
+# recomputes them.
+EST_HOURS = 1.5
+LEVEL_THRESHOLDS = [0, 300, 800, 1500, 2500, 4000, 6000, 9000]
+RANKS = ["Curious", "Apprentice", "Analyst", "Practitioner", "Steward", "Architect", "Strategist", "Chief"]
+MILESTONES = [1, 5, 10, 25, 50, 100]
+
+
+def course_xp(e: dict) -> dict:
+    """XP, boss HP and reward for one entry.
+
+    done        -> round(hours * 100)
+    in-progress -> round(hours * 100 * progress_pct / 100)
+    to-do       -> 0
+    Missing hours -> 1.5 h estimate, flagged hours_estimated so the UI prints "est.".
+    """
+    has_hours = isinstance(e.get("hours"), (int, float)) and not isinstance(e.get("hours"), bool) and e["hours"] > 0
+    hours = float(e["hours"]) if has_hours else EST_HOURS
+    status = e["status"]
+    if status == "done":
+        pct = 100
+    elif status == "in-progress":
+        pct = int(e.get("progress_pct") or 0)
+    else:
+        pct = 0
+    full = round(hours * 100)
+    if status == "done":
+        xp = full
+    elif status == "in-progress":
+        xp = round(hours * 100 * pct / 100)
+    else:
+        xp = 0
+    hp = 0.0 if status == "done" else hours * (1 - pct / 100)
+    return {"hours": hours, "hours_estimated": not has_hours, "progress_pct": pct,
+            "xp": xp, "xp_full": full, "reward_xp": full - xp, "hp_hours": round(hp, 2)}
+
+
+def level_for(xp: int) -> dict:
+    idx = max(i for i, t in enumerate(LEVEL_THRESHOLDS) if xp >= t)
+    nxt = idx + 1 if idx + 1 < len(LEVEL_THRESHOLDS) else None
+    lo = LEVEL_THRESHOLDS[idx]
+    out = {"level": idx + 1, "rank": RANKS[idx], "floor": lo,
+           "next_level": None, "next_rank": None, "next_threshold": None, "xp_to_next": 0, "bar_pct": 100}
+    if nxt is not None:
+        hi = LEVEL_THRESHOLDS[nxt]
+        out.update(next_level=nxt + 1, next_rank=RANKS[nxt], next_threshold=hi, xp_to_next=hi - xp,
+                   bar_pct=round((xp - lo) / (hi - lo) * 100, 1))
+    return out
+
+
+def _iso_week(d: str) -> tuple[int, int]:
+    y, w, _ = _dt.date.fromisoformat(d).isocalendar()
+    return (y, w)
+
+
+def _week_before(wk: tuple[int, int]) -> tuple[int, int]:
+    y, w, _ = (_dt.date.fromisocalendar(wk[0], wk[1], 1) - _dt.timedelta(days=7)).isocalendar()
+    return (y, w)
+
+
+def weekly_streak(entries: list[dict], today: str = TODAY) -> dict:
+    """Consecutive ISO weeks, ending at the current week, with at least one done end_date."""
+    weeks = {_iso_week(e["end_date"]) for e in entries if e["status"] == "done" and e.get("end_date")}
+    cur = _iso_week(today)
+    current, wk = 0, cur
+    while wk in weeks:
+        current += 1
+        wk = _week_before(wk)
+    best = 0
+    for w in weeks:
+        if _week_before(w) in weeks:
+            continue  # not the start of a run
+        run, nx = 0, w
+        while nx in weeks:
+            run += 1
+            y, n, _ = (_dt.date.fromisocalendar(nx[0], nx[1], 1) + _dt.timedelta(days=7)).isocalendar()
+            nx = (y, n)
+        best = max(best, run)
+    recent, wk = [], cur
+    for _ in range(10):
+        recent.append({"week": f"{wk[0]}-W{wk[1]:02d}", "done": wk in weeks})
+        wk = _week_before(wk)
+    return {"current": current, "best": best, "this_week": f"{cur[0]}-W{cur[1]:02d}", "recent": recent[::-1]}
+
+
+def badges(entries: list[dict], domains: list[dict]) -> list[dict]:
+    done = sorted((e for e in entries if e["status"] == "done"), key=lambda e: (e["end_date"], e["id"]))
+    out = []
+    for d in domains:
+        if not any(e["domain"] == d["id"] for e in entries):
+            continue
+        first = next((e for e in done if e["domain"] == d["id"]), None)
+        out.append({"id": f"first-{d['id']}", "kind": "domain", "name": f"First in {d['name']}",
+                    "rule": f"Finish a {d['name']} course.",
+                    "earned": first is not None, "earned_on": first["end_date"] if first else None,
+                    "by": first["id"] if first else None, "latest": False})
+    for n in MILESTONES:
+        hit = done[n - 1] if len(done) >= n else None
+        out.append({"id": f"done-{n}", "kind": "milestone",
+                    "name": "First course done" if n == 1 else f"{n} courses done",
+                    "rule": "Finish any course." if n == 1 else f"Finish {n} courses.",
+                    "earned": hit is not None, "earned_on": hit["end_date"] if hit else None,
+                    "by": hit["id"] if hit else None, "latest": False})
+    earned = [b for b in out if b["earned"]]
+    if earned:
+        # Latest by date; on a tie the milestone (computed last) wins, it is the bigger news.
+        max(enumerate(earned), key=lambda ib: (ib[1]["earned_on"], ib[0]))[1]["latest"] = True
+    return out
+
+
+def game_state(entries: list[dict], domains: list[dict]) -> dict:
+    total_xp = sum(course_xp(e)["xp"] for e in entries)
+    lvl = level_for(total_xp)
+    return {"xp": total_xp, **lvl,
+            "levels": [{"level": i + 1, "rank": r, "threshold": t} for i, (r, t) in enumerate(zip(RANKS, LEVEL_THRESHOLDS))],
+            "rule": {"xp_per_hour": 100, "est_hours": EST_HOURS},
+            "done": sum(1 for e in entries if e["status"] == "done"),
+            "in_progress": sum(1 for e in entries if e["status"] == "in-progress"),
+            "to_do": sum(1 for e in entries if e["status"] == "to-do"),
+            "streak": weekly_streak(entries), "badges": badges(entries, domains)}
+
+
 # ---------------------------------------------------------------- renderers ----
 def status_chip(status: str) -> str:
     return f'<span class="status {status}"><span class="{STATUS_GLYPH[status]}"></span>{STATUS_LABEL[status]}</span>'
@@ -387,9 +511,11 @@ def main() -> int:
     for e in entries:
         pe = {k: v for k, v in e.items() if not k.startswith("_")}
         pe["domain_name"] = names.get(e["domain"], e["domain"])
+        pe["game"] = course_xp(e)
         public.append(pe)
+    game = game_state(entries, domains)
     data = {"generated": TODAY, "site": SITE_URL, "domains": domains, "entries": public,
-            "nodes": nodes, "links": links}
+            "game": game, "nodes": nodes, "links": links}
     (REPO / "data.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     data_json = inline_json(data)
 
@@ -404,7 +530,16 @@ def main() -> int:
     (REPO / "index.html").write_text(page(base, tpl_index, "", {
         "title": "Phoebe learns - learning DB",
         "description": "Phoebe Fu's learning knowledge base: every course or notes file, tidied, researched and mapped.",
-        "done_count": done, "total": len(entries),
+        "done_count": done, "total": len(entries), "in_progress_count": game["in_progress"],
+        "level": game["level"], "rank": game["rank"], "xp": f"{game['xp']:,}",
+        "xp_raw": game["xp"], "bar_pct": game["bar_pct"],
+        "next_line": (f"{game['xp_to_next']:,} XP to {game['next_rank']}" if game["next_rank"]
+                      else "Top rank reached"),
+        "next_threshold": f"{game['next_threshold']:,}" if game["next_threshold"] else "",
+        "next_level": game["next_level"] or "",
+        "floor": f"{game['floor']:,}",
+        "scale_right": (f"Level {game['next_level']} at {game['next_threshold']:,} XP" if game["next_rank"] else "Top rank"),
+        "max_class": "" if game["next_rank"] else "lv-max",
         "active_db": "active", "active_net": "", "generated": TODAY, "data_json": data_json,
     }), encoding="utf-8"); pages += 1
 

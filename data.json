@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-09",
+ "generated": "2026-10-10",
  "site": "https://phoebefu6.github.io/phoebe-learns/",
  "domains": [
   {
@@ -92,6 +92,7 @@
     "eu-ai-act"
    ],
    "status": "in-progress",
+   "hours": 6,
    "start_date": "2026-10-08",
    "end_date": null,
    "supporting_doc": "notes.md",
@@ -866,7 +867,16 @@
    "research_status": "full",
    "created": "2026-10-08",
    "updated": "2026-10-08",
-   "domain_name": "Data & AI Governance"
+   "domain_name": "Data & AI Governance",
+   "game": {
+    "hours": 6.0,
+    "hours_estimated": false,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 600,
+    "reward_xp": 600,
+    "hp_hours": 6.0
+   }
   },
   {
    "id": "2026-10-05-working-with-text-files-in-python",
@@ -891,7 +901,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-understanding-cloud-computing",
@@ -915,7 +934,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-the-complete-data-visualization-course-python-r-tableau-excel",
@@ -942,7 +970,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Visual Thinking & Storytelling"
+   "domain_name": "Visual Thinking & Storytelling",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-statistics",
@@ -966,7 +1003,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-starting-a-career-in-data-science-ken-jee",
@@ -991,7 +1037,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Communications"
+   "domain_name": "Communications",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-sql-tableau",
@@ -1016,7 +1071,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-sql-for-data-science-interviews",
@@ -1042,7 +1106,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Communications"
+   "domain_name": "Communications",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-sql",
@@ -1066,7 +1139,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-python-programmer-bootcamp",
@@ -1092,7 +1174,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-python-coding-interview-prep",
@@ -1117,7 +1208,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Communications"
+   "domain_name": "Communications",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-python-101-102",
@@ -1141,7 +1241,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-probability",
@@ -1165,7 +1274,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-power-query-and-data-modeling",
@@ -1191,7 +1309,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-power-bi-data-visualization-hero",
@@ -1216,7 +1343,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Visual Thinking & Storytelling"
+   "domain_name": "Visual Thinking & Storytelling",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-power-bi",
@@ -1240,7 +1376,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-mcps-for-everyone",
@@ -1264,7 +1409,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Applied AI"
+   "domain_name": "Applied AI",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-mathematics",
@@ -1288,7 +1442,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-machine-learning-in-python",
@@ -1313,7 +1476,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-llm-engineering-with-streamlit-and-openai",
@@ -1340,7 +1512,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Applied AI"
+   "domain_name": "Applied AI",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-vector-databases-with-pinecone",
@@ -1365,7 +1546,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-tableau",
@@ -1389,7 +1579,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-r-programming",
@@ -1413,7 +1612,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-python",
@@ -1437,7 +1645,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-jupyter",
@@ -1461,7 +1678,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-hugging-face",
@@ -1485,7 +1711,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Applied AI"
+   "domain_name": "Applied AI",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-excel",
@@ -1509,7 +1744,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-dax",
@@ -1533,7 +1777,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-databricks",
@@ -1557,7 +1810,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-data-warehousing",
@@ -1581,7 +1843,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-data-architecture",
@@ -1605,7 +1876,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-data-and-data-science",
@@ -1630,7 +1910,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-aws-cloud",
@@ -1654,7 +1943,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introduction-to-amazon-redshift",
@@ -1678,7 +1976,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-introducing-algorithms-in-python",
@@ -1703,7 +2010,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-shell",
@@ -1727,7 +2043,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-microsoft-azure",
@@ -1751,7 +2076,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-google-cloud",
@@ -1775,7 +2109,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-data-engineering",
@@ -1799,7 +2142,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-chatgpt-and-generative-ai",
@@ -1824,7 +2176,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-ai-agents-and-agentic-ai",
@@ -1849,7 +2210,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intro-to-ai",
@@ -1873,7 +2243,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-intermediate-python-programming",
@@ -1899,7 +2278,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-how-to-think-like-a-data-scientist",
@@ -1924,7 +2312,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-git-and-github",
@@ -1949,7 +2346,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-evaluating-ai-agents-metrics-to-impact",
@@ -1976,7 +2382,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-evaluating-ai-agents",
@@ -1994,6 +2409,7 @@
     "llmops"
    ],
    "status": "in-progress",
+   "hours": 2.6,
    "start_date": "2026-10-05",
    "end_date": null,
    "supporting_doc": "notes.md",
@@ -2768,7 +3184,16 @@
    "research_status": "full",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 2.6,
+    "hours_estimated": false,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 260,
+    "reward_xp": 260,
+    "hp_hours": 2.6
+   }
   },
   {
    "id": "2026-10-05-deep-learning-with-tensorflow",
@@ -2793,7 +3218,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-dates-and-times-in-python",
@@ -2818,7 +3252,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Programming & Dev Tools"
+   "domain_name": "Programming & Dev Tools",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-data-strategy-bernard-marr",
@@ -2842,7 +3285,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Leadership & Decision-making"
+   "domain_name": "Leadership & Decision-making",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-data-preprocessing-with-numpy",
@@ -2867,7 +3319,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-data-literacy",
@@ -2891,7 +3352,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-data-cleaning-and-preprocessing-with-pandas",
@@ -2917,7 +3387,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Science"
+   "domain_name": "Data Science",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-data-analysis-with-excel-pivot-tables",
@@ -2943,7 +3422,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-data-analysis-with-chatgpt",
@@ -2968,7 +3456,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Applied AI"
+   "domain_name": "Applied AI",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-copilot-in-excel",
@@ -2993,7 +3490,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Applied AI"
+   "domain_name": "Applied AI",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-chatgpt-for-sql-beginners",
@@ -3019,7 +3525,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Applied AI"
+   "domain_name": "Applied AI",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-chatgpt-at-work-ethical-and-secure-use",
@@ -3046,7 +3561,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & AI Governance"
+   "domain_name": "Data & AI Governance",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-building-data-ai-solutions-on-google-cloud",
@@ -3072,7 +3596,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data Engineering & Infra"
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-building-business-reports-using-power-bi",
@@ -3097,7 +3630,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-build-conversational-ai-memory-with-langgraph",
@@ -3123,7 +3665,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-build-chat-applications-with-openai-and-langchain",
@@ -3150,7 +3701,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-ai-strategy-bernard-marr",
@@ -3174,7 +3734,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Leadership & Decision-making"
+   "domain_name": "Leadership & Decision-making",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-ai-agent-architecture",
@@ -3199,7 +3768,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "AI & LLMs"
+   "domain_name": "AI & LLMs",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-advanced-sql",
@@ -3224,7 +3802,16 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   },
   {
    "id": "2026-10-05-advanced-microsoft-excel",
@@ -3250,9 +3837,287 @@
    "research_status": "none",
    "created": "2026-10-05",
    "updated": "2026-10-05",
-   "domain_name": "Data & Analytics"
+   "domain_name": "Data & Analytics",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5
+   }
   }
  ],
+ "game": {
+  "xp": 0,
+  "level": 1,
+  "rank": "Curious",
+  "floor": 0,
+  "next_level": 2,
+  "next_rank": "Apprentice",
+  "next_threshold": 300,
+  "xp_to_next": 300,
+  "bar_pct": 0.0,
+  "levels": [
+   {
+    "level": 1,
+    "rank": "Curious",
+    "threshold": 0
+   },
+   {
+    "level": 2,
+    "rank": "Apprentice",
+    "threshold": 300
+   },
+   {
+    "level": 3,
+    "rank": "Analyst",
+    "threshold": 800
+   },
+   {
+    "level": 4,
+    "rank": "Practitioner",
+    "threshold": 1500
+   },
+   {
+    "level": 5,
+    "rank": "Steward",
+    "threshold": 2500
+   },
+   {
+    "level": 6,
+    "rank": "Architect",
+    "threshold": 4000
+   },
+   {
+    "level": 7,
+    "rank": "Strategist",
+    "threshold": 6000
+   },
+   {
+    "level": 8,
+    "rank": "Chief",
+    "threshold": 9000
+   }
+  ],
+  "rule": {
+   "xp_per_hour": 100,
+   "est_hours": 1.5
+  },
+  "done": 0,
+  "in_progress": 2,
+  "to_do": 64,
+  "streak": {
+   "current": 0,
+   "best": 0,
+   "this_week": "2026-W41",
+   "recent": [
+    {
+     "week": "2026-W32",
+     "done": false
+    },
+    {
+     "week": "2026-W33",
+     "done": false
+    },
+    {
+     "week": "2026-W34",
+     "done": false
+    },
+    {
+     "week": "2026-W35",
+     "done": false
+    },
+    {
+     "week": "2026-W36",
+     "done": false
+    },
+    {
+     "week": "2026-W37",
+     "done": false
+    },
+    {
+     "week": "2026-W38",
+     "done": false
+    },
+    {
+     "week": "2026-W39",
+     "done": false
+    },
+    {
+     "week": "2026-W40",
+     "done": false
+    },
+    {
+     "week": "2026-W41",
+     "done": false
+    }
+   ]
+  },
+  "badges": [
+   {
+    "id": "first-data",
+    "kind": "domain",
+    "name": "First in Data & Analytics",
+    "rule": "Finish a Data & Analytics course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-ds",
+    "kind": "domain",
+    "name": "First in Data Science",
+    "rule": "Finish a Data Science course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-deng",
+    "kind": "domain",
+    "name": "First in Data Engineering & Infra",
+    "rule": "Finish a Data Engineering & Infra course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-ai",
+    "kind": "domain",
+    "name": "First in AI & LLMs",
+    "rule": "Finish a AI & LLMs course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-aiap",
+    "kind": "domain",
+    "name": "First in Applied AI",
+    "rule": "Finish a Applied AI course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-viz",
+    "kind": "domain",
+    "name": "First in Visual Thinking & Storytelling",
+    "rule": "Finish a Visual Thinking & Storytelling course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-gov",
+    "kind": "domain",
+    "name": "First in Data & AI Governance",
+    "rule": "Finish a Data & AI Governance course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-prog",
+    "kind": "domain",
+    "name": "First in Programming & Dev Tools",
+    "rule": "Finish a Programming & Dev Tools course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-lead",
+    "kind": "domain",
+    "name": "First in Leadership & Decision-making",
+    "rule": "Finish a Leadership & Decision-making course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "first-comm",
+    "kind": "domain",
+    "name": "First in Communications",
+    "rule": "Finish a Communications course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "done-1",
+    "kind": "milestone",
+    "name": "First course done",
+    "rule": "Finish any course.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "done-5",
+    "kind": "milestone",
+    "name": "5 courses done",
+    "rule": "Finish 5 courses.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "done-10",
+    "kind": "milestone",
+    "name": "10 courses done",
+    "rule": "Finish 10 courses.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "done-25",
+    "kind": "milestone",
+    "name": "25 courses done",
+    "rule": "Finish 25 courses.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "done-50",
+    "kind": "milestone",
+    "name": "50 courses done",
+    "rule": "Finish 50 courses.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   },
+   {
+    "id": "done-100",
+    "kind": "milestone",
+    "name": "100 courses done",
+    "rule": "Finish 100 courses.",
+    "earned": false,
+    "earned_on": null,
+    "by": null,
+    "latest": false
+   }
+  ]
+ },
  "nodes": [
   {
    "id": "e:2026-10-08-responsible-ai-foundations",

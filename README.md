@@ -85,8 +85,46 @@ signal:
 | `in-progress` | soft tint fill | half-filled square |
 | `done` | solid plum fill, white text | filled square |
 
-The DB page's hero number is the count of `done` entries. The board view has
-exactly three columns, one per status; the table view groups by domain.
+The homepage's hero number is the current level (see "How XP works"). The board
+view has exactly three columns, one per status; the table view groups by domain.
+
+## How XP works
+
+The homepage is a game dashboard: level, quest map, boss board and trophy shelf.
+Every number on it comes from one place, `course_xp()` and `game_state()` in
+`build.py`, exported to `data.json` as `game` (site totals) and `entries[].game`
+(per course). The page only displays them.
+
+Two optional fields on `entry.json` feed it:
+
+| field | type | meaning |
+|---|---|---|
+| `hours` | number > 0 | course length in hours |
+| `progress_pct` | integer 0-100 | how far through an `in-progress` course; absent means 0 |
+
+XP per course:
+
+- `done`: `round(hours * 100)`
+- `in-progress`: `round(hours * 100 * progress_pct / 100)`
+- `to-do`: 0
+- No `hours`: use a 1.5 h estimate and set `hours_estimated: true`; the page prints
+  "est." beside every number built on it. A missing field never makes a course look
+  finished or trivial: boss HP uses the same 1.5 h estimate.
+
+Boss HP is hours left, `hours * (1 - progress_pct / 100)`; the reward is the XP still
+to earn. Levels start at 0, 300, 800, 1500, 2500, 4000, 6000 and 9000 XP: Curious,
+Apprentice, Analyst, Practitioner, Steward, Architect, Strategist, Chief.
+
+The weekly streak counts consecutive ISO weeks, ending at the current week, that hold
+at least one `end_date` of a `done` entry; the best streak is the longest such run.
+Badges: "First in <domain>" for the first finish in each domain that has entries, and
+milestones at 1, 5, 10, 25, 50 and 100 courses done. The most recently earned badge
+carries the peach accent.
+
+The homepage's add box and boss cards build commands for the `learning-buddy` skill
+(`learning buddy add to-do <url>`, `learning buddy start <id>`, `mark <id> done`) and
+copy them to the clipboard, or show them selected when the clipboard is unavailable.
+Nothing is sent anywhere.
 
 ## First real entry
 

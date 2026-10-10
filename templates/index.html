@@ -1,9 +1,4 @@
 <!-- @css -->
-.hero{padding:56px 0 40px}
-.hero h1{max-width:18ch;margin-top:14px}
-.hero-num{display:flex;align-items:baseline;gap:18px;margin-top:34px;flex-wrap:wrap}
-.hero-num .big{font-family:var(--head);font-weight:500;font-size:clamp(72px,10vw,120px);line-height:.95;letter-spacing:-0.03em;color:var(--plum);font-variant-numeric:tabular-nums}
-.hero-num .of{color:var(--muted);font-size:17px}
 .schem{padding:28px 0 36px}
 .schem svg{width:100%;height:auto;max-width:900px;display:block;overflow:visible}
 .schem .sk{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -50,18 +45,218 @@ table.db .group-row:first-child td{padding-top:4px}
 table.db .tags{display:flex;flex-wrap:wrap;gap:4px}
 table.db .links a+a{margin-left:10px}
 .hidden{display:none!important}
-@media (max-width:820px){.board{grid-template-columns:1fr}.hero{padding:36px 0 28px}}
+@media (max-width:820px){.board{grid-template-columns:1fr}}
+/* ---- game dashboard (header, add box, quest map, boss board, trophy shelf) ---- */
+::selection{background:var(--tint2);color:var(--ink)}
+:focus-visible{outline:2px solid var(--plum);outline-offset:2px}
+section.band{padding:88px 0}
+section.band>.kicker{margin-bottom:12px}
+section.band>h2{font-size:clamp(24px,3vw,32px);font-weight:500;max-width:24ch;margin-bottom:12px;text-wrap:balance}
+section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
+.game-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:end;padding:72px 0 88px;border-bottom:1px solid var(--hair)}
+.game-hero h1{max-width:14ch;margin-top:14px;font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
+.game-hero .hero-sub{margin-top:22px;color:var(--muted);font-size:17px}
+.game-hero .hero-sub .num{color:var(--ink);font-weight:500}
+.level{border-top:4px solid var(--plum);padding-top:18px}
+.lv-row{display:flex;align-items:flex-end;gap:22px;margin:6px 0 22px}
+.lv-num{font-family:var(--head);font-weight:500;font-size:clamp(96px,13vw,160px);line-height:.8;letter-spacing:-0.04em;color:var(--plum)}
+.lv-meta{display:flex;flex-direction:column;gap:4px;padding-bottom:4px}
+.lv-rank{font-family:var(--head);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink)}
+.lv-xp{color:var(--muted);font-size:15px}
+.lv-xp .num{color:var(--ink);font-weight:500}
+.xpbar{position:relative;height:12px;background:var(--tint2);border-radius:1px;margin-right:6px}
+.xpbar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--plum);border-radius:1px;transform-origin:left center;animation:grow .9s cubic-bezier(.2,.7,.2,1) .5s both}
+.xpbar .next-mark{position:absolute;right:-6px;top:-7px;width:12px;height:26px;background:var(--peach);border:1px solid var(--ink);border-radius:1px}
+.lv-max .xpbar .next-mark{display:none}
+.xpscale{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--muted)}
+.lv-next{margin:14px 0 0;font-family:var(--head);font-weight:500;font-size:17px;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.xpbar .fill{animation:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:none}}
+/* Safety net: if frames never paint (print, headless capture), the entrance settles on its final frame. */
+.settled .rise{animation:none;opacity:1;transform:none}
+.settled .xpbar .fill{animation:none}
+
+/* add a course */
+.add-form{max-width:720px}
+.add-form label.lbl{display:block;font-weight:500;font-size:14px;margin-bottom:8px}
+.add-row{display:flex;gap:10px;flex-wrap:wrap}
+.add-row input{flex:1 1 320px;min-width:0;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink)}
+.add-row input::placeholder{color:var(--muted)}
+.add-row input:focus{outline:2px solid var(--plum);outline-offset:1px;border-color:var(--plum)}
+.add-row input[aria-invalid="true"]{border-color:var(--plum)}
+.btn.primary{background:var(--plum);border-color:var(--plum);color:#fff;padding:10px 18px;font-size:14px}
+.btn.primary:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.add-msg{min-height:22px;margin:8px 0 0;font-size:13.5px;color:var(--ink)}
+.add-msg.err::before{content:"";display:inline-block;width:8px;height:8px;border:1.5px solid var(--plum);margin-right:8px;vertical-align:1px}
+.platforms{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.platforms .kicker{margin-right:6px}
+.platforms .chip{color:var(--muted);transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+.platforms .chip.on{background:var(--plum);border-color:var(--plum);color:#fff}
+.platforms .chip.on .glyph{color:#fff}
+.add-note{margin:22px 0 0;font-size:14px}
+.slot:empty{display:none}
+.slot{margin-top:14px}
+.slot .cmd{width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;padding:8px 10px;border:1px solid var(--plum);border-radius:2px;background:var(--tint);color:var(--ink)}
+.slot .said{margin:6px 0 0;font-size:13px;color:var(--ink)}
+
+/* quest map */
+.map-frame{position:relative;width:100%;border-top:1px solid var(--ink);border-bottom:1px solid var(--hair);padding:28px 0 22px}
+#quest-map{display:block;width:100%;height:auto;overflow:visible}
+#quest-map .land{fill:var(--tint);stroke:none}
+#quest-map .coast{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#quest-map .trail{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:2 6;stroke-linecap:round}
+#quest-map .rname{font-family:var(--head);font-weight:500;font-size:13.5px;fill:var(--ink)}
+#quest-map .rstat{font-family:var(--body);font-weight:400;font-size:12px;fill:var(--muted)}
+#quest-map .rstat .pc{fill:var(--ink);font-weight:500}
+#quest-map .tile{cursor:pointer;outline:none}
+#quest-map .tile .t{stroke:var(--plum);stroke-width:1;fill:var(--paper);transition:stroke-width .12s ease}
+#quest-map .tile.done .t{fill:var(--plum)}
+#quest-map .tile .h{fill:var(--plum)}
+#quest-map .tile .ring{fill:none;stroke:var(--ink);stroke-width:1.5;opacity:0}
+#quest-map .tile:hover .t{stroke-width:2.2}
+#quest-map .tile:focus-visible .ring,#quest-map .tile:hover .ring{opacity:1}
+.tip{position:absolute;z-index:3;max-width:280px;padding:10px 12px;background:var(--paper);border:1px solid var(--hair);border-radius:2px;pointer-events:none;font-size:13px;line-height:1.4;color:var(--ink)}
+.tip .tt{font-family:var(--head);font-weight:500;display:block;margin-bottom:3px}
+.tip .tl{color:var(--muted);font-size:12px}
+.tip[hidden]{display:none}
+.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font-size:13px;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.legend .glyph{color:var(--plum);width:12px;height:12px;border-width:1px}
+
+/* boss board */
+.bosses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.boss{position:relative;border:1px solid var(--hair);border-radius:2px;padding:18px 18px 16px;background:var(--paper);display:flex;flex-direction:column;min-width:0}
+.boss::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:1px;background:var(--plum);opacity:0;transition:height .15s ease,opacity .15s ease}
+.boss:hover::before,.boss:focus-within::before{height:3px;opacity:1}
+.boss-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.reward{font-family:var(--head);font-weight:500;font-size:14px;color:var(--plum);white-space:nowrap}
+.reward .est,.hp-v .est{font-family:var(--body);font-weight:400;font-size:12px;color:var(--muted);margin-left:3px}
+.boss-name{font-size:16px;line-height:1.3;margin:0 0 6px}
+.boss-name a{color:var(--ink)}
+.boss-name a:hover{color:var(--plum)}
+.boss-line{font-size:12.5px;color:var(--muted);margin:0 0 16px}
+.hp{display:flex;align-items:center;gap:10px;margin-top:auto}
+.hp-k{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted)}
+.hp-track{flex:1;height:6px;background:var(--hair);border-radius:1px;position:relative;min-width:40px}
+.hp-fill{position:absolute;left:0;top:0;bottom:0;background:var(--plum);border-radius:1px}
+.hp-v{font-size:13px;color:var(--ink);white-space:nowrap}
+.boss-actions{display:flex;gap:8px;margin-top:14px}
+.btn.sm{font-size:12.5px;padding:5px 10px}
+.btn.done-flash{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
+.boss-more{margin-top:28px}
+
+/* trophy shelf */
+.shelf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:56px;align-items:start}
+.streak .big{font-family:var(--head);font-weight:500;font-size:clamp(80px,10vw,128px);line-height:.85;letter-spacing:-0.04em;color:var(--plum);display:block}
+.streak .unit{display:block;margin-top:10px;font-family:var(--head);font-weight:500;font-size:18px}
+.streak .best{color:var(--muted);font-size:14px;margin:4px 0 20px}
+.streak .best .num{color:var(--ink);font-weight:500}
+.weeks{display:block;width:100%;max-width:320px;height:auto;overflow:visible}
+.weeks .wk{fill:var(--paper);stroke:var(--plum);stroke-width:1.2;stroke-linejoin:round}
+.weeks .wk.on{fill:var(--plum)}
+.weeks .wl{font-family:var(--body);font-size:10.5px;fill:var(--muted);text-anchor:middle}
+.weeks .now{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linecap:round}
+.streak .empty-note{margin-top:14px;font-size:14px;color:var(--muted);max-width:34ch}
+.badge-group+.badge-group{margin-top:32px}
+.badge-group h3{font-size:15px;margin-bottom:12px}
+.badge-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 12px}
+.shelf{margin-top:40px}
+.badge-group .note{font-size:13px;color:var(--muted);margin:-6px 0 12px}
+.badge .seal{display:flex;align-items:center;gap:9px;min-height:40px;padding:6px 12px;border:1px solid var(--hair);border-radius:2px;font-family:var(--body);font-weight:400;font-size:13px;line-height:1.25;color:var(--muted)}
+.badge.earned .seal{font-family:var(--head);font-weight:500}
+.badge .seal .glyph{color:var(--muted)}
+.badge.earned .seal{background:var(--plum);border:1px solid var(--plum);color:#fff}
+.badge.earned .seal .glyph{color:#fff}
+.badge.latest .seal .glyph{background:var(--peach);border-color:var(--peach)}
+.badge .rule{display:block;margin-top:6px;font-size:12.5px;color:var(--muted)}
+.badge.latest .rule{color:var(--ink);font-weight:500}
+
+@media (max-width:1000px){.bosses{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){
+  .game-hero{grid-template-columns:1fr;gap:44px;padding:44px 0 64px}
+  .shelf{grid-template-columns:1fr;gap:44px}
+  section.band{padding:64px 0}
+}
+@media (max-width:600px){
+  .bosses{grid-template-columns:1fr}
+  section.band{padding:52px 0}
+  .badge-grid{grid-template-columns:1fr}
+  .add-row .btn.primary{flex:1 1 100%}
+}
 <!-- @content -->
-<header class="hero">
-  <p class="kicker rise d1">Phoebe learns</p>
-  <h1 class="rise d2">Every course finished here turns into three ideas, five readings and a map.</h1>
-  <div class="hero-num rise d3">
-    <span class="big num" id="hero-count" data-target="{{done_count}}">{{done_count}}</span>
-    <span class="of">of <span class="num">{{total}}</span> logged</span>
+<header class="game-hero">
+  <div class="hero-copy">
+    <p class="kicker rise d1">Phoebe learns</p>
+    <h1 class="rise d2">Every course finished conquers a tile.</h1>
+    <p class="hero-sub rise d3"><span class="num">{{done_count}}</span> of <span class="num">{{total}}</span> courses conquered, <span class="num">{{in_progress_count}}</span> in progress.</p>
+  </div>
+  <div class="level {{max_class}} rise d4" aria-labelledby="lv-k">
+    <p class="kicker" id="lv-k">Level</p>
+    <div class="lv-row">
+      <span class="lv-num num" id="lv-num" data-target="{{level}}">{{level}}</span>
+      <div class="lv-meta">
+        <span class="lv-rank" id="lv-rank">{{rank}}</span>
+        <span class="lv-xp"><span class="num" id="xp-num" data-target="{{xp_raw}}">{{xp}}</span> XP</span>
+      </div>
+    </div>
+    <div class="xpbar" role="progressbar" aria-label="XP toward the next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{bar_pct}}">
+      <span class="fill" style="width:{{bar_pct}}%"></span>
+      <span class="next-mark" aria-hidden="true"></span>
+    </div>
+    <div class="xpscale"><span class="num">{{floor}} XP</span><span class="num">{{scale_right}}</span></div>
+    <p class="lv-next" id="lv-next">{{next_line}}</p>
   </div>
 </header>
 
-<section class="block schem rise d4" aria-label="How an entry is made">
+<section class="block band add" aria-labelledby="add-h">
+  <p class="kicker">Add a course</p>
+  <h2 id="add-h">Found a course? One paste hands it to Claude.</h2>
+  <form class="add-form" id="add-form" novalidate>
+    <label class="lbl" for="add-url">Paste a course link</label>
+    <div class="add-row">
+      <input id="add-url" name="url" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://www.datacamp.com/courses/..." aria-describedby="add-msg add-note">
+      <button class="btn primary" type="submit" id="add-copy">Copy for Claude</button>
+    </div>
+    <p class="add-msg" id="add-msg" role="status" aria-live="polite"></p>
+    <div class="platforms" id="platforms" aria-label="Detected platform"></div>
+    <div class="slot" id="add-slot"></div>
+    <p class="muted add-note" id="add-note">I read the course page, fill the entry, and ask you if anything is missing.</p>
+  </form>
+</section>
+
+<section class="block band quest" aria-labelledby="map-h">
+  <p class="kicker">Quest map</p>
+  <h2 id="map-h">The map</h2>
+  <p class="lede" id="map-lede"></p>
+  <div class="map-frame" id="map-frame">
+    <svg id="quest-map" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="map-h"></svg>
+    <div class="tip" id="map-tip" role="tooltip" hidden></div>
+  </div>
+  <div class="legend" aria-label="Tile legend">
+    <span><span class="glyph full"></span>Conquered (done)</span>
+    <span><span class="glyph half"></span>In progress</span>
+    <span><span class="glyph"></span>To do</span>
+    <span><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 5 C 8 2, 16 7, 25 3" fill="none" stroke="#6B6480" stroke-width="1.2" stroke-dasharray="2 5" stroke-linecap="round"/></svg>The curriculum route, region to region</span>
+  </div>
+</section>
+
+<section class="block band boss-board" aria-labelledby="boss-h">
+  <p class="kicker">Boss board</p>
+  <h2 id="boss-h">Bosses</h2>
+  <p class="lede" id="boss-lede"></p>
+  <div class="bosses" id="bosses"></div>
+  <div class="boss-more"><button class="btn" type="button" id="boss-toggle" aria-expanded="false"></button></div>
+</section>
+
+<section class="block band trophy" aria-labelledby="trophy-h">
+  <p class="kicker">Trophy shelf</p>
+  <h2 id="trophy-h">Trophies</h2>
+  <div class="shelf">
+    <div class="streak" id="streak"></div>
+    <div class="badges" id="badges"></div>
+  </div>
+</section>
+<section class="block schem" aria-label="How an entry is made">
 <svg id="schematic" viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="schem-title">
   <title id="schem-title">How an entry is made: notes or a course URL, tidied, researched, bundled, filed here</title>
   <text class="kick" x="20" y="18">How an entry is made</text>
@@ -127,6 +322,365 @@ table.db .links a+a{margin-left:10px}
   <div id="table" class="tablewrap hidden"></div>
 </section>
 <!-- @script -->
+// ---- game dashboard: reads data.game + entry.game from build.py, never recomputes XP ----
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var G = D.game || {};
+  var entries = D.entries || [];
+  var domains = D.domains || [];
+  var NS = 'http://www.w3.org/2000/svg';
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var STATUS_LABEL = { 'to-do': 'To do', 'in-progress': 'In progress', 'done': 'Conquered' };
+  var STATUS_GLYPH = { 'to-do': 'glyph', 'in-progress': 'glyph half', 'done': 'glyph full' };
+  var domOrder = {};
+  domains.forEach(function (d, i) { domOrder[d.id] = i; });
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function entryHref(e) { return 'entries/' + encodeURIComponent(e.id) + '/index.html'; }
+  function fmtH(h) { var r = Math.round(h * 10) / 10; return (r % 1 === 0 ? String(r) : r.toFixed(1)) + ' h'; }
+  function fmtN(n) { return Number(n).toLocaleString('en-US'); }
+  var EST = '<span class="est">est.</span>';
+
+  // ---------------------------------------------------------- count-up, once
+  function countUp(el) {
+    if (!el) return;
+    var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+    if (reduce || target <= 0) { el.textContent = fmtN(target); return; }
+    var t0 = null, start = target >= 10 ? 0 : Math.max(0, target - 1);
+    el.textContent = fmtN(start);
+    requestAnimationFrame(function step(ts) {
+      if (document.documentElement.classList.contains('settled')) { el.textContent = fmtN(target); return; }
+      if (t0 === null) t0 = ts;
+      var p = Math.min(1, (ts - t0) / 1000), eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmtN(Math.round(start + (target - start) * eased));
+      if (p < 1) requestAnimationFrame(step); else el.textContent = fmtN(target);
+    });
+  }
+  countUp(document.getElementById('lv-num'));
+  countUp(document.getElementById('xp-num'));
+  setTimeout(function () {
+    document.documentElement.classList.add('settled');
+    ['lv-num', 'xp-num'].forEach(function (id) { var n = document.getElementById(id); n.textContent = fmtN(parseInt(n.getAttribute('data-target'), 10) || 0); });
+  }, 1600);
+
+  // ---------------------------------------------- clipboard with a visible fallback
+  function copyCommand(cmd, slot, btn) {
+    function show(copied) {
+      slot.innerHTML = '<label class="kicker" for="' + slot.id + '-cmd">Command for Claude Code</label>' +
+        '<input class="cmd" id="' + slot.id + '-cmd" type="text" readonly value="' + esc(cmd) + '">' +
+        '<p class="said">' + (copied ? 'Copied. Paste it into Claude Code.' : 'Copied? Paste it into Claude Code.') + '</p>';
+      var input = slot.querySelector('input');
+      if (!copied) { input.focus(); input.select(); }
+      slot.setAttribute('data-command', cmd);
+      slot.setAttribute('data-copied', copied ? 'clipboard' : 'fallback');
+      if (copied && btn) {
+        var label = btn.textContent;
+        btn.classList.add('done-flash'); btn.textContent = 'Copied';
+        setTimeout(function () { btn.classList.remove('done-flash'); btn.textContent = label; }, 1600);
+      }
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cmd).then(function () { show(true); }, function () { show(false); });
+      } else { show(false); }
+    } catch (err) { show(false); }
+  }
+
+  // ---------------------------------------------------------------- add box
+  var PLATFORMS = [
+    { name: 'Coursera Plus', hosts: ['coursera.org'] },
+    { name: '365 Data Science', hosts: ['365datascience.com'] },
+    { name: 'DataCamp', hosts: ['datacamp.com'] },
+    { name: 'Udemy', hosts: ['udemy.com'] },
+    { name: 'DeepLearning.AI', hosts: ['deeplearning.ai'] },
+    { name: 'Other', hosts: [] }
+  ];
+  var urlIn = document.getElementById('add-url'), msg = document.getElementById('add-msg');
+  var platBox = document.getElementById('platforms'), addSlot = document.getElementById('add-slot');
+  platBox.innerHTML = '<span class="kicker">Platform</span>' + PLATFORMS.map(function (p) {
+    return '<span class="chip" data-p="' + esc(p.name) + '"><span class="glyph"></span>' + esc(p.name) + '</span>';
+  }).join('');
+  function parseUrl(v) {
+    v = (v || '').trim();
+    if (!/^https?:\/\//i.test(v)) return null;
+    try { var u = new URL(v); } catch (err) { return null; }
+    if (!/^https?:$/.test(u.protocol) || u.hostname.indexOf('.') < 1) return null;
+    return u;
+  }
+  function detect(u) {
+    if (!u) return null;
+    var h = u.hostname.toLowerCase();
+    for (var i = 0; i < PLATFORMS.length - 1; i++) {
+      if (PLATFORMS[i].hosts.some(function (x) { return h === x || h.slice(-(x.length + 1)) === '.' + x; })) return PLATFORMS[i].name;
+    }
+    return 'Other';
+  }
+  function paintPlatform() {
+    var p = detect(parseUrl(urlIn.value));
+    platBox.querySelectorAll('.chip').forEach(function (c) {
+      var on = c.getAttribute('data-p') === p;
+      c.classList.toggle('on', on);
+      c.querySelector('.glyph').className = on ? 'glyph full' : 'glyph';
+    });
+    platBox.setAttribute('data-detected', p || '');
+  }
+  urlIn.addEventListener('input', function () {
+    paintPlatform();
+    if (msg.classList.contains('err')) { msg.textContent = ''; msg.classList.remove('err'); urlIn.removeAttribute('aria-invalid'); }
+  });
+  document.getElementById('add-form').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var u = parseUrl(urlIn.value);
+    paintPlatform();
+    if (!u) {
+      addSlot.innerHTML = ''; addSlot.removeAttribute('data-command'); addSlot.removeAttribute('data-copied');
+      msg.textContent = 'That does not look like a course link. Paste a full address that starts with https://';
+      msg.classList.add('err'); urlIn.setAttribute('aria-invalid', 'true'); urlIn.focus();
+      return;
+    }
+    msg.textContent = ''; msg.classList.remove('err'); urlIn.removeAttribute('aria-invalid');
+    copyCommand('learning buddy add to-do ' + urlIn.value.trim(), addSlot, document.getElementById('add-copy'));
+  });
+
+  // ------------------------------------------------------------- quest map
+  function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+  function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function smooth(pts, closed) {
+    // Catmull-Rom through the points, as cubic Beziers: the hand-drawn wobble.
+    var n = pts.length, d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+    var last = closed ? n : n - 1;
+    function P(i) { return closed ? pts[(i + n) % n] : pts[Math.max(0, Math.min(n - 1, i))]; }
+    for (var i = 0; i < last; i++) {
+      var p0 = P(i - 1), p1 = P(i), p2 = P(i + 1), p3 = P(i + 2);
+      d += ' C' + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + ', ' +
+        (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + ', ' +
+        p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+    }
+    return d + (closed ? ' Z' : '');
+  }
+  function island(x, y, w, h, r) {
+    // Squircle outline with a little radial wobble; the stroke overshoots its start like a pen loop.
+    var cx = x + w / 2, cy = y + h / 2, a = w / 2, b = h / 2, n = 22, pts = [], ex = 4.2;
+    var a0 = r() * Math.PI * 2;
+    for (var i = 0; i < n; i++) {
+      var t = a0 + i / n * Math.PI * 2, c = Math.cos(t), s = Math.sin(t);
+      var k = 1 + (r() - 0.5) * 0.025;
+      pts.push([cx + a * k * Math.sign(c) * Math.pow(Math.abs(c), 2 / ex), cy + b * k * Math.sign(s) * Math.pow(Math.abs(s), 2 / ex)]);
+    }
+    var open = pts.concat([pts[0], [pts[1][0] + (r() - 0.5) * 3, pts[1][1] + 2.5]]);
+    return { fill: smooth(pts, true), stroke: smooth(open, false) };
+  }
+  var measureCtx = document.createElement('canvas').getContext('2d');
+  function textW(s, font) { measureCtx.font = font; return measureCtx.measureText(s).width; }
+  function wrap(s, maxW, font) {
+    var words = s.split(' '), lines = [], cur = '';
+    words.forEach(function (w) {
+      var t = cur ? cur + ' ' + w : w;
+      if (cur && textW(t, font) > maxW) { lines.push(cur); cur = w; } else cur = t;
+    });
+    if (cur) lines.push(cur);
+    return lines;
+  }
+  function el(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  var regions = domains.map(function (d) {
+    var items = entries.filter(function (e) { return e.domain === d.id; });
+    var rank = { 'done': 0, 'in-progress': 1, 'to-do': 2 };
+    items.sort(function (a, b) { return rank[a.status] - rank[b.status] || a.topic.localeCompare(b.topic); });
+    return { id: d.id, name: d.name, items: items, done: items.filter(function (e) { return e.status === 'done'; }).length };
+  }).filter(function (r) { return r.items.length; });
+  var stray = entries.filter(function (e) { return !(e.domain in domOrder); });
+  if (stray.length) regions.push({ id: 'other', name: 'Other', items: stray, done: stray.filter(function (e) { return e.status === 'done'; }).length });
+
+  var totalDone = entries.filter(function (e) { return e.status === 'done'; }).length;
+  var totalIP = entries.filter(function (e) { return e.status === 'in-progress'; }).length;
+  document.getElementById('map-h').textContent = totalDone
+    ? totalDone + ' of ' + entries.length + ' tiles conquered across ' + regions.length + ' regions.'
+    : regions.length + ' regions, ' + entries.length + ' tiles, the first conquest still ahead.';
+  document.getElementById('map-lede').textContent = 'Each island is a learning domain and each square is one course. ' +
+    (totalIP ? totalIP + (totalIP === 1 ? ' course is' : ' courses are') + ' under siege right now. ' : '') +
+    'Hover or tab to a square for its name, click to open it.';
+
+  var svg = document.getElementById('quest-map'), frame = document.getElementById('map-frame'), tip = document.getElementById('map-tip');
+  var lastW = 0;
+  function drawMap() {
+    var W = Math.floor(svg.parentNode.clientWidth);
+    if (!W || W === lastW) return;
+    lastW = W;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var cols = W >= 1000 ? 4 : W >= 640 ? 3 : 2;
+    var gap = W < 500 ? 14 : 30, vgap = W < 500 ? 16 : 26;
+    var colW = (W - gap * (cols - 1)) / cols;
+    var TILE = W < 500 ? 15 : 17, PITCH = TILE + 6;
+    var padX = W < 500 ? 16 : 24, padT = 20, padB = 22;
+    var FN = '500 13.5px Poppins, Inter, system-ui, sans-serif', LH = 19;
+    var colY = []; for (var c = 0; c < cols; c++) colY.push(0);
+    var layout = [];
+    regions.forEach(function (rg, i) {
+      var r = rng(hash(rg.id));
+      var c = colY.indexOf(Math.min.apply(null, colY));
+      var inset = r() * 6;
+      var w = colW - inset - 2;
+      var innerW = w - padX * 2;
+      var lines = wrap(rg.name, innerW, FN);
+      var perRow = Math.max(1, Math.floor((innerW + 6) / PITCH));
+      var rows = Math.ceil(rg.items.length / perRow);
+      var h = padT + lines.length * LH + 16 + 12 + rows * PITCH - 6 + padB;
+      var x = c * (colW + gap) + inset, y = colY[c] + (colY[c] ? vgap : 0) + r() * 10;
+      colY[c] = y + h;
+      layout.push({ rg: rg, r: r, x: x, y: y, w: w, h: h, lines: lines, perRow: perRow });
+    });
+    var H = Math.ceil(Math.max.apply(null, colY)) + 6;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('width', W); svg.setAttribute('height', H);
+
+    // Trail first so the islands sit on top of it.
+    var trailG = el('g', { 'aria-hidden': 'true' }, svg);
+    for (var i = 0; i + 1 < layout.length; i++) {
+      var A = layout[i], B = layout[i + 1], tr = rng(hash(A.rg.id + B.rg.id));
+      var ax = A.x + A.w * 0.5, ay = A.y + A.h * 0.5, bx = B.x + B.w * 0.5, by = B.y + B.h * 0.5;
+      var mx = (ax + bx) / 2 + (tr() - 0.5) * 40, my = (ay + by) / 2 + (tr() - 0.5) * 40;
+      el('path', { 'class': 'trail', d: smooth([[ax, ay], [(ax + mx) / 2 + 6, (ay + my) / 2 - 4], [mx, my], [(mx + bx) / 2 - 5, (my + by) / 2 + 5], [bx, by]], false) }, trailG);
+    }
+    layout.forEach(function (L) {
+      var rg = L.rg, g = el('g', { 'class': 'region', 'data-domain': rg.id }, svg);
+      var shape = island(L.x, L.y, L.w, L.h, L.r);
+      el('path', { 'class': 'land', d: shape.fill }, g);
+      el('path', { 'class': 'coast', d: shape.stroke }, g);
+      var tx = L.x + padX, ty = L.y + padT + 13;
+      var label = el('g', { 'class': 'rlabel' }, g);
+      L.lines.forEach(function (ln, k) {
+        var t = el('text', { 'class': 'rname', x: tx, y: ty + k * LH }, label); t.textContent = ln;
+      });
+      var pct = Math.round(rg.done / rg.items.length * 100);
+      var st = el('text', { 'class': 'rstat', x: tx, y: ty + L.lines.length * LH + 2 }, label);
+      st.textContent = rg.done + ' of ' + rg.items.length + ' - ';
+      var pc = el('tspan', { 'class': 'pc' }, st); pc.textContent = pct + '%';
+      var gy = ty + L.lines.length * LH + 16;
+      rg.items.forEach(function (e, k) {
+        var col = k % L.perRow, row = Math.floor(k / L.perRow);
+        var x = tx + col * PITCH, y = gy + row * PITCH;
+        var a = el('a', { 'class': 'tile ' + e.status, href: entryHref(e), 'data-id': e.id,
+          'aria-label': e.topic + ', ' + STATUS_LABEL[e.status] }, g);
+        a.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', entryHref(e));
+        var tilt = ((hash(e.id) % 7) - 3) * 0.6;
+        var tg = el('g', { transform: 'rotate(' + tilt.toFixed(1) + ' ' + (x + TILE / 2) + ' ' + (y + TILE / 2) + ')' }, a);
+        el('rect', { 'class': 'ring', x: x - 3, y: y - 3, width: TILE + 6, height: TILE + 6, rx: 1 }, tg);
+        el('rect', { 'class': 't', x: x + 0.5, y: y + 0.5, width: TILE - 1, height: TILE - 1, rx: 1 }, tg);
+        if (e.status === 'in-progress') el('rect', { 'class': 'h', x: x + 0.5, y: y + 0.5, width: (TILE - 1) / 2, height: TILE - 1 }, tg);
+        a.__entry = e;
+      });
+    });
+  }
+  function showTip(a) {
+    var e = a.__entry; if (!e) return;
+    var gm = e.game || {}, est = gm.hours_estimated ? ' est.' : '';
+    var line = STATUS_LABEL[e.status] + ' - ' + (e.domain_name || '') +
+      (e.status === 'done' ? ' - +' + fmtN(gm.xp) + ' XP' + est : ' - ' + fmtH(gm.hp_hours) + ' left' + est);
+    tip.innerHTML = '<span class="tt">' + esc(e.topic) + '</span><span class="tl">' + esc(line) + '</span>';
+    tip.hidden = false;
+    var fr = frame.getBoundingClientRect(), tr = a.getBoundingClientRect();
+    var tw = tip.offsetWidth, th = tip.offsetHeight;
+    var left = Math.max(0, Math.min(fr.width - tw, tr.left - fr.left + tr.width / 2 - tw / 2));
+    var top = tr.top - fr.top - th - 10;
+    if (top < 0) top = tr.bottom - fr.top + 10;
+    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+  }
+  function hideTip() { tip.hidden = true; }
+  svg.addEventListener('mouseover', function (ev) { var a = ev.target.closest && ev.target.closest('a.tile'); if (a) showTip(a); });
+  svg.addEventListener('mouseout', function (ev) { var a = ev.target.closest && ev.target.closest('a.tile'); if (a && !a.contains(ev.relatedTarget)) hideTip(); });
+  svg.addEventListener('focusin', function (ev) { var a = ev.target.closest && ev.target.closest('a.tile'); if (a) showTip(a); });
+  svg.addEventListener('focusout', hideTip);
+  drawMap();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastW = 0; drawMap(); });
+  var rz = null;
+  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawMap, 120); });
+
+  // ------------------------------------------------------------ boss board
+  var bosses = entries.filter(function (e) { return e.status !== 'done'; });
+  function domRank(e) { return e.domain in domOrder ? domOrder[e.domain] : 999; }
+  bosses.sort(function (a, b) {
+    var sa = a.status === 'in-progress' ? 0 : 1, sb = b.status === 'in-progress' ? 0 : 1;
+    return sa - sb || domRank(a) - domRank(b) || a.topic.localeCompare(b.topic);
+  });
+  var hpSum = 0, anyEst = false;
+  bosses.forEach(function (e) { hpSum += (e.game || {}).hp_hours || 0; if ((e.game || {}).hours_estimated) anyEst = true; });
+  document.getElementById('boss-h').textContent = bosses.length
+    ? bosses.length + ' bosses left: ' + fmtH(hpSum).replace(' h', ' hours') + ' of play' + (anyEst ? ', est.' : '.')
+    : 'Every boss is down. Paste a new course above.';
+  document.getElementById('boss-lede').textContent = 'HP is the hours left on a course. Beat one and its reward lands as XP. ' +
+    (anyEst ? 'Courses without a known length use a 1.5 hour estimate, marked est.' : '');
+  var bossBox = document.getElementById('bosses'), toggle = document.getElementById('boss-toggle'), showAll = false;
+  function bossCard(e) {
+    var gm = e.game || {}, est = gm.hours_estimated ? ' ' + EST : '';
+    var pct = gm.hours ? Math.max(0, Math.min(100, gm.hp_hours / gm.hours * 100)) : 100;
+    var slotId = 'slot-' + e.id;
+    return '<article class="boss" data-status="' + e.status + '" data-id="' + esc(e.id) + '">' +
+      '<div class="boss-top"><span class="status ' + e.status + '"><span class="' + STATUS_GLYPH[e.status] + '"></span>' + (e.status === 'in-progress' ? 'In progress' : 'To do') + '</span>' +
+      '<span class="reward num">+' + fmtN(gm.reward_xp) + ' XP' + est + '</span></div>' +
+      '<h3 class="boss-name"><a href="' + entryHref(e) + '">' + esc(e.topic) + '</a></h3>' +
+      '<p class="boss-line">' + esc(e.platform) + ' - ' + esc(e.domain_name || '') + '</p>' +
+      '<div class="hp"><span class="hp-k" aria-hidden="true">HP</span><span class="hp-track" aria-hidden="true"><span class="hp-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
+      '<span class="hp-v num" data-est="' + (gm.hours_estimated ? '1' : '0') + '">' + fmtH(gm.hp_hours) + ' left' + est + '</span></div>' +
+      '<div class="boss-actions"><button class="btn sm" type="button" data-cmd="learning buddy start ' + esc(e.id) + '">Start</button>' +
+      '<button class="btn sm" type="button" data-cmd="mark ' + esc(e.id) + ' done">Mark done</button></div>' +
+      '<div class="slot" id="' + esc(slotId) + '"></div></article>';
+  }
+  function renderBosses() {
+    var list = showAll ? bosses : bosses.slice(0, 6);
+    bossBox.innerHTML = list.map(bossCard).join('');
+    toggle.parentNode.classList.toggle('hidden', bosses.length <= 6);
+    toggle.textContent = showAll ? 'Show fewer' : 'Show all ' + bosses.length;
+    toggle.setAttribute('aria-expanded', showAll ? 'true' : 'false');
+  }
+  toggle.addEventListener('click', function () { showAll = !showAll; renderBosses(); });
+  bossBox.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-cmd]'); if (!b) return;
+    copyCommand(b.getAttribute('data-cmd'), b.closest('.boss').querySelector('.slot'), b);
+  });
+  renderBosses();
+
+  // ---------------------------------------------------------- trophy shelf
+  var S = G.streak || { current: 0, best: 0, recent: [] };
+  document.getElementById('trophy-h').textContent = S.current
+    ? S.current + (S.current === 1 ? ' week' : ' weeks') + ' in a row with a finish. Keep the chain.'
+    : 'Streaks count weeks, not days. One finish starts the chain.';
+  var wk = S.recent || [], WS = 26, WT = 18;
+  var wsvg = '<svg class="weeks" viewBox="-4 -4 ' + (wk.length * WS + 4) + ' 46" role="img" aria-label="Last ' + wk.length + ' weeks, filled squares had a finish">';
+  wk.forEach(function (w, i) {
+    var r = rng(hash(w.week)), x = i * WS, j = function () { return ((r() - 0.5) * 1.6).toFixed(1); };
+    var d = 'M' + (x + +j()) + ' ' + j() + ' L' + (x + WT + +j()) + ' ' + j() + ' L' + (x + WT + +j()) + ' ' + (WT + +j()) + ' L' + (x + +j()) + ' ' + (WT + +j()) + ' Z';
+    wsvg += '<path class="wk' + (w.done ? ' on' : '') + '" d="' + d + '"/>';
+    if (i === wk.length - 1) wsvg += '<path class="now" d="M' + (x + 2) + ' 24 q ' + (WT / 2 - 2) + ' 3 ' + (WT - 4) + ' 0"/><text class="wl" x="' + (x + WT / 2) + '" y="38">now</text>';
+    else if (i === 0) wsvg += '<text class="wl" x="' + (x + WT / 2) + '" y="38">' + esc(w.week.slice(5)) + '</text>';
+  });
+  wsvg += '</svg>';
+  document.getElementById('streak').innerHTML =
+    '<span class="big num" aria-hidden="true">' + S.current + '</span>' +
+    '<span class="unit">' + (S.current === 1 ? 'week' : 'weeks') + ' in a row</span>' +
+    '<p class="best">Best streak <span class="num">' + S.best + '</span> ' + (S.best === 1 ? 'week' : 'weeks') + '</p>' + wsvg +
+    (S.current ? '' : '<p class="empty-note">No finished week yet. Mark one course done this week and the first square fills.</p>');
+  var B = G.badges || [];
+  function badgeLi(b) {
+    var cls = 'badge' + (b.earned ? ' earned' : '') + (b.latest ? ' latest' : '');
+    // Earned: the badge name on solid plum, date beneath. Unearned: an outline slot that carries the rule to earn it.
+    if (b.earned) {
+      return '<li class="' + cls + '" data-badge="' + esc(b.id) + '"><span class="seal"><span class="glyph full"></span>' + esc(b.name) + '</span>' +
+        '<span class="rule">' + (b.latest ? 'New - earned ' : 'Earned ') + esc(b.earned_on) + '</span></li>';
+    }
+    return '<li class="' + cls + '" data-badge="' + esc(b.id) + '" title="' + esc(b.name) + '"><span class="seal"><span class="glyph"></span>' + esc(b.rule.replace(/\.$/, '')) + '</span></li>';
+  }
+  var earnedN = B.filter(function (b) { return b.earned; }).length;
+  document.getElementById('badges').innerHTML =
+    '<div class="badge-group"><h3>Milestones <span class="muted num">' + B.filter(function (b) { return b.kind === 'milestone' && b.earned; }).length + ' of ' + B.filter(function (b) { return b.kind === 'milestone'; }).length + '</span></h3><ul class="badge-grid">' +
+    B.filter(function (b) { return b.kind === 'milestone'; }).map(badgeLi).join('') + '</ul></div>' +
+    '<div class="badge-group"><h3>First in each region <span class="muted num">' + B.filter(function (b) { return b.kind === 'domain' && b.earned; }).length + ' of ' + B.filter(function (b) { return b.kind === 'domain'; }).length + '</span></h3><p class="note">The first finish in a region earns its badge.</p><ul class="badge-grid">' +
+    B.filter(function (b) { return b.kind === 'domain'; }).map(badgeLi).join('') + '</ul></div>';
+  document.getElementById('badges').setAttribute('data-earned', earnedN);
+})();
 (function () {
   var D = JSON.parse(document.getElementById('data').textContent);
   var entries = D.entries || [];
@@ -261,18 +815,4 @@ table.db .links a+a{margin-left:10px}
   }
   render();
 
-  // Hero count-up, once, skipped under reduced motion.
-  var hero = document.getElementById('hero-count');
-  var target = parseInt(hero.getAttribute('data-target'), 10) || 0;
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce && target > 0) {
-    var t0 = null;
-    hero.textContent = '0';
-    requestAnimationFrame(function step(ts) {
-      if (t0 === null) t0 = ts;
-      var p = Math.min(1, (ts - t0) / 900), eased = 1 - Math.pow(1 - p, 3);
-      hero.textContent = String(Math.round(target * eased));
-      if (p < 1) requestAnimationFrame(step); else hero.textContent = String(target);
-    });
-  }
 })();

@@ -12,6 +12,7 @@ Python 3.11 stdlib only.
 from __future__ import annotations
 
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -155,6 +156,16 @@ def validate_entry(folder: Path, domain_ids: set[str] | None = None) -> list[str
     for k in ("created", "updated"):
         if not (isinstance(e[k], str) and DATE_RE.match(e[k])):
             errs.append(f"{rel}: {k} must be ISO yyyy-mm-dd")
+
+    # Optional game fields (build.py course_xp() reads them; absent is fine).
+    if "hours" in e:
+        h = e["hours"]
+        if isinstance(h, bool) or not isinstance(h, (int, float)) or not math.isfinite(h) or not h > 0:
+            errs.append(f"{rel}: hours must be a number > 0 when present")
+    if "progress_pct" in e:
+        p = e["progress_pct"]
+        if isinstance(p, bool) or not isinstance(p, int) or not 0 <= p <= 100:
+            errs.append(f"{rel}: progress_pct must be an integer 0-100 when present")
 
     # Supporting docs.
     if not isinstance(e["supporting_doc"], str) or not e["supporting_doc"]:
