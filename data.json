@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-10",
+ "generated": "2026-10-11",
  "site": "https://phoebefu6.github.io/phoebe-learns/",
  "domains": [
   {
@@ -3859,6 +3859,154 @@
   "next_threshold": 300,
   "xp_to_next": 300,
   "bar_pct": 0.0,
+  "board": {
+   "track": [
+    "2026-10-05-advanced-microsoft-excel",
+    "2026-10-05-advanced-sql",
+    "2026-10-05-building-business-reports-using-power-bi",
+    "2026-10-05-data-analysis-with-excel-pivot-tables",
+    "2026-10-05-data-literacy",
+    "2026-10-05-introduction-to-data-and-data-science",
+    "2026-10-05-introduction-to-dax",
+    "2026-10-05-introduction-to-tableau",
+    "2026-10-05-power-bi",
+    "2026-10-05-sql",
+    "2026-10-05-sql-tableau",
+    "2026-10-05-data-cleaning-and-preprocessing-with-pandas",
+    "2026-10-05-data-preprocessing-with-numpy",
+    "2026-10-05-deep-learning-with-tensorflow",
+    "2026-10-05-how-to-think-like-a-data-scientist",
+    "2026-10-05-machine-learning-in-python",
+    "2026-10-05-mathematics",
+    "2026-10-05-probability",
+    "2026-10-05-statistics",
+    "2026-10-05-building-data-ai-solutions-on-google-cloud",
+    "2026-10-05-intro-to-data-engineering",
+    "2026-10-05-intro-to-google-cloud",
+    "2026-10-05-intro-to-microsoft-azure",
+    "2026-10-05-introduction-to-amazon-redshift",
+    "2026-10-05-introduction-to-aws-cloud",
+    "2026-10-05-introduction-to-data-architecture",
+    "2026-10-05-introduction-to-data-warehousing",
+    "2026-10-05-introduction-to-databricks",
+    "2026-10-05-power-query-and-data-modeling",
+    "2026-10-05-understanding-cloud-computing",
+    "2026-10-05-evaluating-ai-agents",
+    "2026-10-05-ai-agent-architecture",
+    "2026-10-05-build-chat-applications-with-openai-and-langchain",
+    "2026-10-05-build-conversational-ai-memory-with-langgraph",
+    "2026-10-05-evaluating-ai-agents-metrics-to-impact",
+    "2026-10-05-intro-to-ai",
+    "2026-10-05-intro-to-ai-agents-and-agentic-ai",
+    "2026-10-05-intro-to-chatgpt-and-generative-ai",
+    "2026-10-05-introduction-to-vector-databases-with-pinecone",
+    "2026-10-05-chatgpt-for-sql-beginners",
+    "2026-10-05-copilot-in-excel",
+    "2026-10-05-data-analysis-with-chatgpt",
+    "2026-10-05-introduction-to-hugging-face",
+    "2026-10-05-llm-engineering-with-streamlit-and-openai",
+    "2026-10-05-mcps-for-everyone",
+    "2026-10-05-power-bi-data-visualization-hero",
+    "2026-10-05-the-complete-data-visualization-course-python-r-tableau-excel",
+    "2026-10-08-responsible-ai-foundations",
+    "2026-10-05-chatgpt-at-work-ethical-and-secure-use",
+    "2026-10-05-dates-and-times-in-python",
+    "2026-10-05-git-and-github",
+    "2026-10-05-intermediate-python-programming",
+    "2026-10-05-intro-to-shell",
+    "2026-10-05-introducing-algorithms-in-python",
+    "2026-10-05-introduction-to-excel",
+    "2026-10-05-introduction-to-jupyter",
+    "2026-10-05-introduction-to-python",
+    "2026-10-05-introduction-to-r-programming",
+    "2026-10-05-python-101-102",
+    "2026-10-05-python-programmer-bootcamp",
+    "2026-10-05-working-with-text-files-in-python",
+    "2026-10-05-ai-strategy-bernard-marr",
+    "2026-10-05-data-strategy-bernard-marr",
+    "2026-10-05-python-coding-interview-prep",
+    "2026-10-05-sql-for-data-science-interviews",
+    "2026-10-05-starting-a-career-in-data-science-ken-jee"
+   ],
+   "districts": [
+    {
+     "id": "data",
+     "name": "Data & Analytics",
+     "pattern": 0,
+     "start": 0,
+     "count": 11
+    },
+    {
+     "id": "ds",
+     "name": "Data Science",
+     "pattern": 1,
+     "start": 11,
+     "count": 8
+    },
+    {
+     "id": "deng",
+     "name": "Data Engineering & Infra",
+     "pattern": 2,
+     "start": 19,
+     "count": 11
+    },
+    {
+     "id": "ai",
+     "name": "AI & LLMs",
+     "pattern": 3,
+     "start": 30,
+     "count": 9
+    },
+    {
+     "id": "aiap",
+     "name": "Applied AI",
+     "pattern": 4,
+     "start": 39,
+     "count": 6
+    },
+    {
+     "id": "viz",
+     "name": "Visual Thinking & Storytelling",
+     "pattern": 5,
+     "start": 45,
+     "count": 2
+    },
+    {
+     "id": "gov",
+     "name": "Data & AI Governance",
+     "pattern": 7,
+     "start": 47,
+     "count": 2
+    },
+    {
+     "id": "prog",
+     "name": "Programming & Dev Tools",
+     "pattern": 9,
+     "start": 49,
+     "count": 12
+    },
+    {
+     "id": "lead",
+     "name": "Leadership & Decision-making",
+     "pattern": 13,
+     "start": 61,
+     "count": 2
+    },
+    {
+     "id": "comm",
+     "name": "Communications",
+     "pattern": 15,
+     "start": 63,
+     "count": 3
+    }
+   ],
+   "pawn_index": 30,
+   "next_ids": [
+    "2026-10-05-ai-agent-architecture",
+    "2026-10-05-build-chat-applications-with-openai-and-langchain",
+    "2026-10-05-build-conversational-ai-memory-with-langgraph"
+   ]
+  },
   "levels": [
    {
     "level": 1,
@@ -3990,7 +4138,7 @@
     "id": "first-ai",
     "kind": "domain",
     "name": "First in AI & LLMs",
-    "rule": "Finish a AI & LLMs course.",
+    "rule": "Finish an AI & LLMs course.",
     "earned": false,
     "earned_on": null,
     "by": null,
@@ -4000,7 +4148,7 @@
     "id": "first-aiap",
     "kind": "domain",
     "name": "First in Applied AI",
-    "rule": "Finish a Applied AI course.",
+    "rule": "Finish an Applied AI course.",
     "earned": false,
     "earned_on": null,
     "by": null,

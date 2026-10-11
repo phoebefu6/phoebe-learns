@@ -1,3 +1,22 @@
+<!-- @contract -->
+<!--
+THESIS: the homepage is a printed board game seen from above. Courses are squares on one winding track, and the game state is her real progress. It refuses the category default of stacked cards and stat tiles.
+OWN-WORLD: a printed board in ink on white. A hand-drawn heavy outer border with a slight wobble. Squares carry printed numbers. Each domain is a district whose strip is a pattern (solid plum, plum tint, diagonal hatch, cross-hatch, dots, horizontal rules, vertical rules, checker, wave, chevron; choose by district.pattern index) with the district name printed along it. A peach pawn. Dashed hand-drawn arrows for the next roll.
+STORY: at a glance she sees where she stands (the pawn), what she takes next (squares 1, 2 and 3 ahead), how far she has come (filled squares, level), and she can add a course in one paste.
+FIRST VIEWPORT: the board owns the screen at 1280.
+- The track loops around the board edge (for 66 squares, about 18 across the top and bottom and 15 down each side; derive the counts from track length so it scales).
+- Square states: done = solid plum with a white check; in-progress = half-filled plum; to-do = white with its printed track number.
+- Squares stay compact, about 48-56px. The number is the only text on a square; the name shows on hover or focus in a light printed-card tooltip, and click opens the entry page.
+- The board's centre is the printed board face:
+  - "Phoebe learns" in Poppins display;
+  - the level number at poster scale with its rank and an XP bar set like a printed score track;
+  - the three next-roll courses as large printed chance cards, stepped or fanned, each with platform, hours ("est." when estimated), reward XP, and the Start and Mark done copy buttons.
+- The START corner is a printed tile holding the paste box ("Add a square - paste a course link", the Copy for Claude button, the platform chips).
+- The pawn stands on track[pawn_index], or on START when it is -1. The squares in next_ids carry ringed numerals 1, 2 and 3 joined by a dashed hand-drawn arrow.
+FORM: game board, chosen by Phoebe from three dealt structures.
+SIGNATURE INTERACTION: on first load the pawn hops square by square from START to its square once (about 1.2 s, a small arc per hop) and the level counts up. Hovering or focusing a square raises it (thicker ink outline, 1-2px lift, no shadow). The chance cards respond on hover. Under prefers-reduced-motion there is no hop and the final state shows at once.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
+-->
 <!-- @css -->
 .schem{padding:28px 0 36px}
 .schem svg{width:100%;height:auto;max-width:900px;display:block;overflow:visible}
@@ -46,216 +65,288 @@ table.db .tags{display:flex;flex-wrap:wrap;gap:4px}
 table.db .links a+a{margin-left:10px}
 .hidden{display:none!important}
 @media (max-width:820px){.board{grid-template-columns:1fr}}
-/* ---- game dashboard (header, add box, quest map, boss board, trophy shelf) ---- */
+/* ---- shared game bits: focus, add box, copy slot, tooltip ---- */
 ::selection{background:var(--tint2);color:var(--ink)}
 :focus-visible{outline:2px solid var(--plum);outline-offset:2px}
-section.band{padding:88px 0}
-section.band>.kicker{margin-bottom:12px}
-section.band>h2{font-size:clamp(24px,3vw,32px);font-weight:500;max-width:24ch;margin-bottom:12px;text-wrap:balance}
-section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
-.game-hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:56px;align-items:end;padding:72px 0 88px;border-bottom:1px solid var(--hair)}
-.game-hero h1{max-width:14ch;margin-top:14px;font-size:clamp(34px,5vw,58px);line-height:1.05;letter-spacing:-0.02em;text-wrap:balance}
-.game-hero .hero-sub{margin-top:22px;color:var(--muted);font-size:17px}
-.game-hero .hero-sub .num{color:var(--ink);font-weight:500}
-.level{border-top:4px solid var(--plum);padding-top:18px}
-.lv-row{display:flex;align-items:flex-end;gap:22px;margin:6px 0 22px}
-.lv-num{font-family:var(--head);font-weight:500;font-size:clamp(96px,13vw,160px);line-height:.8;letter-spacing:-0.04em;color:var(--plum)}
-.lv-meta{display:flex;flex-direction:column;gap:4px;padding-bottom:4px}
-.lv-rank{font-family:var(--head);font-weight:500;font-size:26px;line-height:1.1;color:var(--ink)}
-.lv-xp{color:var(--muted);font-size:15px}
-.lv-xp .num{color:var(--ink);font-weight:500}
-.xpbar{position:relative;height:12px;background:var(--tint2);border-radius:1px;margin-right:6px}
-.xpbar .fill{position:absolute;left:0;top:0;bottom:0;background:var(--plum);border-radius:1px;transform-origin:left center;animation:grow .9s cubic-bezier(.2,.7,.2,1) .5s both}
-.xpbar .next-mark{position:absolute;right:-6px;top:-7px;width:12px;height:26px;background:var(--peach);border:1px solid var(--ink);border-radius:1px}
-.lv-max .xpbar .next-mark{display:none}
-.xpscale{display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--muted)}
-.lv-next{margin:14px 0 0;font-family:var(--head);font-weight:500;font-size:17px;color:var(--ink)}
-@media (prefers-reduced-motion:reduce){.xpbar .fill{animation:none}}
-@keyframes grow{from{transform:scaleX(0)}to{transform:none}}
-/* Safety net: if frames never paint (print, headless capture), the entrance settles on its final frame. */
-.settled .rise{animation:none;opacity:1;transform:none}
-.settled .xpbar .fill{animation:none}
-
-/* add a course */
-.add-form{max-width:720px}
-.add-form label.lbl{display:block;font-weight:500;font-size:14px;margin-bottom:8px}
-.add-row{display:flex;gap:10px;flex-wrap:wrap}
-.add-row input{flex:1 1 320px;min-width:0;font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--plum);border-color:var(--plum);color:#fff}
+.btn.primary:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.sm{font-size:12.5px;padding:5px 10px}
+.btn.done-flash{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
+.add-form label.lbl{display:block;font-weight:500;font-size:13.5px;margin-bottom:8px;color:var(--ink)}
+.add-row{display:flex;gap:8px;flex-wrap:wrap}
+.add-row input{flex:1 1 180px;min-width:0;font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink)}
 .add-row input::placeholder{color:var(--muted)}
 .add-row input:focus{outline:2px solid var(--plum);outline-offset:1px;border-color:var(--plum)}
 .add-row input[aria-invalid="true"]{border-color:var(--plum)}
-.btn.primary{background:var(--plum);border-color:var(--plum);color:#fff;padding:10px 18px;font-size:14px}
-.btn.primary:hover{background:var(--ink);border-color:var(--ink);color:#fff}
-.add-msg{min-height:22px;margin:8px 0 0;font-size:13.5px;color:var(--ink)}
+.add-row .btn.primary{padding:8px 14px;font-size:13.5px}
+.add-msg{min-height:20px;margin:6px 0 0;font-size:13px;line-height:1.4;color:var(--ink)}
 .add-msg.err::before{content:"";display:inline-block;width:8px;height:8px;border:1.5px solid var(--plum);margin-right:8px;vertical-align:1px}
-.platforms{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
-.platforms .kicker{margin-right:6px}
-.platforms .chip{color:var(--muted);transition:background-color .15s ease,color .15s ease,border-color .15s ease}
+.platforms{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:4px}
+.platforms .kicker{margin-right:4px}
+.platforms .chip{color:var(--muted);font-size:11.5px;padding:2px 7px;transition:background-color .15s ease,color .15s ease,border-color .15s ease}
 .platforms .chip.on{background:var(--plum);border-color:var(--plum);color:#fff}
 .platforms .chip.on .glyph{color:#fff}
-.add-note{margin:22px 0 0;font-size:14px}
 .slot:empty{display:none}
-.slot{margin-top:14px}
-.slot .cmd{width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;padding:8px 10px;border:1px solid var(--plum);border-radius:2px;background:var(--tint);color:var(--ink)}
-.slot .said{margin:6px 0 0;font-size:13px;color:var(--ink)}
+.slot{margin-top:10px}
+.slot .cmd{width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;padding:7px 9px;border:1px solid var(--plum);border-radius:2px;background:var(--tint);color:var(--ink)}
+.slot .said{margin:5px 0 0;font-size:12.5px;color:var(--ink)}
+.est{font-family:var(--body);font-weight:400;font-size:.85em;color:var(--muted);margin-left:3px}
+.hidden{display:none!important}
 
-/* quest map */
-.map-frame{position:relative;width:100%;border-top:1px solid var(--ink);border-bottom:1px solid var(--hair);padding:28px 0 22px}
-#quest-map{display:block;width:100%;height:auto;overflow:visible}
-#quest-map .land{fill:var(--tint);stroke:none}
-#quest-map .coast{fill:none;stroke:var(--ink);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-#quest-map .trail{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:2 6;stroke-linecap:round}
-#quest-map .rname{font-family:var(--head);font-weight:500;font-size:13.5px;fill:var(--ink)}
-#quest-map .rstat{font-family:var(--body);font-weight:400;font-size:12px;fill:var(--muted)}
-#quest-map .rstat .pc{fill:var(--ink);font-weight:500}
-#quest-map .tile{cursor:pointer;outline:none}
-#quest-map .tile .t{stroke:var(--plum);stroke-width:1;fill:var(--paper);transition:stroke-width .12s ease}
-#quest-map .tile.done .t{fill:var(--plum)}
-#quest-map .tile .h{fill:var(--plum)}
-#quest-map .tile .ring{fill:none;stroke:var(--ink);stroke-width:1.5;opacity:0}
-#quest-map .tile:hover .t{stroke-width:2.2}
-#quest-map .tile:focus-visible .ring,#quest-map .tile:hover .ring{opacity:1}
-.tip{position:absolute;z-index:3;max-width:280px;padding:10px 12px;background:var(--paper);border:1px solid var(--hair);border-radius:2px;pointer-events:none;font-size:13px;line-height:1.4;color:var(--ink)}
-.tip .tt{font-family:var(--head);font-weight:500;display:block;margin-bottom:3px}
-.tip .tl{color:var(--muted);font-size:12px}
-.tip[hidden]{display:none}
-.legend{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;font-size:13px;color:var(--muted);align-items:center}
-.legend span{display:inline-flex;align-items:center;gap:8px}
-.legend .glyph{color:var(--plum);width:12px;height:12px;border-width:1px}
+/* ---- the game board ---- */
+.gb{padding:26px 0 40px}
+.gb-frame{position:relative;margin:0 auto;background:var(--paper)}
+.gb-defs{position:absolute;width:0;height:0;overflow:hidden}
+.gb-back,.gb-ink{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}
+.gb-back{z-index:0}
+.gb-ink{z-index:3}
+.gb-ink .rough{filter:url(#gb-rough)}
+.gb-ink .bord{fill:none;stroke:var(--ink);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.gb-ink .bord2{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:round}
+.gb-ink .strip-o{fill:none;stroke:var(--ink);stroke-width:1}
+.gb-ink .dname{font-family:var(--head);font-weight:500;font-size:11.5px;fill:var(--ink)}
+.gb-ink .roll{fill:none;stroke:var(--plum);stroke-width:1.8;stroke-dasharray:5 4;stroke-linecap:round;stroke-linejoin:round}
+.gb-ink .roll-head{fill:none;stroke:var(--plum);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gb-back .lane{fill:var(--tint);stroke:none}
+.gb-back .rail{fill:none;stroke:var(--ink);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 
-/* boss board */
-.bosses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.boss{position:relative;border:1px solid var(--hair);border-radius:2px;padding:18px 18px 16px;background:var(--paper);display:flex;flex-direction:column;min-width:0}
-.boss::before{content:"";position:absolute;left:-1px;right:-1px;top:-1px;height:1px;background:var(--plum);opacity:0;transition:height .15s ease,opacity .15s ease}
-.boss:hover::before,.boss:focus-within::before{height:3px;opacity:1}
-.boss-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-.reward{font-family:var(--head);font-weight:500;font-size:14px;color:var(--plum);white-space:nowrap}
-.reward .est,.hp-v .est{font-family:var(--body);font-weight:400;font-size:12px;color:var(--muted);margin-left:3px}
-.boss-name{font-size:16px;line-height:1.3;margin:0 0 6px}
-.boss-name a{color:var(--ink)}
-.boss-name a:hover{color:var(--plum)}
-.boss-line{font-size:12.5px;color:var(--muted);margin:0 0 16px}
-.hp{display:flex;align-items:center;gap:10px;margin-top:auto}
-.hp-k{font-size:11px;font-weight:500;letter-spacing:.08em;color:var(--muted)}
-.hp-track{flex:1;height:6px;background:var(--hair);border-radius:1px;position:relative;min-width:40px}
-.hp-fill{position:absolute;left:0;top:0;bottom:0;background:var(--plum);border-radius:1px}
-.hp-v{font-size:13px;color:var(--ink);white-space:nowrap}
-.boss-actions{display:flex;gap:8px;margin-top:14px}
-.btn.sm{font-size:12.5px;padding:5px 10px}
-.btn.done-flash{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
-.boss-more{margin-top:28px}
+/* squares */
+.gb-sq{position:absolute;z-index:1;display:block;background:var(--paper);border:1.5px solid var(--ink);border-radius:2px;color:var(--ink);outline:1.5px solid transparent;outline-offset:0;transition:transform .16s cubic-bezier(.3,.7,.3,1.4),outline-color .12s ease}
+.gb-sq:hover{border-color:var(--ink);border-bottom-color:var(--ink);outline-color:var(--ink);transform:translateY(-2px);z-index:2}
+.gb-sq:focus-visible{outline:2px solid var(--plum);outline-offset:2px;transform:translateY(-2px);z-index:2}
+.gb-sq .gb-n{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;font-family:var(--head);font-weight:500;font-size:15px;line-height:1;font-variant-numeric:tabular-nums}
+.gb-sq.done .gb-n,.gb-sq.in-progress .gb-n,.gb-sq.next .gb-n{left:4px;right:auto;top:3px;transform:none;font-family:var(--body);font-size:11px}
+.gb-sq.done{background:var(--plum);border-color:var(--plum);color:#fff}
+.gb-sq.done:hover{border-color:var(--plum)}
+.gb-sq .gb-half{position:absolute;left:0;top:0;right:0;bottom:0;background:var(--plum);clip-path:polygon(100% 0,100% 100%,0 100%)}
+.gb-sq .gb-check{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-9px 0 0 -11px}
+.gb-sq .gb-check path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.gb-sq .gb-ring{position:absolute;left:50%;top:50%;width:28px;height:28px;margin:-11px 0 0 -14px;overflow:visible}
+.gb-ring circle,.gb-ringbig circle{fill:var(--paper);stroke:var(--plum);stroke-width:2}
+.gb-ring text,.gb-ringbig text{font-family:var(--head);font-weight:600;fill:var(--ink);text-anchor:middle}
+.gb-ring text{font-size:14px}
+.gb-pawn{position:absolute;z-index:4;width:26px;height:36px;pointer-events:none;overflow:visible}
+.gb-pawn .pb{fill:var(--peach);stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round}
+.gb-tip{position:absolute;z-index:6;max-width:260px;padding:9px 11px 10px;background:var(--paper);border:1.5px solid var(--ink);border-radius:2px;pointer-events:none;font-size:13px;line-height:1.35;color:var(--ink)}
+.gb-tip .tk{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-bottom:3px}
+.gb-tip .tt{font-family:var(--head);font-weight:500;display:block;margin-bottom:3px}
+.gb-tip .tl{color:var(--muted);font-size:12px}
+.gb-tip[hidden]{display:none}
 
-/* trophy shelf */
-.shelf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:56px;align-items:start}
-.streak .big{font-family:var(--head);font-weight:500;font-size:clamp(80px,10vw,128px);line-height:.85;letter-spacing:-0.04em;color:var(--plum);display:block}
-.streak .unit{display:block;margin-top:10px;font-family:var(--head);font-weight:500;font-size:18px}
-.streak .best{color:var(--muted);font-size:14px;margin:4px 0 20px}
+/* the board face (centre) */
+.gb-face{position:absolute;z-index:2;container-type:inline-size;container-name:face}
+.gb-face-in{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);grid-template-areas:"start score" "next next";gap:20px 34px;align-items:start}
+.gb-start{grid-area:start}
+.gb-score{grid-area:score}
+.gb-next{grid-area:next}
+.gb-title{font-family:var(--head);font-weight:600;font-size:clamp(34px,4vw,46px);line-height:1;letter-spacing:-0.025em;color:var(--ink)}
+.gb-sub{margin:10px 0 0;color:var(--muted);font-size:14px}
+.gb-sub .num{color:var(--ink);font-weight:500}
+.gb-level{display:flex;align-items:flex-end;gap:18px;margin:14px 0 14px}
+.gb-lvk{display:flex;flex-direction:column;align-items:flex-start}
+.gb-lv{font-family:var(--head);font-weight:500;font-size:clamp(96px,10vw,124px);line-height:.78;letter-spacing:-0.05em;color:var(--plum)}
+.gb-lv-meta{display:flex;flex-direction:column;gap:2px;padding-bottom:4px}
+.gb-rank{font-family:var(--head);font-weight:500;font-size:24px;line-height:1.1;color:var(--ink)}
+.gb-xp{color:var(--muted);font-size:14px}
+.gb-xp .num{color:var(--ink);font-weight:500}
+.gb-track{display:flex;gap:4px;align-items:center}
+.gb-track .cell{flex:1 1 0;height:14px;border:1.5px solid var(--ink);border-radius:1px;background:var(--paper)}
+.gb-track .cell.on{background:var(--plum);border-color:var(--plum)}
+.gb-track .goal{flex:none;font-family:var(--head);font-weight:600;font-size:11px;letter-spacing:.06em;color:var(--ink);border:1.5px solid var(--ink);padding:1px 5px;border-radius:1px;margin-left:4px}
+.gb-scale{display:flex;justify-content:space-between;margin-top:7px;font-size:12px;color:var(--muted)}
+.gb-nextline{margin-top:6px;font-family:var(--head);font-weight:500;font-size:14.5px;color:var(--ink)}
+.gb-stand{margin:8px 0 0;font-size:13.5px;color:var(--muted)}
+.gb-stand a{color:var(--ink);font-weight:500;border-bottom:1px solid var(--plum)}
+.gb-stand a:hover{color:var(--plum)}
+
+/* START corner tile */
+.gb-start{border:1.5px solid var(--ink);border-radius:2px;background:var(--paper)}
+.gb-start-top{display:flex;align-items:stretch;border-bottom:1px solid var(--ink)}
+.gb-startcell{flex:none;width:58px;height:58px;border-right:1px solid var(--ink);position:relative;display:flex;align-items:flex-end;padding:6px 7px}
+.gb-startcell .go{display:block;font-family:var(--head);font-weight:600;font-size:11px;letter-spacing:.08em;color:var(--plum)}
+.gb-start-h{display:flex;flex-direction:column;justify-content:center;padding:6px 14px;min-width:0}
+.gb-start-sub{font-size:12.5px;color:var(--muted);margin-top:2px}
+.gb-start-h h2{font-size:18px;font-weight:500}
+.gb-start .add-form{padding:12px 14px 14px}
+.gb-start .add-note{margin:8px 0 0;font-size:12.5px;color:var(--muted)}
+.gb-start .slot:not(:empty)+.add-note{display:none}
+/* in a chance card the copied command lays over the card's facts, so the card never grows */
+.gb-card-in{position:relative}
+.gb-card .slot{position:absolute;left:12px;right:12px;bottom:46px;margin:0;padding:6px 0 4px;background:var(--paper)}
+.gb-card .slot .kicker{display:block;font-size:11px}
+
+/* chance cards */
+.gb-next-h{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.gb-next-h h2{font-size:22px;font-weight:500}
+.gb-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start;padding-bottom:20px}
+.gb-card{position:relative;background:var(--paper);border:1.5px solid var(--ink);border-radius:2px;padding:6px;transition:transform .2s cubic-bezier(.3,.7,.3,1.3),border-color .15s ease}
+.gb-card.c1{transform:rotate(-1.3deg);border-top:4px solid var(--plum)}
+.gb-card.c2{transform:translateY(10px) rotate(.7deg)}
+.gb-card.c3{transform:translateY(20px) rotate(1.7deg)}
+.gb-card:hover,.gb-card:focus-within{transform:translateY(-3px);border-color:var(--plum)}
+.gb-card-in{border:1px solid var(--hair);padding:12px 12px 12px;min-height:100%}
+.gb-card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.gb-ringbig{flex:none;width:34px;height:34px;overflow:visible}
+.gb-ringbig text{font-size:17px}
+.gb-card-top .kicker{font-size:11.5px;line-height:1.3;letter-spacing:.06em}
+.gb-card-t{font-family:var(--head);font-weight:500;font-size:16px;line-height:1.28;margin:0 0 12px;min-height:2.56em}
+.gb-card-t a{color:var(--ink)}
+.gb-card-t a:hover{color:var(--plum);border-bottom-color:var(--plum)}
+.gb-meta{display:grid;grid-template-columns:auto auto;justify-content:start;gap:6px 18px;margin:0 0 12px;padding:8px 0 0;border-top:1px dashed var(--muted)}
+.gb-meta div{min-width:0}
+.gb-meta .pf{grid-column:1/-1}
+.gb-meta dt{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.gb-meta dd{margin:0;font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap}
+.gb-meta dd .est{font-weight:400}
+.gb-act{display:flex;gap:6px;flex-wrap:wrap}
+
+/* the face reflows by its own width, not the window */
+@container face (max-width:640px){
+  .gb-face-in{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"score next" "start next";gap:26px 24px}
+  .gb-cards{grid-template-columns:1fr;gap:16px;padding-bottom:0}
+  .gb-card.c1{transform:rotate(-.8deg)}
+  .gb-card.c2{transform:translateX(8px) rotate(.5deg)}
+  .gb-card.c3{transform:translateX(16px) rotate(1deg)}
+  .gb-card:hover,.gb-card:focus-within{transform:translateY(-3px)}
+  .gb-card-t{min-height:0}
+  .gb-title{font-size:38px}
+  .gb-lv{font-size:104px}
+}
+@container face (max-width:440px){
+  .gb-face-in{grid-template-columns:minmax(0,1fr);grid-template-areas:"score" "next" "start";gap:26px}
+  .gb-card.c2{transform:translateX(4px) rotate(.5deg)}
+  .gb-card.c3{transform:translateX(8px) rotate(-.6deg)}
+  .gb-title{font-size:34px}
+  .gb-lv{font-size:96px}
+}
+
+/* ---- below the board, quieter ---- */
+section.sheet{padding:56px 0 48px}
+section.sheet>.kicker{margin-bottom:10px}
+section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch;margin-bottom:28px;text-wrap:balance}
+.sheet-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:48px;align-items:start}
+.streak .big{font-family:var(--head);font-weight:500;font-size:72px;line-height:.85;letter-spacing:-0.04em;color:var(--plum);display:block}
+.streak .unit{display:block;margin-top:8px;font-family:var(--head);font-weight:500;font-size:16px}
+.streak .best{color:var(--muted);font-size:13.5px;margin:4px 0 16px}
 .streak .best .num{color:var(--ink);font-weight:500}
-.weeks{display:block;width:100%;max-width:320px;height:auto;overflow:visible}
+.weeks{display:block;width:100%;max-width:280px;height:auto;overflow:visible}
 .weeks .wk{fill:var(--paper);stroke:var(--plum);stroke-width:1.2;stroke-linejoin:round}
 .weeks .wk.on{fill:var(--plum)}
 .weeks .wl{font-family:var(--body);font-size:10.5px;fill:var(--muted);text-anchor:middle}
 .weeks .now{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linecap:round}
-.streak .empty-note{margin-top:14px;font-size:14px;color:var(--muted);max-width:34ch}
-.badge-group+.badge-group{margin-top:32px}
-.badge-group h3{font-size:15px;margin-bottom:12px}
-.badge-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 12px}
-.shelf{margin-top:40px}
-.badge-group .note{font-size:13px;color:var(--muted);margin:-6px 0 12px}
-.badge .seal{display:flex;align-items:center;gap:9px;min-height:40px;padding:6px 12px;border:1px solid var(--hair);border-radius:2px;font-family:var(--body);font-weight:400;font-size:13px;line-height:1.25;color:var(--muted)}
-.badge.earned .seal{font-family:var(--head);font-weight:500}
-.badge .seal .glyph{color:var(--muted)}
-.badge.earned .seal{background:var(--plum);border:1px solid var(--plum);color:#fff}
-.badge.earned .seal .glyph{color:#fff}
-.badge.latest .seal .glyph{background:var(--peach);border-color:var(--peach)}
-.badge .rule{display:block;margin-top:6px;font-size:12.5px;color:var(--muted)}
-.badge.latest .rule{color:var(--ink);font-weight:500}
+.streak .empty-note{margin-top:12px;font-size:13px;color:var(--muted);max-width:32ch}
+.stamps-h{display:flex;align-items:baseline;gap:10px;font-size:14px;margin:0 0 10px}
+.stamps-h .muted{font-size:13px}
+.stamps{list-style:none;margin:0 0 22px;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.stamp{border:1px solid var(--muted);border-radius:2px;padding:8px 10px;min-height:52px;background:var(--paper)}
+.stamp .sn{display:block;font-family:var(--head);font-weight:500;font-size:12.5px;line-height:1.25;color:var(--ink)}
+.stamp .sr{display:block;margin-top:3px;font-size:11.5px;line-height:1.3;color:var(--muted)}
+.stamp.earned{background:var(--plum);border-color:var(--plum)}
+.stamp.earned .sn,.stamp.earned .sr{color:#fff}
+.stamp.latest{background:var(--peach);border-color:var(--ink)}
+.stamp.latest .sn,.stamp.latest .sr{color:var(--ink)}
 
-@media (max-width:1000px){.bosses{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:820px){
-  .game-hero{grid-template-columns:1fr;gap:44px;padding:44px 0 64px}
-  .shelf{grid-template-columns:1fr;gap:44px}
-  section.band{padding:64px 0}
-}
-@media (max-width:600px){
-  .bosses{grid-template-columns:1fr}
-  section.band{padding:52px 0}
-  .badge-grid{grid-template-columns:1fr}
-  .add-row .btn.primary{flex:1 1 100%}
-}
+.legend-band{padding:28px 0 32px}
+.legend-band>.kicker{margin-bottom:14px}
+.lg-row{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;font-size:13px;color:var(--ink);margin-bottom:16px}
+.lg-row>span{display:inline-flex;align-items:center;gap:8px}
+.lg-sq{position:relative;display:inline-block;width:20px;height:20px;border:1.5px solid var(--ink);border-radius:2px;background:var(--paper);flex:none}
+.lg-sq.done{background:var(--plum);border-color:var(--plum)}
+.lg-sq.ip::after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;background:var(--plum);clip-path:polygon(100% 0,100% 100%,0 100%)}
+.lg-sq svg{position:absolute;left:3px;top:3px;width:11px;height:11px}
+.lg-dist{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px 22px;list-style:none;margin:0;padding:0;font-size:13px}
+.lg-dist li{display:flex;align-items:center;gap:9px;min-width:0}
+.lg-dist svg{flex:none}
+.lg-dist .pn{color:var(--muted);font-size:11.5px;margin-left:auto;white-space:nowrap}
+
+@media (max-width:820px){.sheet-grid{grid-template-columns:1fr;gap:32px}}
+@media (max-width:600px){.gb{padding:16px 0 28px}section.sheet{padding:40px 0 36px}nav.site ul{gap:14px}nav.site a,nav.site .mark{white-space:nowrap;font-size:13.5px}}
 <!-- @content -->
-<header class="game-hero">
-  <div class="hero-copy">
-    <p class="kicker rise d1">Phoebe learns</p>
-    <h1 class="rise d2">Every course finished conquers a tile.</h1>
-    <p class="hero-sub rise d3"><span class="num">{{done_count}}</span> of <span class="num">{{total}}</span> courses conquered, <span class="num">{{in_progress_count}}</span> in progress.</p>
-  </div>
-  <div class="level {{max_class}} rise d4" aria-labelledby="lv-k">
-    <p class="kicker" id="lv-k">Level</p>
-    <div class="lv-row">
-      <span class="lv-num num" id="lv-num" data-target="{{level}}">{{level}}</span>
-      <div class="lv-meta">
-        <span class="lv-rank" id="lv-rank">{{rank}}</span>
-        <span class="lv-xp"><span class="num" id="xp-num" data-target="{{xp_raw}}">{{xp}}</span> XP</span>
+<section class="gb" aria-label="The learning board">
+<svg class="gb-defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="pat-solid" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#9333EA"/></pattern>
+    <pattern id="pat-tint" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#F3E8FF"/></pattern>
+    <pattern id="pat-hatch" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="5" height="5" fill="#FFFFFF"/><rect width="1.7" height="5" fill="#9333EA"/></pattern>
+    <pattern id="pat-cross" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#FFFFFF"/><rect width="1.4" height="6" fill="#9333EA"/><rect width="6" height="1.4" fill="#9333EA"/></pattern>
+    <pattern id="pat-dots" width="5" height="5" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="#FFFFFF"/><circle cx="2.5" cy="2.5" r="1.35" fill="#9333EA"/></pattern>
+    <pattern id="pat-hrule" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#FFFFFF"/><rect width="4" height="1.6" fill="#9333EA"/></pattern>
+    <pattern id="pat-vrule" width="4" height="4" patternUnits="userSpaceOnUse"><rect width="4" height="4" fill="#FFFFFF"/><rect width="1.6" height="4" fill="#9333EA"/></pattern>
+    <pattern id="pat-checker" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#FFFFFF"/><rect width="3" height="3" fill="#9333EA"/><rect x="3" y="3" width="3" height="3" fill="#9333EA"/></pattern>
+    <pattern id="pat-wave" width="8" height="6" patternUnits="userSpaceOnUse"><rect width="8" height="6" fill="#FFFFFF"/><path d="M0 3 Q2 0.4 4 3 T8 3" fill="none" stroke="#9333EA" stroke-width="1.4"/></pattern>
+    <pattern id="pat-chevron" width="8" height="6" patternUnits="userSpaceOnUse"><rect width="8" height="6" fill="#FFFFFF"/><path d="M0 5 L4 1.2 L8 5" fill="none" stroke="#9333EA" stroke-width="1.4" stroke-linejoin="round"/></pattern>
+    <filter id="gb-rough" x="-3%" y="-3%" width="106%" height="106%" filterUnits="objectBoundingBox">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+<div class="gb-frame" id="gb-frame">
+  <svg class="gb-back" id="gb-back" aria-hidden="true" focusable="false"></svg>
+  <div class="gb-face" id="gb-face">
+    <div class="gb-face-in" id="gb-face-in">
+      <div class="gb-score">
+        <h1 class="gb-title">Phoebe learns</h1>
+        <p class="gb-sub"><span class="num">{{done_count}}</span> of <span class="num">{{total}}</span> squares filled, <span class="num">{{in_progress_count}}</span> in progress.</p>
+        <div class="gb-level {{max_class}}">
+          <div class="gb-lvk"><span class="kicker" id="lv-k">Level</span><span class="gb-lv num" id="lv-num" data-target="{{level}}">{{level}}</span></div>
+          <div class="gb-lv-meta">
+            <span class="gb-rank" id="lv-rank">{{rank}}</span>
+            <span class="gb-xp"><span class="num" id="xp-num" data-target="{{xp_raw}}">{{xp}}</span> XP</span>
+            <span class="gb-nextline" id="lv-next">{{next_line}}</span>
+          </div>
+        </div>
+        <div class="gb-track" id="gb-xptrack" role="progressbar" aria-label="XP toward the next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{bar_pct}}" data-pct="{{bar_pct}}"></div>
+        <div class="gb-scale"><span class="num">{{floor}} XP</span><span class="num">{{scale_right}}</span></div>
+        <p class="gb-stand" id="gb-stand"></p>
+      </div>
+      <div class="gb-start" id="gb-start">
+        <div class="gb-start-top">
+          <div class="gb-startcell" id="gb-startcell"><span class="go">START</span></div>
+          <div class="gb-start-h"><h2 id="add-h">Add a square</h2><span class="gb-start-sub">New courses join their district</span></div>
+        </div>
+        <form class="add-form" id="add-form" novalidate aria-labelledby="add-h">
+          <label class="lbl" for="add-url">Add a square - paste a course link</label>
+          <div class="add-row">
+            <input id="add-url" name="url" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://www.datacamp.com/courses/..." aria-describedby="add-msg add-note">
+            <button class="btn primary" type="submit" id="add-copy">Copy for Claude</button>
+          </div>
+          <p class="add-msg" id="add-msg" role="status" aria-live="polite"></p>
+          <div class="platforms" id="platforms" aria-label="Detected platform"></div>
+          <div class="slot" id="add-slot"></div>
+          <p class="add-note" id="add-note">Claude reads the course page, fills the entry, and asks if anything is missing.</p>
+        </form>
+      </div>
+      <div class="gb-next" aria-labelledby="next-h">
+        <div class="gb-next-h"><h2 id="next-h">Your next roll: three squares ahead</h2></div>
+        <div class="gb-cards" id="gb-cards"></div>
       </div>
     </div>
-    <div class="xpbar" role="progressbar" aria-label="XP toward the next level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{bar_pct}}">
-      <span class="fill" style="width:{{bar_pct}}%"></span>
-      <span class="next-mark" aria-hidden="true"></span>
-    </div>
-    <div class="xpscale"><span class="num">{{floor}} XP</span><span class="num">{{scale_right}}</span></div>
-    <p class="lv-next" id="lv-next">{{next_line}}</p>
   </div>
-</header>
-
-<section class="block band add" aria-labelledby="add-h">
-  <p class="kicker">Add a course</p>
-  <h2 id="add-h">Found a course? One paste hands it to Claude.</h2>
-  <form class="add-form" id="add-form" novalidate>
-    <label class="lbl" for="add-url">Paste a course link</label>
-    <div class="add-row">
-      <input id="add-url" name="url" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://www.datacamp.com/courses/..." aria-describedby="add-msg add-note">
-      <button class="btn primary" type="submit" id="add-copy">Copy for Claude</button>
-    </div>
-    <p class="add-msg" id="add-msg" role="status" aria-live="polite"></p>
-    <div class="platforms" id="platforms" aria-label="Detected platform"></div>
-    <div class="slot" id="add-slot"></div>
-    <p class="muted add-note" id="add-note">I read the course page, fill the entry, and ask you if anything is missing.</p>
-  </form>
+  <nav class="gb-squares" id="gb-squares" aria-label="Board squares, in track order"></nav>
+  <svg class="gb-ink" id="gb-ink" aria-hidden="true" focusable="false"></svg>
+  <svg class="gb-pawn" id="gb-pawn" viewBox="0 0 26 36" aria-hidden="true" focusable="false">
+    <path class="pb" d="M3.2 33.4 C 3 30.6, 6.2 29.2, 8.4 28.6 C 9.6 24.4, 9.8 19.6, 8.9 16.4 C 6.8 15.6, 6.4 13.4, 8.6 12.6 C 6.6 10.8, 6.4 7.2, 8.6 4.8 C 10.8 2.4, 15.2 2.4, 17.4 4.8 C 19.6 7.2, 19.4 10.8, 17.4 12.6 C 19.6 13.4, 19.2 15.6, 17.1 16.4 C 16.2 19.6, 16.4 24.4, 17.6 28.6 C 19.8 29.2, 23 30.6, 22.8 33.4 C 16.4 34.6, 9.6 34.6, 3.2 33.4 Z"/>
+  </svg>
+  <div class="gb-tip" id="gb-tip" role="tooltip" hidden></div>
+</div>
 </section>
 
-<section class="block band quest" aria-labelledby="map-h">
-  <p class="kicker">Quest map</p>
-  <h2 id="map-h">The map</h2>
-  <p class="lede" id="map-lede"></p>
-  <div class="map-frame" id="map-frame">
-    <svg id="quest-map" xmlns="http://www.w3.org/2000/svg" role="group" aria-labelledby="map-h"></svg>
-    <div class="tip" id="map-tip" role="tooltip" hidden></div>
-  </div>
-  <div class="legend" aria-label="Tile legend">
-    <span><span class="glyph full"></span>Conquered (done)</span>
-    <span><span class="glyph half"></span>In progress</span>
-    <span><span class="glyph"></span>To do</span>
-    <span><svg width="26" height="8" viewBox="0 0 26 8" aria-hidden="true"><path d="M1 5 C 8 2, 16 7, 25 3" fill="none" stroke="#6B6480" stroke-width="1.2" stroke-dasharray="2 5" stroke-linecap="round"/></svg>The curriculum route, region to region</span>
-  </div>
-</section>
-
-<section class="block band boss-board" aria-labelledby="boss-h">
-  <p class="kicker">Boss board</p>
-  <h2 id="boss-h">Bosses</h2>
-  <p class="lede" id="boss-lede"></p>
-  <div class="bosses" id="bosses"></div>
-  <div class="boss-more"><button class="btn" type="button" id="boss-toggle" aria-expanded="false"></button></div>
-</section>
-
-<section class="block band trophy" aria-labelledby="trophy-h">
-  <p class="kicker">Trophy shelf</p>
-  <h2 id="trophy-h">Trophies</h2>
-  <div class="shelf">
+<section class="block sheet" aria-labelledby="sheet-h">
+  <p class="kicker">Score sheet</p>
+  <h2 id="sheet-h">Streaks count weeks, not days.</h2>
+  <div class="sheet-grid">
     <div class="streak" id="streak"></div>
     <div class="badges" id="badges"></div>
   </div>
 </section>
+
+<section class="block legend-band" aria-label="How to read the board">
+  <p class="kicker">How to read the board</p>
+  <div class="lg-row" id="lg-states"></div>
+  <ul class="lg-dist" id="lg-dist"></ul>
+</section>
+
 <section class="block schem" aria-label="How an entry is made">
 <svg id="schematic" viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="schem-title">
   <title id="schem-title">How an entry is made: notes or a course URL, tidied, researched, bundled, filed here</title>
@@ -322,7 +413,7 @@ section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
   <div id="table" class="tablewrap hidden"></div>
 </section>
 <!-- @script -->
-// ---- game dashboard: reads data.game + entry.game from build.py, never recomputes XP ----
+// ---- game board: reads data.game + entry.game from build.py, never recomputes XP ----
 (function () {
   var D = JSON.parse(document.getElementById('data').textContent);
   var G = D.game || {};
@@ -441,7 +532,8 @@ section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
     copyCommand('learning buddy add to-do ' + urlIn.value.trim(), addSlot, document.getElementById('add-copy'));
   });
 
-  // ------------------------------------------------------------- quest map
+  // ------------------------------------------------------------- the board
+  // Reads data.game.board from build.py (track order, districts, pawn, next_ids); never reorders.
   function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
   function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
   function smooth(pts, closed) {
@@ -456,18 +548,6 @@ section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
         p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
     }
     return d + (closed ? ' Z' : '');
-  }
-  function island(x, y, w, h, r) {
-    // Squircle outline with a little radial wobble; the stroke overshoots its start like a pen loop.
-    var cx = x + w / 2, cy = y + h / 2, a = w / 2, b = h / 2, n = 22, pts = [], ex = 4.2;
-    var a0 = r() * Math.PI * 2;
-    for (var i = 0; i < n; i++) {
-      var t = a0 + i / n * Math.PI * 2, c = Math.cos(t), s = Math.sin(t);
-      var k = 1 + (r() - 0.5) * 0.025;
-      pts.push([cx + a * k * Math.sign(c) * Math.pow(Math.abs(c), 2 / ex), cy + b * k * Math.sign(s) * Math.pow(Math.abs(s), 2 / ex)]);
-    }
-    var open = pts.concat([pts[0], [pts[1][0] + (r() - 0.5) * 3, pts[1][1] + 2.5]]);
-    return { fill: smooth(pts, true), stroke: smooth(open, false) };
   }
   var measureCtx = document.createElement('canvas').getContext('2d');
   function textW(s, font) { measureCtx.font = font; return measureCtx.measureText(s).width; }
@@ -486,166 +566,421 @@ section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
     if (parent) parent.appendChild(n);
     return n;
   }
-  var regions = domains.map(function (d) {
-    var items = entries.filter(function (e) { return e.domain === d.id; });
-    var rank = { 'done': 0, 'in-progress': 1, 'to-do': 2 };
-    items.sort(function (a, b) { return rank[a.status] - rank[b.status] || a.topic.localeCompare(b.topic); });
-    return { id: d.id, name: d.name, items: items, done: items.filter(function (e) { return e.status === 'done'; }).length };
-  }).filter(function (r) { return r.items.length; });
-  var stray = entries.filter(function (e) { return !(e.domain in domOrder); });
-  if (stray.length) regions.push({ id: 'other', name: 'Other', items: stray, done: stray.filter(function (e) { return e.status === 'done'; }).length });
-
-  var totalDone = entries.filter(function (e) { return e.status === 'done'; }).length;
-  var totalIP = entries.filter(function (e) { return e.status === 'in-progress'; }).length;
-  document.getElementById('map-h').textContent = totalDone
-    ? totalDone + ' of ' + entries.length + ' tiles conquered across ' + regions.length + ' regions.'
-    : regions.length + ' regions, ' + entries.length + ' tiles, the first conquest still ahead.';
-  document.getElementById('map-lede').textContent = 'Each island is a learning domain and each square is one course. ' +
-    (totalIP ? totalIP + (totalIP === 1 ? ' course is' : ' courses are') + ' under siege right now. ' : '') +
-    'Hover or tab to a square for its name, click to open it.';
-
-  var svg = document.getElementById('quest-map'), frame = document.getElementById('map-frame'), tip = document.getElementById('map-tip');
-  var lastW = 0;
-  function drawMap() {
-    var W = Math.floor(svg.parentNode.clientWidth);
-    if (!W || W === lastW) return;
-    lastW = W;
-    while (svg.firstChild) svg.removeChild(svg.firstChild);
-    var cols = W >= 1000 ? 4 : W >= 640 ? 3 : 2;
-    var gap = W < 500 ? 14 : 30, vgap = W < 500 ? 16 : 26;
-    var colW = (W - gap * (cols - 1)) / cols;
-    var TILE = W < 500 ? 15 : 17, PITCH = TILE + 6;
-    var padX = W < 500 ? 16 : 24, padT = 20, padB = 22;
-    var FN = '500 13.5px Poppins, Inter, system-ui, sans-serif', LH = 19;
-    var colY = []; for (var c = 0; c < cols; c++) colY.push(0);
-    var layout = [];
-    regions.forEach(function (rg, i) {
-      var r = rng(hash(rg.id));
-      var c = colY.indexOf(Math.min.apply(null, colY));
-      var inset = r() * 6;
-      var w = colW - inset - 2;
-      var innerW = w - padX * 2;
-      var lines = wrap(rg.name, innerW, FN);
-      var perRow = Math.max(1, Math.floor((innerW + 6) / PITCH));
-      var rows = Math.ceil(rg.items.length / perRow);
-      var h = padT + lines.length * LH + 16 + 12 + rows * PITCH - 6 + padB;
-      var x = c * (colW + gap) + inset, y = colY[c] + (colY[c] ? vgap : 0) + r() * 10;
-      colY[c] = y + h;
-      layout.push({ rg: rg, r: r, x: x, y: y, w: w, h: h, lines: lines, perRow: perRow });
-    });
-    var H = Math.ceil(Math.max.apply(null, colY)) + 6;
-    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-    svg.setAttribute('width', W); svg.setAttribute('height', H);
-
-    // Trail first so the islands sit on top of it.
-    var trailG = el('g', { 'aria-hidden': 'true' }, svg);
-    for (var i = 0; i + 1 < layout.length; i++) {
-      var A = layout[i], B = layout[i + 1], tr = rng(hash(A.rg.id + B.rg.id));
-      var ax = A.x + A.w * 0.5, ay = A.y + A.h * 0.5, bx = B.x + B.w * 0.5, by = B.y + B.h * 0.5;
-      var mx = (ax + bx) / 2 + (tr() - 0.5) * 40, my = (ay + by) / 2 + (tr() - 0.5) * 40;
-      el('path', { 'class': 'trail', d: smooth([[ax, ay], [(ax + mx) / 2 + 6, (ay + my) / 2 - 4], [mx, my], [(mx + bx) / 2 - 5, (my + by) / 2 + 5], [bx, by]], false) }, trailG);
+  // A wobbly ink line through a polyline: extra jittered points every ~step px.
+  function wobble(pts, closed, r, amp, step) {
+    var out = [], n = pts.length, segs = closed ? n : n - 1;
+    for (var i = 0; i < segs; i++) {
+      var a = pts[i], b = pts[(i + 1) % n], len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      var k = Math.max(1, Math.round(len / step));
+      for (var j = 0; j < k; j++) {
+        var t = j / k, nx = -(b[1] - a[1]) / (len || 1), ny = (b[0] - a[0]) / (len || 1), o = j === 0 ? 0 : (r() - 0.5) * 2 * amp;
+        out.push([a[0] + (b[0] - a[0]) * t + nx * o, a[1] + (b[1] - a[1]) * t + ny * o]);
+      }
     }
-    layout.forEach(function (L) {
-      var rg = L.rg, g = el('g', { 'class': 'region', 'data-domain': rg.id }, svg);
-      var shape = island(L.x, L.y, L.w, L.h, L.r);
-      el('path', { 'class': 'land', d: shape.fill }, g);
-      el('path', { 'class': 'coast', d: shape.stroke }, g);
-      var tx = L.x + padX, ty = L.y + padT + 13;
-      var label = el('g', { 'class': 'rlabel' }, g);
-      L.lines.forEach(function (ln, k) {
-        var t = el('text', { 'class': 'rname', x: tx, y: ty + k * LH }, label); t.textContent = ln;
+    if (!closed) out.push(pts[n - 1]);
+    return out;
+  }
+
+  var BD = G.board || { track: [], districts: [], pawn_index: -1, next_ids: [] };
+  var byId = {};
+  entries.forEach(function (e) { byId[e.id] = e; });
+  var track = BD.track.filter(function (id) { return byId[id]; });
+  var N = track.length, PAWN = BD.pawn_index, NEXT = BD.next_ids || [];
+  var nextRank = {};
+  NEXT.forEach(function (id, k) { nextRank[id] = k + 1; });
+
+  // District patterns: the district's own pattern index picks one of ten printed fills;
+  // if an earlier district already wears it, step to the next free one so no two match.
+  var PATTERNS = ['solid', 'tint', 'hatch', 'cross', 'dots', 'hrule', 'vrule', 'checker', 'wave', 'chevron'];
+  var PAT_NAME = { solid: 'solid plum', tint: 'plum tint', hatch: 'diagonal hatch', cross: 'cross-hatch', dots: 'dots',
+    hrule: 'horizontal rules', vrule: 'vertical rules', checker: 'checker', wave: 'wave', chevron: 'chevron' };
+  var usedPat = {};
+  var districts = (BD.districts || []).map(function (d) {
+    var k = ((d.pattern % 10) + 10) % 10;
+    for (var t = 0; t < 10 && usedPat[k]; t++) k = (k + 1) % 10;
+    usedPat[k] = 1;
+    return { id: d.id, name: d.name, start: d.start, count: d.count, pat: PATTERNS[k] };
+  });
+  var distOf = [];
+  districts.forEach(function (d) { for (var i = d.start; i < d.start + d.count; i++) distOf[i] = d; });
+
+  // XP score track: ten printed cells between this level's floor and the next.
+  var xpTrack = document.getElementById('gb-xptrack');
+  var pct = parseFloat(xpTrack.getAttribute('data-pct')) || 0, filled = Math.floor(pct / 10 + 1e-9);
+  var cells = '';
+  for (var c = 0; c < 10; c++) cells += '<span class="cell' + (c < filled ? ' on' : '') + '"></span>';
+  xpTrack.innerHTML = cells + (G.next_level ? '<span class="goal">LV ' + G.next_level + '</span>' : '');
+
+  // Where the pawn stands.
+  var stand = document.getElementById('gb-stand');
+  if (PAWN >= 0 && byId[track[PAWN]]) {
+    var pe = byId[track[PAWN]];
+    stand.innerHTML = 'Your pawn is on square <span class="num">' + (PAWN + 1) + '</span>: <a href="' + entryHref(pe) + '">' + esc(pe.topic) + '</a>, in progress.';
+  } else {
+    stand.textContent = 'Your pawn waits on START. Take square 1 below to make the first move.';
+  }
+
+  // Chance cards for the next three squares.
+  function chanceCard(e, k) {
+    var gm = e.game || {}, est = gm.hours_estimated ? EST : '';
+    var idx = track.indexOf(e.id) + 1;
+    return '<article class="gb-card c' + k + '" data-id="' + esc(e.id) + '" data-rank="' + k + '">' +
+      '<div class="gb-card-in">' +
+      '<div class="gb-card-top"><svg class="gb-ringbig" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15"/><text x="17" y="23">' + k + '</text></svg>' +
+      '<span class="kicker">Roll ' + k + ' - square ' + idx + '<br>' + esc(e.domain_name || '') + '</span></div>' +
+      '<h3 class="gb-card-t"><a href="' + entryHref(e) + '">' + esc(e.topic) + '</a></h3>' +
+      '<dl class="gb-meta"><div class="pf"><dt>Platform</dt><dd>' + esc(e.platform) + '</dd></div>' +
+      '<div><dt>Hours</dt><dd class="num">' + fmtH(gm.hours || 0) + est + '</dd></div>' +
+      '<div><dt>Reward</dt><dd class="num">+' + fmtN(gm.reward_xp || 0) + ' XP' + est + '</dd></div></dl>' +
+      '<div class="gb-act"><button class="btn sm' + (k === 1 ? ' primary' : '') + '" type="button" data-cmd="learning buddy start ' + esc(e.id) + '">Start</button>' +
+      '<button class="btn sm" type="button" data-cmd="mark ' + esc(e.id) + ' done">Mark done</button></div>' +
+      '<div class="slot" id="slot-' + esc(e.id) + '"></div>' +
+      '</div></article>';
+  }
+  var cardsBox = document.getElementById('gb-cards');
+  cardsBox.innerHTML = NEXT.map(function (id, k) { return byId[id] ? chanceCard(byId[id], k + 1) : ''; }).join('') ||
+    '<p class="muted">Every square is filled. Paste a new course in the start corner.</p>';
+  cardsBox.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button[data-cmd]'); if (!b) return;
+    copyCommand(b.getAttribute('data-cmd'), b.closest('.gb-card').querySelector('.slot'), b);
+  });
+
+  // Squares, in track order (DOM order = tab order = track order).
+  var sqBox = document.getElementById('gb-squares');
+  var STATE_WORD = { 'to-do': 'to do', 'in-progress': 'in progress', 'done': 'done' };
+  sqBox.innerHTML = track.map(function (id, i) {
+    var e = byId[id], st = e.status, nr = nextRank[id];
+    var inner = '<span class="gb-n">' + (i + 1) + '</span>';
+    if (st === 'done') inner = '<span class="gb-n">' + (i + 1) + '</span><svg class="gb-check" viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11.5 L9 16.5 L18.5 5.5"/></svg>';
+    if (st === 'in-progress') inner = '<span class="gb-half"></span>' + inner;
+    if (nr) inner += '<svg class="gb-ring" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11.5"/><text x="14" y="19">' + nr + '</text></svg>';
+    return '<a class="gb-sq ' + st + (nr ? ' next' : '') + (i === PAWN ? ' here' : '') + '" href="' + entryHref(e) + '" data-id="' + esc(id) + '" data-i="' + i + '"' +
+      (nr ? ' data-roll="' + nr + '"' : '') +
+      ' aria-label="Square ' + (i + 1) + ': ' + esc(e.topic) + ', ' + STATE_WORD[st] + (nr ? ', next roll ' + nr : '') + (i === PAWN ? ', your pawn is here' : '') + '">' + inner + '</a>';
+  }).join('');
+  var sqEls = Array.prototype.slice.call(sqBox.querySelectorAll('.gb-sq'));
+
+  var frame = document.getElementById('gb-frame'), face = document.getElementById('gb-face'), faceIn = document.getElementById('gb-face-in');
+  var back = document.getElementById('gb-back'), ink = document.getElementById('gb-ink');
+  var pawn = document.getElementById('gb-pawn'), tip = document.getElementById('gb-tip');
+  var startCell = document.getElementById('gb-startcell');
+  var NAME_FONT = '500 11.5px Poppins, Inter, system-ui, sans-serif', NAME_LH = 13;
+  var geo = null, lastKey = '';
+  var FIT_RESERVE = 34; // room for the add box's copied-command slot, so a copy never reflows the board
+
+  // ---- loop geometry: the track runs round the board edge, clockwise from the top-left corner.
+  function loopGeom(W, C) {
+    var M = 30, rest = N - 2 * C, Rr = Math.ceil(rest / 2), Rl = Math.floor(rest / 2), R = Rr + 2;
+    var s = Math.min(56, Math.floor((W - 2 * M) / C)), t = Math.min(48, s - 6), o = (s - t) / 2;
+    var sq = [];
+    for (var i = 0; i < N; i++) {
+      var col, row, side, corner = false;
+      if (i < C) { col = i; row = 0; side = 'top'; corner = i === 0 || i === C - 1; }
+      else if (i < C + Rr) { col = C - 1; row = 1 + (i - C); side = 'right'; }
+      else if (i < 2 * C + Rr) { col = C - 1 - (i - C - Rr); row = R - 1; side = 'bottom'; corner = col === 0 || col === C - 1; }
+      else { col = 0; row = R - 2 - (i - 2 * C - Rr); side = 'left'; }
+      sq.push({ x: M + col * s + o, y: M + row * s + o, t: t, side: side, corner: corner, col: col, row: row });
+    }
+    var x0 = M + s, y0 = M + s, x1 = M + (C - 1) * s, y1 = M + (R - 1) * s, I = 52;
+    return { mode: 'loop', C: C, R: R, s: s, t: t, M: M, sq: sq, W: C * s + 2 * M, H: R * s + 2 * M,
+      inner: { x0: x0, y0: y0, x1: x1, y1: y1 }, face: { x: x0 + I, y: y0 + I, w: x1 - x0 - 2 * I, h: y1 - y0 - 2 * I } };
+  }
+  // ---- serpentine geometry (phones): districts stack down the page, rows of 4 snake left and right.
+  function serpGeom(W, faceH) {
+    var M = 14, lane = 86, stripW = 8, gapS = 10, arcR = 14, cols = 4;
+    var ax = M + lane + stripW + gapS, avail = W - ax - M - arcR;
+    var s = Math.min(60, Math.floor(avail / cols)), t = Math.min(48, s - 6), o = (s - t) / 2, rowP = t + 20;
+    var top = M + 14 + faceH + 34, y = top, g = 0, sq = [], blocks = [], prevEnd = -1;
+    districts.forEach(function (d) {
+      var lines = wrap(d.name, lane - 8, NAME_FONT), rows = Math.ceil(d.count / cols), by = y;
+      for (var r = 0; r < rows; r++) {
+        // Each row starts at the side nearest where the last one ended, so the rail never cuts across.
+        var m = Math.min(cols, d.count - r * cols), ltr = prevEnd < (cols - 1) / 2;
+        for (var k = 0; k < m; k++) {
+          var col = ltr ? k : cols - 1 - k;
+          prevEnd = col;
+          sq.push({ x: ax + col * s + o, y: y + r * rowP + 10, t: t, side: 'top', col: col, row: g, ltr: ltr });
+        }
+        g++;
+      }
+      var h = Math.max(rows * rowP, lines.length * NAME_LH + 14);
+      blocks.push({ d: d, y: by, h: h, rows: rows, lines: lines });
+      y += h + 12;
+    });
+    return { mode: 'serp', s: s, t: t, M: M, sq: sq, W: W, H: y + M, cols: cols, ax: ax, lane: lane, stripW: stripW, rowP: rowP,
+      blocks: blocks, face: { x: M + 14, y: M + 14, w: W - 2 * M - 28, h: faceH } };
+  }
+
+  function placeFace(f) {
+    face.style.left = f.x + 'px'; face.style.top = f.y + 'px'; face.style.width = f.w + 'px';
+    face.style.height = f.h ? f.h + 'px' : 'auto';
+  }
+  function computeGeom() {
+    var W = Math.floor(frame.parentNode.clientWidth);
+    if (W < 600) {
+      face.style.width = (W - 56) + 'px'; face.style.height = 'auto'; // width only: draw() may bail before placing again
+      return serpGeom(W, faceIn.offsetHeight);
+    }
+    var aspect = W >= 980 ? 1.06 : 0.62;
+    var C = Math.round((N + 4) / (2 + 2 / aspect));
+    C = Math.max(4, Math.min(C, Math.floor((W - 60) / 48), Math.floor((N - 2) / 2)));
+    var g;
+    for (; C >= 4; C--) {
+      g = loopGeom(W, C);
+      placeFace(g.face);
+      if (faceIn.offsetHeight + FIT_RESERVE <= g.face.h) break;
+    }
+    return g;
+  }
+
+  function outerPt(g, k, off) {
+    var q = g.sq[k], cx = q.x + q.t / 2, cy = q.y + q.t / 2;
+    if (g.mode === 'serp') return [cx, q.y - off];
+    if (q.corner) {
+      var dx = q.col === 0 ? -1 : 1, dy = q.row === 0 ? -1 : 1, d = off * 0.72;
+      return [cx + dx * (q.t / 2 + d), cy + dy * (q.t / 2 + d)];
+    }
+    if (q.side === 'top') return [cx, q.y - off];
+    if (q.side === 'right') return [q.x + q.t + off, cy];
+    if (q.side === 'bottom') return [cx, q.y + q.t + off];
+    return [q.x - off, cy];
+  }
+  function startPt() {
+    var fr = frame.getBoundingClientRect(), r = startCell.getBoundingClientRect();
+    return { x: r.left - fr.left, y: r.top - fr.top, w: r.width, h: r.height };
+  }
+  function pawnAtSquare(g, k) {
+    var q = g.sq[k];
+    return [q.x + q.t - 26 - 4, q.y + q.t - 36 - 3];
+  }
+  function pawnAtStart() {
+    var r = startPt();
+    return [r.x + r.w - 26 - 7, r.y + 4];
+  }
+
+  function draw() {
+    var g = computeGeom(), key = g.mode + g.W + 'x' + g.H + ':' + g.s + ':' + (g.C || 0) + ':' + faceIn.offsetHeight;
+    if (key === lastKey) return;
+    lastKey = key; geo = g;
+    frame.style.width = g.W + 'px'; frame.style.height = g.H + 'px';
+    placeFace(g.face);
+    sqEls.forEach(function (a, i) {
+      var q = g.sq[i];
+      a.style.left = q.x + 'px'; a.style.top = q.y + 'px'; a.style.width = q.t + 'px'; a.style.height = q.t + 'px';
+    });
+    [back, ink].forEach(function (s) {
+      while (s.firstChild) s.removeChild(s.firstChild);
+      s.setAttribute('width', g.W); s.setAttribute('height', g.H); s.setAttribute('viewBox', '0 0 ' + g.W + ' ' + g.H);
+    });
+    var r = rng(hash('board' + g.mode + g.W));
+    var rough = el('g', { 'class': 'rough' }, ink), names = el('g', { 'class': 'names' }, ink);
+
+    // Heavy outer border, drawn twice like a pen going round, plus a thin inner rule.
+    var b = 7, box = [[b, b], [g.W - b, b], [g.W - b, g.H - b], [b, g.H - b]];
+    el('path', { 'class': 'bord', d: smooth(wobble(box, true, r, 1.4, 46), true) }, rough);
+    var ib = 14;
+    el('path', { 'class': 'bord2', d: smooth(wobble([[ib, ib], [g.W - ib, ib], [g.W - ib, g.H - ib], [ib, g.H - ib]], true, r, 0.8, 60), true) }, rough);
+
+    if (g.mode === 'loop') {
+      // The printed lane the squares sit on.
+      var L = g.M - 4, Ri = g.inner;
+      el('path', { 'class': 'lane', 'fill-rule': 'evenodd',
+        d: 'M' + L + ' ' + L + 'H' + (g.W - L) + 'V' + (g.H - L) + 'H' + L + 'Z M' + (Ri.x0 + 4) + ' ' + (Ri.y0 + 4) + 'V' + (Ri.y1 - 4) + 'H' + (Ri.x1 - 4) + 'V' + (Ri.y0 + 4) + 'Z' }, back);
+      drawLoopDistricts(g, rough, names);
+    } else {
+      // The rail joins the squares in order, so the zig-zag reads as one track.
+      el('path', { 'class': 'rail', d: smooth(g.sq.map(function (q) { return [q.x + q.t / 2, q.y + q.t / 2]; }), false) }, back);
+      drawSerpDistricts(g, rough, names);
+    }
+    drawRoll(g, rough);
+    placePawn(hopDone ? finalPawn() : pawnAtStart());
+  }
+
+  function stripRect(parent, x, y, w, h, pat) {
+    if (w <= 0 || h <= 0) return;
+    el('rect', { x: x.toFixed(1), y: y.toFixed(1), width: w.toFixed(1), height: h.toFixed(1), fill: 'url(#pat-' + pat + ')', 'class': 'strip', 'data-pat': pat }, parent);
+    el('rect', { x: x.toFixed(1), y: y.toFixed(1), width: w.toFixed(1), height: h.toFixed(1), 'class': 'strip-o' }, parent);
+  }
+  function nameText(parent, d, lines, cx, cy, rot, anchor) {
+    var gT = el('g', { 'class': 'dname-g', 'data-district': d.id, transform: 'translate(' + cx.toFixed(1) + ' ' + cy.toFixed(1) + ')' + (rot ? ' rotate(' + rot + ')' : '') }, parent);
+    lines.forEach(function (ln, k) {
+      var t = el('text', { 'class': 'dname', x: 0, y: k * NAME_LH, 'text-anchor': anchor || 'middle' }, gT); t.textContent = ln;
+    });
+    return gT;
+  }
+  function drawLoopDistricts(g, rough, names) {
+    var Ri = g.inner, SW = 10, GAP = 4, inset = 4;
+    var labels = {};
+    districts.forEach(function (d) {
+      var segs = {};
+      for (var i = d.start; i < d.start + d.count; i++) {
+        var q = g.sq[i], side = q.side;
+        (segs[side] = segs[side] || []).push(q);
+      }
+      var best = null;
+      Object.keys(segs).forEach(function (side) {
+        var qs = segs[side], a, bnd;
+        if (side === 'top' || side === 'bottom') {
+          a = Math.max(Math.min.apply(null, qs.map(function (q) { return q.x; })), Ri.x0 + inset);
+          bnd = Math.min(Math.max.apply(null, qs.map(function (q) { return q.x + q.t; })), Ri.x1 - inset);
+          var y = side === 'top' ? Ri.y0 + GAP : Ri.y1 - GAP - SW;
+          stripRect(rough, a, y, bnd - a, SW, d.pat);
+        } else {
+          a = Math.max(Math.min.apply(null, qs.map(function (q) { return q.y; })), Ri.y0 + inset);
+          bnd = Math.min(Math.max.apply(null, qs.map(function (q) { return q.y + q.t; })), Ri.y1 - inset);
+          var x = side === 'right' ? Ri.x1 - GAP - SW : Ri.x0 + GAP;
+          stripRect(rough, x, a, SW, bnd - a, d.pat);
+        }
+        if (!best || bnd - a > best.len) best = { side: side, a: a, b: bnd, len: bnd - a };
       });
-      var pct = Math.round(rg.done / rg.items.length * 100);
-      var st = el('text', { 'class': 'rstat', x: tx, y: ty + L.lines.length * LH + 2 }, label);
-      st.textContent = rg.done + ' of ' + rg.items.length + ' - ';
-      var pc = el('tspan', { 'class': 'pc' }, st); pc.textContent = pct + '%';
-      var gy = ty + L.lines.length * LH + 16;
-      rg.items.forEach(function (e, k) {
-        var col = k % L.perRow, row = Math.floor(k / L.perRow);
-        var x = tx + col * PITCH, y = gy + row * PITCH;
-        var a = el('a', { 'class': 'tile ' + e.status, href: entryHref(e), 'data-id': e.id,
-          'aria-label': e.topic + ', ' + STATUS_LABEL[e.status] }, g);
-        a.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', entryHref(e));
-        var tilt = ((hash(e.id) % 7) - 3) * 0.6;
-        var tg = el('g', { transform: 'rotate(' + tilt.toFixed(1) + ' ' + (x + TILE / 2) + ' ' + (y + TILE / 2) + ')' }, a);
-        el('rect', { 'class': 'ring', x: x - 3, y: y - 3, width: TILE + 6, height: TILE + 6, rx: 1 }, tg);
-        el('rect', { 'class': 't', x: x + 0.5, y: y + 0.5, width: TILE - 1, height: TILE - 1, rx: 1 }, tg);
-        if (e.status === 'in-progress') el('rect', { 'class': 'h', x: x + 0.5, y: y + 0.5, width: (TILE - 1) / 2, height: TILE - 1 }, tg);
-        a.__entry = e;
+      if (!best || best.len <= 0) return;
+      // At most two lines; a name may run past a short segment, then the side packs its names apart.
+      var full = textW(d.name, NAME_FONT), longest = Math.max.apply(null, d.name.split(' ').map(function (w) { return textW(w, NAME_FONT); }));
+      var room = Math.max(best.len - 6, longest, Math.ceil(full / 2) + 12);
+      var lines = full <= room ? [d.name] : wrap(d.name, room, NAME_FONT);
+      var w = Math.max.apply(null, lines.map(function (l) { return textW(l, NAME_FONT); }));
+      (labels[best.side] = labels[best.side] || []).push({ d: d, lines: lines, w: w, c: (best.a + best.b) / 2 });
+    });
+    var CORNER = 50, edge = GAP + SW + 7;
+    Object.keys(labels).forEach(function (side) {
+      var horiz = side === 'top' || side === 'bottom';
+      var lo = (horiz ? Ri.x0 : Ri.y0) + CORNER, hi = (horiz ? Ri.x1 : Ri.y1) - CORNER, PAD = 12;
+      var list = labels[side].sort(function (a, b) { return a.c - b.c; });
+      list.forEach(function (L, k) {
+        L.p = Math.max(L.c, lo + L.w / 2);
+        if (k) L.p = Math.max(L.p, list[k - 1].p + list[k - 1].w / 2 + PAD + L.w / 2);
+      });
+      for (var k = list.length - 1; k >= 0; k--) {
+        var L = list[k], lim = k === list.length - 1 ? hi - L.w / 2 : list[k + 1].p - list[k + 1].w / 2 - PAD - L.w / 2;
+        if (L.p > lim) L.p = lim;
+      }
+      list.forEach(function (L) {
+        var n = L.lines.length;
+        if (side === 'top') nameText(names, L.d, L.lines, L.p, Ri.y0 + edge + 9, 0);
+        else if (side === 'bottom') nameText(names, L.d, L.lines, L.p, Ri.y1 - edge - 3 - (n - 1) * NAME_LH, 0);
+        else if (side === 'right') nameText(names, L.d, L.lines, Ri.x1 - edge - 9, L.p, 90);
+        else nameText(names, L.d, L.lines, Ri.x0 + edge + 9, L.p, -90);
       });
     });
   }
+  function drawSerpDistricts(g, rough, names) {
+    var x = g.M + g.lane;
+    g.blocks.forEach(function (bk) {
+      var h = bk.rows * g.rowP - 20 + 2;
+      stripRect(rough, x, bk.y + 9, g.stripW, h, bk.d.pat);
+      nameText(names, bk.d, bk.lines, g.M + 2, bk.y + 20, 0, 'start');
+    });
+  }
+
+  // Dashed hand-drawn arrow: pawn (or START) to roll 1, 2 and 3, riding outside the squares.
+  function drawRoll(g, parent) {
+    var idx = NEXT.map(function (id) { return track.indexOf(id); }).filter(function (i) { return i >= 0; });
+    if (!idx.length) return;
+    var pts = [], from = PAWN;
+    if (PAWN < 0) {
+      var sp = startPt();
+      var a0 = [sp.x + sp.w / 2, sp.y - 2], b0 = outerPt(g, idx[0], g.mode === 'serp' ? 2 : -g.t - 4);
+      if (g.mode === 'serp') { a0 = [sp.x + sp.w / 2, sp.y + sp.h + 4]; b0 = [g.sq[idx[0]].x + g.sq[idx[0]].t / 2, g.sq[idx[0]].y - 2]; }
+      pts.push(a0, [(a0[0] + b0[0]) / 2 - 10, (a0[1] + b0[1]) / 2], b0);
+      from = idx[0]; idx = idx.slice(1);
+    } else {
+      pts.push(outerPt(g, PAWN, 3));
+    }
+    idx.forEach(function (to) {
+      var k = from, guard = 0;
+      while (k !== to && guard++ < N) {
+        var nk = (k + 1) % N, a = outerPt(g, k, 15), bb = outerPt(g, nk, 15);
+        var mid = [(a[0] + bb[0]) / 2, (a[1] + bb[1]) / 2];
+        if (g.mode === 'serp' && g.sq[k].row !== g.sq[nk].row) {
+          var q = g.sq[k], sideX = q.ltr ? q.x + q.t + 10 : q.x - 7;
+          mid = [sideX, (q.y + g.sq[nk].y + q.t) / 2];
+        } else {
+          var oa = outerPt(g, k, 24), ob = outerPt(g, nk, 24);
+          mid = [(oa[0] + ob[0]) / 2, (oa[1] + ob[1]) / 2];
+        }
+        pts.push(mid);
+        pts.push(outerPt(g, nk, nk === to ? 3 : 12));
+        k = nk;
+      }
+      from = to;
+    });
+    el('path', { 'class': 'roll', d: smooth(pts, false), 'data-roll': 'arrow' }, parent);
+    var e2 = pts[pts.length - 1], e1 = pts[pts.length - 2], ang = Math.atan2(e2[1] - e1[1], e2[0] - e1[0]), hl = 8;
+    el('path', { 'class': 'roll-head', d: 'M' + (e2[0] - hl * Math.cos(ang - 0.5)).toFixed(1) + ' ' + (e2[1] - hl * Math.sin(ang - 0.5)).toFixed(1) +
+      ' L' + e2[0].toFixed(1) + ' ' + e2[1].toFixed(1) + ' L' + (e2[0] - hl * Math.cos(ang + 0.5)).toFixed(1) + ' ' + (e2[1] - hl * Math.sin(ang + 0.5)).toFixed(1) }, parent);
+  }
+
+  // ---- the pawn and its one hop from START
+  var hopDone = false;
+  function finalPawn() { return PAWN >= 0 ? pawnAtSquare(geo, PAWN) : pawnAtStart(); }
+  function placePawn(p) { pawn.style.left = p[0].toFixed(1) + 'px'; pawn.style.top = p[1].toFixed(1) + 'px'; }
+  function hop() {
+    if (reduce || PAWN < 0) { hopDone = true; placePawn(finalPawn()); return; }
+    var stops = [pawnAtStart()];
+    for (var i = 0; i <= PAWN; i++) stops.push(pawnAtSquare(geo, i));
+    var per = Math.max(28, 1200 / (stops.length - 1)), t0 = null, lift = Math.min(16, geo.s * 0.3);
+    requestAnimationFrame(function step(ts) {
+      if (hopDone || document.documentElement.classList.contains('settled')) { hopDone = true; placePawn(finalPawn()); return; }
+      if (t0 === null) t0 = ts;
+      var el2 = ts - t0, h = Math.floor(el2 / per);
+      if (h >= stops.length - 1) { hopDone = true; placePawn(finalPawn()); return; }
+      var f = (el2 - h * per) / per, a = stops[h], bb = stops[h + 1];
+      var arc = h === 0 ? lift * 1.6 : lift;
+      placePawn([a[0] + (bb[0] - a[0]) * f, a[1] + (bb[1] - a[1]) * f - Math.sin(Math.PI * f) * arc]);
+      requestAnimationFrame(step);
+    });
+  }
+
+  // ---- tooltip: a light printed card
   function showTip(a) {
-    var e = a.__entry; if (!e) return;
-    var gm = e.game || {}, est = gm.hours_estimated ? ' est.' : '';
+    var e = byId[a.getAttribute('data-id')]; if (!e || !geo) return;
+    var i = +a.getAttribute('data-i'), gm = e.game || {}, est = gm.hours_estimated ? ' est.' : '';
     var line = STATUS_LABEL[e.status] + ' - ' + (e.domain_name || '') +
       (e.status === 'done' ? ' - +' + fmtN(gm.xp) + ' XP' + est : ' - ' + fmtH(gm.hp_hours) + ' left' + est);
-    tip.innerHTML = '<span class="tt">' + esc(e.topic) + '</span><span class="tl">' + esc(line) + '</span>';
+    var nr = nextRank[e.id];
+    tip.innerHTML = '<span class="tk">Square ' + (i + 1) + (nr ? ' - roll ' + nr : '') + (i === PAWN ? ' - your pawn' : '') + '</span><span class="tt">' + esc(e.topic) + '</span><span class="tl">' + esc(line) + '</span>';
     tip.hidden = false;
-    var fr = frame.getBoundingClientRect(), tr = a.getBoundingClientRect();
-    var tw = tip.offsetWidth, th = tip.offsetHeight;
-    var left = Math.max(0, Math.min(fr.width - tw, tr.left - fr.left + tr.width / 2 - tw / 2));
-    var top = tr.top - fr.top - th - 10;
-    if (top < 0) top = tr.bottom - fr.top + 10;
-    tip.style.left = left + 'px'; tip.style.top = top + 'px';
+    var q = geo.sq[i], tw = tip.offsetWidth, th = tip.offsetHeight;
+    var left = Math.max(4, Math.min(geo.W - tw - 4, q.x + q.t / 2 - tw / 2));
+    var top = q.y - th - 10;
+    if (geo.mode === 'loop' && q.side !== 'bottom' && !(q.side === 'top')) top = q.y + q.t / 2 - th / 2;
+    if (geo.mode === 'loop' && q.side === 'right') left = q.x - tw - 12;
+    if (geo.mode === 'loop' && q.side === 'left') left = q.x + q.t + 12;
+    if (geo.mode === 'loop' && q.side === 'top') top = q.y + q.t + 12;
+    if (top < 4) top = q.y + q.t + 12;
+    tip.style.left = left + 'px'; tip.style.top = Math.max(4, top) + 'px';
   }
   function hideTip() { tip.hidden = true; }
-  svg.addEventListener('mouseover', function (ev) { var a = ev.target.closest && ev.target.closest('a.tile'); if (a) showTip(a); });
-  svg.addEventListener('mouseout', function (ev) { var a = ev.target.closest && ev.target.closest('a.tile'); if (a && !a.contains(ev.relatedTarget)) hideTip(); });
-  svg.addEventListener('focusin', function (ev) { var a = ev.target.closest && ev.target.closest('a.tile'); if (a) showTip(a); });
-  svg.addEventListener('focusout', hideTip);
-  drawMap();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastW = 0; drawMap(); });
-  var rz = null;
-  window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(drawMap, 120); });
+  sqBox.addEventListener('mouseover', function (ev) { var a = ev.target.closest && ev.target.closest('a.gb-sq'); if (a) showTip(a); });
+  sqBox.addEventListener('mouseout', function (ev) { var a = ev.target.closest && ev.target.closest('a.gb-sq'); if (a && !a.contains(ev.relatedTarget)) hideTip(); });
+  sqBox.addEventListener('focusin', function (ev) { var a = ev.target.closest && ev.target.closest('a.gb-sq'); if (a) showTip(a); });
+  sqBox.addEventListener('focusout', hideTip);
 
-  // ------------------------------------------------------------ boss board
-  var bosses = entries.filter(function (e) { return e.status !== 'done'; });
-  function domRank(e) { return e.domain in domOrder ? domOrder[e.domain] : 999; }
-  bosses.sort(function (a, b) {
-    var sa = a.status === 'in-progress' ? 0 : 1, sb = b.status === 'in-progress' ? 0 : 1;
-    return sa - sb || domRank(a) - domRank(b) || a.topic.localeCompare(b.topic);
-  });
-  var hpSum = 0, anyEst = false;
-  bosses.forEach(function (e) { hpSum += (e.game || {}).hp_hours || 0; if ((e.game || {}).hours_estimated) anyEst = true; });
-  document.getElementById('boss-h').textContent = bosses.length
-    ? bosses.length + ' bosses left: ' + fmtH(hpSum).replace(' h', ' hours') + ' of play' + (anyEst ? ', est.' : '.')
-    : 'Every boss is down. Paste a new course above.';
-  document.getElementById('boss-lede').textContent = 'HP is the hours left on a course. Beat one and its reward lands as XP. ' +
-    (anyEst ? 'Courses without a known length use a 1.5 hour estimate, marked est.' : '');
-  var bossBox = document.getElementById('bosses'), toggle = document.getElementById('boss-toggle'), showAll = false;
-  function bossCard(e) {
-    var gm = e.game || {}, est = gm.hours_estimated ? ' ' + EST : '';
-    var pct = gm.hours ? Math.max(0, Math.min(100, gm.hp_hours / gm.hours * 100)) : 100;
-    var slotId = 'slot-' + e.id;
-    return '<article class="boss" data-status="' + e.status + '" data-id="' + esc(e.id) + '">' +
-      '<div class="boss-top"><span class="status ' + e.status + '"><span class="' + STATUS_GLYPH[e.status] + '"></span>' + (e.status === 'in-progress' ? 'In progress' : 'To do') + '</span>' +
-      '<span class="reward num">+' + fmtN(gm.reward_xp) + ' XP' + est + '</span></div>' +
-      '<h3 class="boss-name"><a href="' + entryHref(e) + '">' + esc(e.topic) + '</a></h3>' +
-      '<p class="boss-line">' + esc(e.platform) + ' - ' + esc(e.domain_name || '') + '</p>' +
-      '<div class="hp"><span class="hp-k" aria-hidden="true">HP</span><span class="hp-track" aria-hidden="true"><span class="hp-fill" style="width:' + pct.toFixed(1) + '%"></span></span>' +
-      '<span class="hp-v num" data-est="' + (gm.hours_estimated ? '1' : '0') + '">' + fmtH(gm.hp_hours) + ' left' + est + '</span></div>' +
-      '<div class="boss-actions"><button class="btn sm" type="button" data-cmd="learning buddy start ' + esc(e.id) + '">Start</button>' +
-      '<button class="btn sm" type="button" data-cmd="mark ' + esc(e.id) + ' done">Mark done</button></div>' +
-      '<div class="slot" id="' + esc(slotId) + '"></div></article>';
-  }
-  function renderBosses() {
-    var list = showAll ? bosses : bosses.slice(0, 6);
-    bossBox.innerHTML = list.map(bossCard).join('');
-    toggle.parentNode.classList.toggle('hidden', bosses.length <= 6);
-    toggle.textContent = showAll ? 'Show fewer' : 'Show all ' + bosses.length;
-    toggle.setAttribute('aria-expanded', showAll ? 'true' : 'false');
-  }
-  toggle.addEventListener('click', function () { showAll = !showAll; renderBosses(); });
-  bossBox.addEventListener('click', function (ev) {
-    var b = ev.target.closest('button[data-cmd]'); if (!b) return;
-    copyCommand(b.getAttribute('data-cmd'), b.closest('.boss').querySelector('.slot'), b);
-  });
-  renderBosses();
+  draw();
+  hop();
+  // Safety net: if frames never paint (hidden tab, print, headless), the pawn still lands.
+  setTimeout(function () { if (!hopDone) { hopDone = true; placePawn(finalPawn()); } }, 1700);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { lastKey = ''; draw(); });
+  var rzT = null;
+  window.addEventListener('resize', function () { clearTimeout(rzT); rzT = setTimeout(function () { lastKey = ''; draw(); }, 120); });
+  if (window.ResizeObserver) new ResizeObserver(function () { clearTimeout(rzT); rzT = setTimeout(draw, 60); }).observe(faceIn);
 
-  // ---------------------------------------------------------- trophy shelf
+  // ---------------------------------------------------------- legend
+  var CHECK = '<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M4 11.5 L9 16.5 L18.5 5.5" fill="none" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  document.getElementById('lg-states').innerHTML =
+    '<span><span class="lg-sq done">' + CHECK + '</span>Done</span>' +
+    '<span><span class="lg-sq ip"></span>In progress</span>' +
+    '<span><span class="lg-sq"></span>To do, with its track number</span>' +
+    '<span><svg width="22" height="22" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="11.5" fill="#FFFFFF" stroke="#9333EA" stroke-width="2"/><text x="14" y="19" text-anchor="middle" font-family="Poppins, Inter, sans-serif" font-weight="600" font-size="14" fill="#2A1B3D">1</text></svg>Next roll, in order</span>' +
+    '<span><svg width="15" height="21" viewBox="0 0 26 36" aria-hidden="true"><path d="' + pawn.querySelector('path').getAttribute('d') + '" fill="#FDBA74" stroke="#2A1B3D" stroke-width="1.6"/></svg>Your pawn: the course in progress</span>';
+  document.getElementById('lg-dist').innerHTML = districts.map(function (d) {
+    return '<li><svg width="34" height="12" viewBox="0 0 34 12" aria-hidden="true"><rect x="0.5" y="0.5" width="33" height="11" fill="url(#pat-' + d.pat + ')" stroke="#2A1B3D" stroke-width="1"/></svg>' +
+      '<span>' + esc(d.name) + '</span><span class="pn num">' + d.count + '</span></li>';
+  }).join('');
+
+  // ---------------------------------------------------------- score sheet
   var S = G.streak || { current: 0, best: 0, recent: [] };
-  document.getElementById('trophy-h').textContent = S.current
+  document.getElementById('sheet-h').textContent = S.current
     ? S.current + (S.current === 1 ? ' week' : ' weeks') + ' in a row with a finish. Keep the chain.'
     : 'Streaks count weeks, not days. One finish starts the chain.';
   var wk = S.recent || [], WS = 26, WT = 18;
@@ -662,24 +997,20 @@ section.band>.lede{color:var(--muted);max-width:60ch;margin-bottom:36px}
     '<span class="big num" aria-hidden="true">' + S.current + '</span>' +
     '<span class="unit">' + (S.current === 1 ? 'week' : 'weeks') + ' in a row</span>' +
     '<p class="best">Best streak <span class="num">' + S.best + '</span> ' + (S.best === 1 ? 'week' : 'weeks') + '</p>' + wsvg +
-    (S.current ? '' : '<p class="empty-note">No finished week yet. Mark one course done this week and the first square fills.</p>');
+    (S.current ? '' : '<p class="empty-note">No finished week yet. Mark one course done this week and the first box fills.</p>');
   var B = G.badges || [];
-  function badgeLi(b) {
-    var cls = 'badge' + (b.earned ? ' earned' : '') + (b.latest ? ' latest' : '');
-    // Earned: the badge name on solid plum, date beneath. Unearned: an outline slot that carries the rule to earn it.
-    if (b.earned) {
-      return '<li class="' + cls + '" data-badge="' + esc(b.id) + '"><span class="seal"><span class="glyph full"></span>' + esc(b.name) + '</span>' +
-        '<span class="rule">' + (b.latest ? 'New - earned ' : 'Earned ') + esc(b.earned_on) + '</span></li>';
-    }
-    return '<li class="' + cls + '" data-badge="' + esc(b.id) + '" title="' + esc(b.name) + '"><span class="seal"><span class="glyph"></span>' + esc(b.rule.replace(/\.$/, '')) + '</span></li>';
+  function stamp(b) {
+    var cls = 'stamp' + (b.earned ? ' earned' : '') + (b.latest ? ' latest' : '');
+    var sub = b.earned ? (b.latest ? 'New - earned ' : 'Earned ') + esc(b.earned_on) : esc(b.rule);
+    return '<li class="' + cls + '" data-badge="' + esc(b.id) + '"><span class="sn">' + esc(b.name) + '</span><span class="sr">' + sub + '</span></li>';
   }
-  var earnedN = B.filter(function (b) { return b.earned; }).length;
-  document.getElementById('badges').innerHTML =
-    '<div class="badge-group"><h3>Milestones <span class="muted num">' + B.filter(function (b) { return b.kind === 'milestone' && b.earned; }).length + ' of ' + B.filter(function (b) { return b.kind === 'milestone'; }).length + '</span></h3><ul class="badge-grid">' +
-    B.filter(function (b) { return b.kind === 'milestone'; }).map(badgeLi).join('') + '</ul></div>' +
-    '<div class="badge-group"><h3>First in each region <span class="muted num">' + B.filter(function (b) { return b.kind === 'domain' && b.earned; }).length + ' of ' + B.filter(function (b) { return b.kind === 'domain'; }).length + '</span></h3><p class="note">The first finish in a region earns its badge.</p><ul class="badge-grid">' +
-    B.filter(function (b) { return b.kind === 'domain'; }).map(badgeLi).join('') + '</ul></div>';
-  document.getElementById('badges').setAttribute('data-earned', earnedN);
+  function group(kind, title) {
+    var list = B.filter(function (b) { return b.kind === kind; });
+    var got = list.filter(function (b) { return b.earned; }).length;
+    return '<h3 class="stamps-h">' + title + ' <span class="muted num">' + got + ' of ' + list.length + '</span></h3><ul class="stamps">' + list.map(stamp).join('') + '</ul>';
+  }
+  document.getElementById('badges').innerHTML = group('milestone', 'Milestone stamps') + group('domain', 'First finish in each district');
+  document.getElementById('badges').setAttribute('data-earned', B.filter(function (b) { return b.earned; }).length);
 })();
 (function () {
   var D = JSON.parse(document.getElementById('data').textContent);

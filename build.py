@@ -143,11 +143,12 @@ def render(template: str, mapping: dict) -> str:
 
 
 def split_page(template: str) -> dict:
-    """Page templates carry three blocks: <!-- @css -->, <!-- @content -->, <!-- @script -->."""
+    """Page templates carry three blocks: <!-- @css -->, <!-- @content -->, <!-- @script -->,
+    plus an optional <!-- @contract --> block emitted as the first thing inside <body>."""
     blocks: dict[str, str] = {}
     current = None
     for line in template.splitlines(keepends=True):
-        m = re.match(r"^<!-- @(css|content|script) -->\s*$", line)
+        m = re.match(r"^<!-- @(contract|css|content|script) -->\s*$", line)
         if m:
             current = m.group(1); blocks[current] = ""
         elif current:
@@ -162,6 +163,7 @@ def page(base: str, tpl: dict, root: str, mapping: dict) -> str:
         "page_css": render(tpl.get("css", ""), m),
         "content": render(tpl.get("content", ""), m),
         "page_script": render(tpl.get("script", ""), m),
+        "body_contract": tpl.get("contract", "").strip(),
     }
     return render(base, dict(m, **inner))
 
@@ -333,7 +335,7 @@ def badges(entries: list[dict], domains: list[dict]) -> list[dict]:
             continue
         first = next((e for e in done if e["domain"] == d["id"]), None)
         out.append({"id": f"first-{d['id']}", "kind": "domain", "name": f"First in {d['name']}",
-                    "rule": f"Finish a {d['name']} course.",
+                    "rule": f"Finish {'an' if d['name'][:1].lower() in 'aeiou' else 'a'} {d['name']} course.",
                     "earned": first is not None, "earned_on": first["end_date"] if first else None,
                     "by": first["id"] if first else None, "latest": False})
     for n in MILESTONES:
@@ -350,10 +352,67 @@ def badges(entries: list[dict], domains: list[dict]) -> list[dict]:
     return out
 
 
+TRACK_RANK = {"done": 0, "in-progress": 1, "to-do": 2}
+
+
+def board_state(entries: list[dict], domains: list[dict]) -> dict:
+    """The homepage board: one loop track of every entry, plus where the pawn stands.
+
+    Track order: districts (domains) in domains.json order, unknown domains last;
+    inside a district, done squares lead (ground already covered), then in-progress,
+    then to-do, each by topic. The pawn stands on the first in-progress square
+    (index into track) or on START (-1) when nothing is in progress. next_ids are the
+    next three not-done squares after the pawn, wrapping round the loop.
+    Each district carries "pattern": its index in domains.json, so a district keeps
+    its printed strip pattern as courses are added.
+    """
+    order = {d["id"]: i for i, d in enumerate(domains)}
+    names = {d["id"]: d["name"] for d in domains}
+    ordered = sorted(entries, key=lambda e: (order.get(e["domain"], len(order)), e["domain"],
+                                             TRACK_RANK[e["status"]], e["topic"].lower(), e["id"]))
+    track = [e["id"] for e in ordered]
+    districts: list[dict] = []
+    for i, e in enumerate(ordered):
+        if not districts or districts[-1]["id"] != e["domain"]:
+            districts.append({"id": e["domain"], "name": names.get(e["domain"], e["domain"]),
+                              "pattern": order.get(e["domain"], len(order)), "start": i, "count": 0})
+        districts[-1]["count"] += 1
+    status = {e["id"]: e["status"] for e in entries}
+    pawn = next((i for i, eid in enumerate(track) if status[eid] == "in-progress"), -1)
+    nxt: list[str] = []
+    n = len(track)
+    for k in range(1, n + 1):
+        j = (pawn + k) % n if n else 0
+        if j == pawn or not n:
+            break
+        if status[track[j]] != "done":
+            nxt.append(track[j])
+        if len(nxt) == 3:
+            break
+
+    # Validate here, once: the page trusts these numbers.
+    problems = []
+    if sorted(track) != sorted(e["id"] for e in entries) or len(set(track)) != len(track):
+        problems.append("track must hold every entry exactly once")
+    if sum(d["count"] for d in districts) != n or len({d["id"] for d in districts}) != len(districts):
+        problems.append("each district must be one contiguous run covering the track")
+    if pawn != -1 and status[track[pawn]] != "in-progress":
+        problems.append("pawn must stand on an in-progress square")
+    if pawn == -1 and any(s == "in-progress" for s in status.values()):
+        problems.append("pawn on START while a course is in progress")
+    if len(set(nxt)) != len(nxt) or any(status[x] == "done" for x in nxt) or (pawn != -1 and track[pawn] in nxt):
+        problems.append("next_ids must be distinct, not done, and not the pawn's square")
+    if len(nxt) != min(3, sum(1 for s in status.values() if s != "done") - (1 if pawn != -1 else 0)):
+        problems.append("next_ids must hold three squares when three not-done squares exist")
+    if problems:
+        sys.exit("build aborted: board_state invalid: " + "; ".join(problems))
+    return {"track": track, "districts": districts, "pawn_index": pawn, "next_ids": nxt}
+
+
 def game_state(entries: list[dict], domains: list[dict]) -> dict:
     total_xp = sum(course_xp(e)["xp"] for e in entries)
     lvl = level_for(total_xp)
-    return {"xp": total_xp, **lvl,
+    return {"xp": total_xp, **lvl, "board": board_state(entries, domains),
             "levels": [{"level": i + 1, "rank": r, "threshold": t} for i, (r, t) in enumerate(zip(RANKS, LEVEL_THRESHOLDS))],
             "rule": {"xp_per_hour": 100, "est_hours": EST_HOURS},
             "done": sum(1 for e in entries if e["status"] == "done"),
