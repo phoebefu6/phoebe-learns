@@ -1,0 +1,27 @@
+{
+  "id": "2022-01-17-bi-sql",
+  "topic": "网易 数据分析 (BI + SQL)",
+  "domain": "data",
+  "platform": "Other",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "bi",
+    "data analysis",
+    "sql"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2024-07-21",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2022-01-17",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "857ed399180c43a683e6aa5fa52a34ab"
+}

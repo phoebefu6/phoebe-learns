@@ -1,0 +1,28 @@
+{
+  "id": "2026-08-06-intro-to-claude-code-for-data-analysis",
+  "topic": "Intro to Claude Code for Data Analysis",
+  "domain": "aiap",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/preview/intro-to-claude-code-for-data-analysis/",
+  "tags": [
+    "claude code",
+    "data analysis",
+    "python",
+    "web scraping"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2026-08-07",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-08-06",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "3b4f64f699d9805aafc7fa033c06083f"
+}

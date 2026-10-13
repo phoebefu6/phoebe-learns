@@ -1,0 +1,26 @@
+{
+  "id": "2023-05-03-blockchainexpert",
+  "topic": "BlockchainExpert",
+  "domain": "emrg",
+  "platform": "AlgoExpert",
+  "source_type": "course",
+  "url": "https://www.algoexpert.io/blockchain/blockchain-fundamentals/introduction-web3",
+  "tags": [
+    "blockchain",
+    "web3"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2023-05-03",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "1a5245fd62aa45b3be44dc3411eaa7d2"
+}

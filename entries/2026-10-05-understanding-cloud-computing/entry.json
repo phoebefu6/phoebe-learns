@@ -8,9 +8,9 @@
   "tags": [
     "cloud"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2025-12-24",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -19,5 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "29ff64f699d980d3a919c5be6f63002b"
 }

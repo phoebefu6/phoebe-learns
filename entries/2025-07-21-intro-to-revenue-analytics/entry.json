@@ -1,0 +1,25 @@
+{
+  "id": "2025-07-21-intro-to-revenue-analytics",
+  "topic": "Intro to Revenue Analytics",
+  "domain": "data",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/intro-to-revenue-analytics/course-introduction/",
+  "tags": [
+    "revenue analytics"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2025-11-07",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-07-21",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "237f64f699d9802bbd31c2033e94002f"
+}

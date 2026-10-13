@@ -11,9 +11,9 @@
     "metrics",
     "impact"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2025-11-20",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -22,5 +22,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "notion_id": "2a4f64f699d980caa625c1108ecfffc6",
+  "rating": 1
 }

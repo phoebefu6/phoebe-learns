@@ -1,0 +1,25 @@
+{
+  "id": "2025-02-14-become-a-data-scientist",
+  "topic": "Become a Data Scientist",
+  "domain": "ds",
+  "platform": "LinkedIn Learning",
+  "source_type": "course",
+  "url": "https://www.linkedin.com/learning/paths/become-a-data-scientist",
+  "tags": [
+    "machine learning"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-02-14",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "19af64f699d9807c85abef51df3c8b35"
+}

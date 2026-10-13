@@ -1,14 +1,14 @@
 {
   "id": "2026-10-05-introduction-to-hugging-face",
   "topic": "Introduction to Hugging Face",
-  "domain": "aiap",
+  "domain": "ai",
   "platform": "365 Data Science",
   "source_type": "course",
   "url": "",
   "tags": [
     "hugging-face"
   ],
-  "status": "to-do",
+  "status": "in-progress",
   "start_date": null,
   "end_date": null,
   "supporting_doc": "notes.md",
@@ -19,5 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2aff64f699d980328393d05477bd7acb"
 }

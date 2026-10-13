@@ -1,0 +1,26 @@
+{
+  "id": "2025-11-23-marketing-strategy",
+  "topic": "Marketing Strategy",
+  "domain": "mkt",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/marketing-strategy/what-does-the-course-cover/",
+  "tags": [
+    "marketing",
+    "strategy"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2025-12-29",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-11-23",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2b4f64f699d980cd816ee4574a95d27c"
+}

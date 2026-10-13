@@ -9,9 +9,9 @@
     "data-analysis",
     "chatgpt"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2026-06-26",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -20,5 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "363f64f699d980c19fe6e421ae7b28bb"
 }

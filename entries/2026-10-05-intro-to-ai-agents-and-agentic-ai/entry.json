@@ -9,9 +9,9 @@
     "ai-agents",
     "agentic-ai"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2025-11-19",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -20,5 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "280f64f699d980d1b436ea84255a800f"
 }

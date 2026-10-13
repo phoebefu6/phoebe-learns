@@ -1,0 +1,27 @@
+{
+  "id": "2024-11-28-data-storytelling",
+  "topic": "Data Storytelling",
+  "domain": "viz",
+  "platform": "DataCamp",
+  "source_type": "course",
+  "url": "https://app.datacamp.com/learn/skill-tracks/data-storytelling",
+  "tags": [
+    "cdaio plan",
+    "data visualization",
+    "presentation"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-11-28",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "14cf64f699d980df8a5af22482a65c74"
+}

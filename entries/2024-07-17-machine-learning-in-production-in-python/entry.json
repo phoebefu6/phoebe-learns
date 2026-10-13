@@ -1,0 +1,26 @@
+{
+  "id": "2024-07-17-machine-learning-in-production-in-python",
+  "topic": "Machine Learning in Production in Python",
+  "domain": "ship",
+  "platform": "DataCamp",
+  "source_type": "course",
+  "url": "https://app.datacamp.com/learn/skill-tracks/machine-learning-in-production",
+  "tags": [
+    "mlops",
+    "python"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-17",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "df1018486db842dead041b2b698432d6"
+}

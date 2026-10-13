@@ -1,0 +1,54 @@
+name: Add a course
+description: Paste a course link. It goes into Phoebe's Notion course library and onto the site.
+title: "Add course"
+labels: ["add-course"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Course link
+      description: The course page address, starting with https://
+      placeholder: https://www.coursera.org/learn/...
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Domain
+      description: Leave it on "Guess for me" and the domain is picked from the course title. You can change it in Notion later.
+      options:
+        - Guess for me
+        - Data & Analytics
+        - Data Science
+        - Data Engineering & Infra
+        - AI & LLMs
+        - Applied AI
+        - Visual Thinking & Storytelling
+        - Data Ops & Security
+        - Data & AI Governance
+        - Let's Ship It End to End
+        - Programming & Dev Tools
+        - System & Product Design
+        - Emerging Tech
+        - Markup / Docs & Diagrams
+        - Leadership & Decision-making
+        - Entrepreneurship & Business
+        - Communications
+        - Productivity & Knowledge Systems
+        - Mind & Movement
+        - Finance & Economics
+        - Marketing & Branding
+        - Thinking & Reasoning
+        - Languages
+        - Teaching & Training
+        - Career & Exams
+      default: 0
+    validations:
+      required: false
+  - type: input
+    id: title
+    attributes:
+      label: Course title (optional)
+      description: Only needed if the page title comes out wrong. Some course sites block robots.
+    validations:
+      required: false

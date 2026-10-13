@@ -1,0 +1,25 @@
+{
+  "id": "2024-03-14-course-ce212ab4",
+  "topic": "熊厂长",
+  "domain": "aiap",
+  "platform": "微信频道",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "gen ai"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2024-07-03",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-03-14",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "ce212ab48f0b46bc8adcdec822fc4de5"
+}

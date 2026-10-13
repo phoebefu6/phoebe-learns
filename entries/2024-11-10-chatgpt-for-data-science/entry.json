@@ -1,0 +1,26 @@
+{
+  "id": "2024-11-10-chatgpt-for-data-science",
+  "topic": "ChatGPT for Data Science",
+  "domain": "aiap",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/chatgpt-for-data-science/introduction-to-the-course/",
+  "tags": [
+    "chatgpt",
+    "machine learning"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-11-10",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "13af64f699d9805988eecc1bfd5469cc"
+}

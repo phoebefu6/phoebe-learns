@@ -1,0 +1,25 @@
+{
+  "id": "2025-11-07-intermediate-revenue-analytics",
+  "topic": "Intermediate Revenue Analytics",
+  "domain": "data",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/intermediate-revenue-analytics/course-introduction/",
+  "tags": [
+    "revenue analytics"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2025-11-11",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-11-07",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2a4f64f699d9807eb26ef3d71f648e72"
+}

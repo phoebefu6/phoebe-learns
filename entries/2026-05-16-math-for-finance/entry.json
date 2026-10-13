@@ -1,0 +1,26 @@
+{
+  "id": "2026-05-16-math-for-finance",
+  "topic": "Math for Finance",
+  "domain": "fin",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/math-for-finance/course-introduction/",
+  "tags": [
+    "finance",
+    "math"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-05-16",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "362f64f699d980cc9ec5ce2fefee8af4"
+}

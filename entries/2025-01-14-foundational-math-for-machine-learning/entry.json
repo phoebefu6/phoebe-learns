@@ -1,0 +1,27 @@
+{
+  "id": "2025-01-14-foundational-math-for-machine-learning",
+  "topic": "Foundational Math for Machine Learning",
+  "domain": "ds",
+  "platform": "LinkedIn Learning",
+  "source_type": "course",
+  "url": "https://www.linkedin.com/learning/paths/foundational-math-for-machine-learning",
+  "tags": [
+    "machine learning",
+    "math",
+    "statistics"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-01-14",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "17bf64f699d98069934ac8e256290cc3"
+}

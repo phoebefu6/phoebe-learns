@@ -1,0 +1,26 @@
+{
+  "id": "2024-07-17-mlops-with-aws-bootcamp-zero-to-hero-series",
+  "topic": "MLOps with AWS - Bootcamp - Zero to Hero Series",
+  "domain": "ship",
+  "platform": "Udemy",
+  "source_type": "course",
+  "url": "https://www.udemy.com/course/practical-mlops-for-data-scientists-devops-engineers-aws/learn/lecture/29431874#overview",
+  "tags": [
+    "aws",
+    "mlops"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-17",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "6b3dc82a057b463eb4dd39a2823b948c"
+}

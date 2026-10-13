@@ -1,0 +1,26 @@
+{
+  "id": "2025-11-09-econometrics-i",
+  "topic": "Econometrics I",
+  "domain": "fin",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/preview/econometrics-i/",
+  "tags": [
+    "finance",
+    "statistics"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2026-05-16",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-11-09",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2a6f64f699d98003a56ed4a6955ad247"
+}

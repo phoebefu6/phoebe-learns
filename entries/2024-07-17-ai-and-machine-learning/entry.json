@@ -1,0 +1,26 @@
+{
+  "id": "2024-07-17-ai-and-machine-learning",
+  "topic": "AI and Machine Learning",
+  "domain": "ship",
+  "platform": "Google",
+  "source_type": "course",
+  "url": "https://cloud.google.com/architecture/ai-ml",
+  "tags": [
+    "google cloud",
+    "mlops"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2024-07-17",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-17",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "dab407fc3454487ab9dd6f9991c11e6d"
+}

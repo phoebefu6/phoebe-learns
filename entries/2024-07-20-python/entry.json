@@ -1,0 +1,27 @@
+{
+  "id": "2024-07-20-python",
+  "topic": "Python数据分析",
+  "domain": "ds",
+  "platform": "百职帮",
+  "source_type": "course",
+  "url": "https://np.baicizhan.com/data_analysis2/lessons",
+  "tags": [
+    "data analysis",
+    "machine learning",
+    "python"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2025-02-14",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-20",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "cdcb8c7188134cfa95f81805b38e8969"
+}

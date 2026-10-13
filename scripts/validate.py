@@ -20,11 +20,16 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 ENTRIES_DIR = REPO / "entries"
 DOMAINS_FILE = REPO / "domains.json"
+EXTRA_DOMAINS_FILE = REPO / "domains-extra.json"
 
 ID_RE = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9-]+$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 PLATFORMS = {"Coursera Plus", "365 Data Science", "DataCamp", "Udemy",
-             "DeepLearning.AI", "Notion export", "Other"}
+             "DeepLearning.AI", "Notion export", "Other",
+             # Platforms used in the Notion All Courses database (scripts/notion_lib.py).
+             "LinkedIn Learning", "Anthropic", "Google", "AWS", "NVIDIA", "Microsoft",
+             "IBM", "Databricks", "YouTube", "得到", "路飞学城",
+             "百职帮", "微信频道", "Brilliant", "AlgoExpert", "INSEAD"}
 SOURCE_TYPES = {"course", "notes"}
 STATUSES = {"to-do", "in-progress", "done"}
 RESEARCH_STATUSES = {"full", "none"}
@@ -49,9 +54,15 @@ REQUIRED_KEYS = ["id", "topic", "domain", "platform", "source_type", "url", "tag
 def load_domain_ids(domains_file: Path = DOMAINS_FILE) -> set[str]:
     try:
         data = json.loads(domains_file.read_text(encoding="utf-8"))
-        return {d["id"] for d in data.get("domains", [])}
+        ids = {d["id"] for d in data.get("domains", [])}
     except (OSError, ValueError, KeyError, TypeError):
         return set()
+    try:
+        extra = json.loads(EXTRA_DOMAINS_FILE.read_text(encoding="utf-8"))
+        ids |= {d["id"] for d in extra.get("domains", [])}
+    except (OSError, ValueError, KeyError, TypeError):
+        pass
+    return ids
 
 
 def _walk_strings(obj, path=""):
@@ -151,8 +162,10 @@ def validate_entry(folder: Path, domain_ids: set[str] | None = None) -> list[str
         errs.append(f"{rel}: start_date must be ISO yyyy-mm-dd or null")
     if not _is_date_or_null(e["end_date"]):
         errs.append(f"{rel}: end_date must be ISO yyyy-mm-dd or null")
-    if e["status"] == "done" and not e["end_date"]:
-        errs.append(f"{rel}: end_date required when status == done")
+    if "end_date_unknown" in e and not isinstance(e["end_date_unknown"], bool):
+        errs.append(f"{rel}: end_date_unknown must be true or false when present")
+    if e["status"] == "done" and not e["end_date"] and e.get("end_date_unknown") is not True:
+        errs.append(f"{rel}: end_date required when status == done (or set end_date_unknown: true)")
     for k in ("created", "updated"):
         if not (isinstance(e[k], str) and DATE_RE.match(e[k])):
             errs.append(f"{rel}: {k} must be ISO yyyy-mm-dd")
@@ -162,6 +175,12 @@ def validate_entry(folder: Path, domain_ids: set[str] | None = None) -> list[str
         h = e["hours"]
         if isinstance(h, bool) or not isinstance(h, (int, float)) or not math.isfinite(h) or not h > 0:
             errs.append(f"{rel}: hours must be a number > 0 when present")
+    if "rating" in e:
+        r = e["rating"]
+        if isinstance(r, bool) or not isinstance(r, int) or not 1 <= r <= 5:
+            errs.append(f"{rel}: rating must be an integer 1-5 when present")
+    if "notion_id" in e and not (isinstance(e["notion_id"], str) and re.match(r"^[0-9a-f]{32}$", e["notion_id"])):
+        errs.append(f"{rel}: notion_id must be 32 lowercase hex characters when present")
     if "progress_pct" in e:
         p = e["progress_pct"]
         if isinstance(p, bool) or not isinstance(p, int) or not 0 <= p <= 100:

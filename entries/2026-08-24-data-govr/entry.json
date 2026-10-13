@@ -1,0 +1,25 @@
+{
+  "id": "2026-08-24-data-govr",
+  "topic": "Data Govr",
+  "domain": "gov",
+  "platform": "Other",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "data governance"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-08-24",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "3c6f64f699d980ec8dc6e57013a6c384"
+}

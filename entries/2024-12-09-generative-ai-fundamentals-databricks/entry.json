@@ -1,0 +1,28 @@
+{
+  "id": "2024-12-09-generative-ai-fundamentals-databricks",
+  "topic": "Generative AI Fundamentals (Databricks)",
+  "domain": "ai",
+  "platform": "Databricks",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "databricks",
+    "gen ai",
+    "llms"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-12-09",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "157f64f699d980ceb76fc8c08a7c1882",
+  "end_date_unknown": true
+}

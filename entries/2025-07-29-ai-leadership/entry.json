@@ -1,0 +1,27 @@
+{
+  "id": "2025-07-29-ai-leadership",
+  "topic": "AI Leadership",
+  "domain": "lead",
+  "platform": "DataCamp",
+  "source_type": "course",
+  "url": "https://app.datacamp.com/learn/skill-tracks/artificial-intelligence-ai-leadership",
+  "tags": [
+    "ai governance",
+    "ai leadership",
+    "responsible ai"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-07-29",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "23ff64f699d980a6975bce87e9b36168"
+}

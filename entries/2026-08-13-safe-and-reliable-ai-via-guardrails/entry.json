@@ -1,0 +1,26 @@
+{
+  "id": "2026-08-13-safe-and-reliable-ai-via-guardrails",
+  "topic": "Safe and reliable AI via guardrails",
+  "domain": "gov",
+  "platform": "DeepLearning.AI",
+  "source_type": "course",
+  "url": "https://learn.deeplearning.ai/courses/safe-and-reliable-ai-via-guardrails/lesson/rz5a6/introduction?startTime=1",
+  "tags": [
+    "llms",
+    "responsible ai"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": "2026-08-24",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-08-13",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "3bbf64f699d98030a227c30c9683777e"
+}

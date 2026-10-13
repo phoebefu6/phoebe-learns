@@ -1,0 +1,28 @@
+{
+  "id": "2024-07-19-ai-fundamentals",
+  "topic": "AI Fundamentals",
+  "domain": "ai",
+  "platform": "DataCamp",
+  "source_type": "course",
+  "url": "https://app.datacamp.com/learn/skill-tracks/ai-fundamentals",
+  "tags": [
+    "chatgpt",
+    "gen ai",
+    "llms",
+    "responsible ai"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2024-09-23",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-19",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "f5e4453e91e54f9c8d626710ad10dd6f"
+}

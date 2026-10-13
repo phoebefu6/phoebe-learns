@@ -1,0 +1,26 @@
+{
+  "id": "2026-06-02-agentic-ai-on-google-cloud",
+  "topic": "Agentic AI on Google Cloud",
+  "domain": "ai",
+  "platform": "Google",
+  "source_type": "course",
+  "url": "https://www.skills.google/paths/3273",
+  "tags": [
+    "ai agents",
+    "google cloud"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-06-02",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "373f64f699d980178706c630c9f34ea2"
+}

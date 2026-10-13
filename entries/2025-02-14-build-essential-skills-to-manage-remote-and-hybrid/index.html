@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Essential Skills to Manage Remote and Hybrid Teams - Phoebe learns</title>
+<meta name="description" content="Learning entry: Build Essential Skills to Manage Remote and Hybrid Teams">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FFFFFF;--plum:#9333EA;--ink:#2A1B3D;--tint:#FAF5FF;--tint2:#F3E8FF;
+  --hair:#EAE8F0;--muted:#6B6480;--peach:#FDBA74;
+  --head:"Poppins","Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Inter","Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --maxw:1120px;--gutter:24px;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55;font-weight:400;-webkit-font-smoothing:antialiased}
+a{color:var(--plum);text-decoration:none;border-bottom:1px solid transparent}
+a:hover{border-bottom-color:var(--plum)}
+h1,h2,h3,h4{font-family:var(--head);font-weight:500;margin:0;line-height:1.15;letter-spacing:-0.01em}
+h1{font-weight:600;font-size:clamp(28px,4vw,44px)}
+h2{font-size:22px}
+h3{font-size:17px}
+p{margin:0 0 12px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px;background:var(--tint);padding:1px 4px;border-radius:2px}
+pre{background:var(--tint);padding:12px 14px;overflow:auto;border-radius:2px}
+pre code{background:none;padding:0}
+blockquote{margin:0 0 12px;padding:8px 14px;border-left:3px solid var(--plum);color:var(--muted)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font-family:var(--body);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.num,.tabular{font-variant-numeric:tabular-nums}
+.top-rule{height:4px;background:var(--plum)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter)}
+nav.site{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;border-bottom:1px solid var(--hair)}
+nav.site .mark{font-family:var(--head);font-weight:600;font-size:16px;color:var(--ink)}
+nav.site ul{list-style:none;margin:0;padding:0;display:flex;gap:22px}
+nav.site a{color:var(--ink);font-weight:500;font-size:14px;padding-bottom:2px}
+nav.site a.active{border-bottom:2px solid var(--plum)}
+nav.site a:hover{border-bottom-color:var(--plum)}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:500}
+.muted{color:var(--muted)}
+.hair{border:0;border-top:1px solid var(--hair);margin:0}
+section.block{padding:48px 0;border-bottom:1px solid var(--hair)}
+section.block:last-of-type{border-bottom:0}
+section.block>.kicker{margin-bottom:14px}
+/* chips: square corners, colour always paired with a glyph or a word */
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;font-family:var(--body);font-weight:500;font-size:12px;line-height:1.4;border:1px solid var(--hair);border-radius:2px;background:var(--paper);color:var(--ink);white-space:nowrap;vertical-align:middle}
+button.chip{cursor:pointer}
+button.chip:hover{border-color:var(--plum)}
+.chip.active{background:var(--plum);border-color:var(--plum);color:#fff}
+.chip.tag{color:var(--muted);font-weight:400}
+.chip .glyph{color:var(--plum)}
+.chip.active .glyph{color:#fff}
+.chip.tint{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
+.chip.solid{background:var(--plum);border-color:var(--plum);color:#fff}
+.chip.outline-plum{border-color:var(--plum);color:var(--ink)}
+.chip.outline-muted{border-color:var(--muted);color:var(--muted)}
+.glyph{display:inline-block;width:9px;height:9px;border:1.5px solid currentColor;border-radius:1px;position:relative;flex:none}
+.glyph.full{background:currentColor}
+.glyph.half::after{content:"";position:absolute;left:0;top:0;bottom:0;width:50%;background:currentColor}
+.status{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;font-family:var(--body);font-weight:500;font-size:12px;line-height:1.4;border:1px solid var(--plum);border-radius:2px;color:var(--ink);white-space:nowrap;background:var(--paper)}
+.status.done{background:var(--plum);border-color:var(--plum);color:#fff}
+.status.in-progress{background:var(--tint2);border-color:var(--tint2);color:var(--ink)}
+.status.in-progress .glyph,.status.to-do .glyph{color:var(--plum)}
+.btn{font-family:var(--body);font-weight:500;font-size:13px;padding:6px 12px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--plum);color:var(--plum)}
+.btn.active{background:var(--plum);border-color:var(--plum);color:#fff}
+.panel-tint{background:var(--tint);border:1px solid var(--tint2);border-radius:2px;padding:18px 20px}
+footer.site{padding:36px 0 56px;border-top:1px solid var(--hair);font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+/* motion: one entrance stagger on load, hover responses, nothing else */
+.rise{opacity:0;transform:translateY(10px);animation:rise .55s cubic-bezier(.2,.7,.2,1) forwards}
+.rise.d1{animation-delay:.05s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.32s}.rise.d4{animation-delay:.46s}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}*{transition:none!important}}
+@media (max-width:600px){:root{--gutter:16px}section.block{padding:36px 0}}
+</style>
+<style>.entry-head{padding:48px 0 36px;border-bottom:1px solid var(--hair)}
+.entry-head .kick{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:14px}
+.entry-head h1{max-width:24ch}
+.entry-head .meta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:18px;font-size:13.5px;color:var(--muted)}
+.entry-head .meta .tags{display:flex;flex-wrap:wrap;gap:4px}
+.back{display:inline-block;margin:22px 0 0;font-size:13px;font-weight:500}
+.ideas{list-style:none;margin:0;padding:0;counter-reset:idea}
+.ideas li{display:grid;grid-template-columns:72px 1fr;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--hair);font-size:17px;line-height:1.5}
+.ideas li:last-child{border-bottom:0}
+.ideas li::before{counter-increment:idea;content:counter(idea);font-family:var(--head);font-weight:500;font-size:48px;line-height:1;color:var(--plum);font-variant-numeric:tabular-nums}
+.prose{max-width:72ch}
+.prose h1{font-size:26px;margin:0 0 14px}
+.prose h2{margin:26px 0 10px}
+.prose h3{margin:20px 0 8px}
+.prose ul,.prose ol{padding-left:22px;margin:0 0 12px}
+.prose li{margin:3px 0}
+.prose table{margin:0 0 16px}
+.kp{margin:0 0 36px}
+.kp h3{margin:0 0 12px;max-width:70ch}
+.kp .tablewrap{overflow-x:auto}
+.kp table{min-width:720px}
+.kp td.num{white-space:nowrap}
+.kp .disagree{font-style:italic;color:var(--muted);margin:10px 0 0;font-size:14px}
+.readings{list-style:none;margin:0;padding:0}
+.readings li{padding:14px 0;border-bottom:1px solid var(--hair);display:grid;grid-template-columns:40px 1fr;gap:14px}
+.readings li:last-child{border-bottom:0}
+.readings .n{font-family:var(--head);font-weight:500;font-size:20px;color:var(--plum);font-variant-numeric:tabular-nums;line-height:1.2}
+.readings .t{font-weight:500}
+.readings .by{font-size:13px;color:var(--muted);margin:2px 0 6px}
+.readings .why{font-size:14px;margin:0}
+.courses{list-style:none;margin:0;padding:0}
+.courses li{padding:14px 0;border-bottom:1px solid var(--hair)}
+.courses li:last-child{border-bottom:0}
+.courses .top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin-bottom:4px}
+.courses .t{font-weight:500}
+.courses .facts{font-size:13px;color:var(--muted);margin:0 0 4px}
+.courses .why{font-size:14px;margin:0}
+.refs{margin:0;padding-left:0;list-style:none;counter-reset:ref}
+.refs li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:8px 0;border-bottom:1px solid var(--hair);font-size:14px}
+.refs li:last-child{border-bottom:0}
+.refs .rid{font-family:var(--body);font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.refs .by{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div class="top-rule"></div>
+<div class="wrap">
+<nav class="site" aria-label="Site">
+  <a class="mark" href="../../index.html">Phoebe learns</a>
+  <ul>
+    <li><a href="../../index.html" class="">Learning DB</a></li>
+    <li><a href="../../network.html" class="">Network</a></li>
+    <li><a href="https://github.com/phoebefu6/phoebe-learns">GitHub</a></li>
+  </ul>
+</nav>
+<header class="entry-head">
+  <div class="kick rise d1"><span class="kicker">Leadership &amp; Decision-making</span><span class="kicker">&middot;</span><span class="kicker">LinkedIn Learning</span><span class="kicker">&middot;</span><span class="status to-do"><span class="glyph"></span>To do</span></div>
+  <h1 class="rise d2">Build Essential Skills to Manage Remote and Hybrid Teams</h1>
+  <div class="meta rise d3"><span class="num">not started</span><a href="https://www.linkedin.com/learning/paths/build-essential-skills-to-manage-remote-and-hybrid-teams" target="_blank" rel="noopener">Source</a><div class="tags"><span class="chip tag">cdaio plan</span><span class="chip tag">team management</span></div></div>
+  <a class="back rise d3" href="../../index.html">Back to the learning DB</a>
+</header>
+
+<section class="block" id="notes">
+  <p class="kicker">Notes</p>
+  <div class="prose"><h1>Build Essential Skills to Manage Remote and Hybrid Teams</h1>
+<p>Synced from Notion (All Courses) on 2026-10-13. Course notes stay in Notion.</p></div>
+</section>
+<section class="block" id="research"><p class="kicker">Research</p><div class="panel-tint"><strong>Research not run yet.</strong> When it runs, this page gains three main ideas, key points with three supporting and three other-angle references each, five readings and a five-course bundle.</div></section>
+<p><a class="back" href="../../index.html">Back to the learning DB</a></p>
+
+<footer class="site">
+  <span>Built with build.py. Entries are JSON + Markdown in the repo.</span>
+  <span><a href="https://github.com/phoebefu6/phoebe-learns">github.com/phoebefu6/phoebe-learns</a> &middot; generated 2026-10-13</span>
+</footer>
+</div>
+<script type="application/json" id="data">{"generated":"2026-10-13","site":"https://phoebefu6.github.io/phoebe-learns/","domains":[{"id":"data","name":"Data & Analytics"},{"id":"ds","name":"Data Science"},{"id":"deng","name":"Data Engineering & Infra"},{"id":"ai","name":"AI & LLMs"},{"id":"aiap","name":"Applied AI"},{"id":"viz","name":"Visual Thinking & Storytelling"},{"id":"dsec","name":"Data Ops & Security"},{"id":"gov","name":"Data & AI Governance"},{"id":"ship","name":"Let's Ship It End to End"},{"id":"prog","name":"Programming & Dev Tools"},{"id":"sys","name":"System & Product Design"},{"id":"emrg","name":"Emerging Tech"},{"id":"docs","name":"Markup, Docs & Diagrams"},{"id":"lead","name":"Leadership & Decision-making"},{"id":"biz","name":"Entrepreneurship & Business"},{"id":"comm","name":"Communications"},{"id":"prod","name":"Productivity & Knowledge Systems"},{"id":"move","name":"Mind & Movement"},{"id":"fin","name":"Finance & Economics"},{"id":"mkt","name":"Marketing & Branding"},{"id":"think","name":"Thinking & Reasoning"},{"id":"lang","name":"Languages"},{"id":"teach","name":"Teaching & Training"},{"id":"career","name":"Career & Exams"}],"entries":[{"id":"2025-02-14-build-essential-skills-to-manage-remote-and-hybrid","topic":"Build Essential Skills to Manage Remote and Hybrid Teams","domain":"lead","platform":"LinkedIn Learning","source_type":"course","url":"https://www.linkedin.com/learning/paths/build-essential-skills-to-manage-remote-and-hybrid-teams","tags":["cdaio plan","team management"],"status":"to-do","start_date":null,"end_date":null,"supporting_doc":"notes.md","main_ideas":[],"key_points":[],"linked_references":[],"support_readings":[],"linked_courses":[],"research_status":"none","created":"2025-02-14","updated":"2026-10-13","rating":1,"notion_id":"19af64f699d980db9d5cfee2fce6f523","domain_name":"Leadership & Decision-making","game":{"hours":1.5,"hours_estimated":true,"progress_pct":0,"xp":0,"xp_full":150,"reward_xp":150,"hp_hours":1.5}}]}</script>
+<script>/* entry pages are fully rendered by build.py; nothing to run */
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "id": "2025-11-05-ai-agent",
+  "topic": "AI Agent 就业班",
+  "domain": "ai",
+  "platform": "路飞学城",
+  "source_type": "course",
+  "url": "https://www.luffycity.com/study/degree",
+  "tags": [
+    "ai agents",
+    "python"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-11-05",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2a2f64f699d980e58d12c6a2970700a2"
+}

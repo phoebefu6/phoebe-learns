@@ -1,0 +1,25 @@
+{
+  "id": "2026-06-13-build-with-andrew",
+  "topic": "Build with Andrew",
+  "domain": "ai",
+  "platform": "DeepLearning.AI",
+  "source_type": "course",
+  "url": "https://learn.deeplearning.ai/courses/build-with-andrew/lesson/fwe5d0/telling-ai-what-you-want",
+  "tags": [
+    "gen ai"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-06-13",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "37ef64f699d98086a9bceb97277fda61"
+}

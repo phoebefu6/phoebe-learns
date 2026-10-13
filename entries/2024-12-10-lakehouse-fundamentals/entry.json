@@ -1,0 +1,27 @@
+{
+  "id": "2024-12-10-lakehouse-fundamentals",
+  "topic": "Lakehouse Fundamentals",
+  "domain": "deng",
+  "platform": "Databricks",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "data architecture",
+    "databricks"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-12-10",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "158f64f699d9805da70ad5c20abd9ca8",
+  "end_date_unknown": true
+}

@@ -1,0 +1,26 @@
+{
+  "id": "2026-06-02-ai-infrastructure-and-operations-fundamentals",
+  "topic": "AI Infrastructure and Operations Fundamentals",
+  "domain": "deng",
+  "platform": "Coursera Plus",
+  "source_type": "course",
+  "url": "https://www.coursera.org/learn/ai-infrastructure-operations-fundamentals",
+  "tags": [
+    "cloud",
+    "llms"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-06-02",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "373f64f699d980eeb5a2fdadc24f9c06"
+}

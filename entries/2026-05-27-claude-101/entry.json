@@ -1,0 +1,23 @@
+{
+  "id": "2026-05-27-claude-101",
+  "topic": "Claude 101",
+  "domain": "ai",
+  "platform": "Anthropic",
+  "source_type": "course",
+  "url": "https://anthropic.skilljar.com/claude-101/383393",
+  "tags": [],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-05-27",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "36df64f699d98006b48bed0d032274da"
+}

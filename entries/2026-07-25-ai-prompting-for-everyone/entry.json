@@ -1,0 +1,25 @@
+{
+  "id": "2026-07-25-ai-prompting-for-everyone",
+  "topic": "AI Prompting for Everyone",
+  "domain": "ai",
+  "platform": "DeepLearning.AI",
+  "source_type": "course",
+  "url": "https://www.deeplearning.ai/courses/ai-prompting-for-everyone",
+  "tags": [
+    "prompt engineering"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-07-25",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "3a8f64f699d98043955de4a4550f5416"
+}

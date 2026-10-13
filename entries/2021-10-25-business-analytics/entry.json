@@ -1,0 +1,28 @@
+{
+  "id": "2021-10-25-business-analytics",
+  "topic": "Business Analytics",
+  "domain": "data",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "data analysis",
+    "excel",
+    "statistics"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2021-10-25",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "cf866fef71c3419b83fdf9e486a92c50",
+  "end_date_unknown": true
+}

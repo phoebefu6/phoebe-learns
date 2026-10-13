@@ -25,6 +25,7 @@ from validate import validate_entry  # noqa: E402
 ENTRIES_DIR = REPO / "entries"
 TEMPLATES = REPO / "templates"
 DOMAINS_FILE = REPO / "domains.json"
+EXTRA_DOMAINS_FILE = REPO / "domains-extra.json"
 HUB_COURSES = Path.home() / "Documents/Claude_Work/github_repo/learn-with-phoebe/courses.json"
 SITE_URL = "https://phoebefu6.github.io/phoebe-learns/"
 TODAY = _dt.date.today().isoformat()
@@ -38,6 +39,18 @@ TIER_CLASS = {"PRIMARY": "solid", "SECONDARY": "tint", "UNVERIFIED": "outline-mu
 
 # ---------------------------------------------------------------- domains ----
 def refresh_domains() -> list[dict]:
+    """Hub domains (refreshed from the hub when readable) plus domains-extra.json."""
+    domains = _hub_domains()
+    try:
+        extra = json.loads(EXTRA_DOMAINS_FILE.read_text(encoding="utf-8"))["domains"]
+    except (OSError, ValueError, KeyError) as exc:
+        print(f"warning: domains-extra.json unreadable ({exc}); building with hub domains only")
+        extra = []
+    known = {d["id"] for d in domains}
+    return domains + [d for d in extra if d["id"] not in known]
+
+
+def _hub_domains() -> list[dict]:
     """Regenerate domains.json from the hub; fall back to the committed copy."""
     try:
         hub = json.loads(HUB_COURSES.read_text(encoding="utf-8"))
@@ -328,7 +341,7 @@ def weekly_streak(entries: list[dict], today: str = TODAY) -> dict:
 
 
 def badges(entries: list[dict], domains: list[dict]) -> list[dict]:
-    done = sorted((e for e in entries if e["status"] == "done"), key=lambda e: (e["end_date"], e["id"]))
+    done = sorted((e for e in entries if e["status"] == "done"), key=lambda e: (e["end_date"] or "9999-99-99", e["id"]))
     out = []
     for d in domains:
         if not any(e["domain"] == d["id"] for e in entries):
@@ -348,7 +361,7 @@ def badges(entries: list[dict], domains: list[dict]) -> list[dict]:
     earned = [b for b in out if b["earned"]]
     if earned:
         # Latest by date; on a tie the milestone (computed last) wins, it is the bigger news.
-        max(enumerate(earned), key=lambda ib: (ib[1]["earned_on"], ib[0]))[1]["latest"] = True
+        max(enumerate(earned), key=lambda ib: (ib[1]["earned_on"] or "", ib[0]))[1]["latest"] = True
     return out
 
 
@@ -426,6 +439,15 @@ def status_chip(status: str) -> str:
     return f'<span class="status {status}"><span class="{STATUS_GLYPH[status]}"></span>{STATUS_LABEL[status]}</span>'
 
 
+def rating_html(e: dict) -> str:
+    """Stars from the Notion Rating column. 1 star is the unrated default, so it is not shown."""
+    r = e.get("rating") or 1
+    if r < 2:
+        return ""
+    return (f'<span class="kicker">&middot;</span><span class="kicker rating" aria-label="Rated {r} of 5">'
+            f'{"&#9733;" * r}{"&#9734;" * (5 - r)}</span>')
+
+
 def chip(text: str, cls: str) -> str:
     return f'<span class="chip {cls}">{esc(text)}</span>'
 
@@ -455,6 +477,8 @@ def date_line(e: dict) -> str:
         return f"started {s}"
     if t:
         return f"finished {t}"
+    if e.get("status") == "done":
+        return "finished, date not recorded"
     return "not started"
 
 
@@ -545,6 +569,7 @@ def render_entry(e: dict, names: dict, base: str, tpl: dict, data_json: str) -> 
         "domain_name": esc(names.get(e["domain"], e["domain"])),
         "platform": esc(e["platform"]),
         "status_chip": status_chip(e["status"]),
+        "rating": rating_html(e),
         "topic": esc(e["topic"]),
         "dates": esc(date_line(e)),
         "source_link": source_link,

@@ -1,0 +1,28 @@
+{
+  "id": "2024-09-10-ai-business-fundamentals",
+  "topic": "AI Business Fundamentals",
+  "domain": "ai",
+  "platform": "DataCamp",
+  "source_type": "course",
+  "url": "https://app.datacamp.com/learn/skill-tracks/ai-business-fundamentals",
+  "tags": [
+    "ai strategy",
+    "chatgpt",
+    "gen ai",
+    "responsible ai"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2026-09-04",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-09-10",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "7c74fa8a63fb44538b1e25b64dd90bca"
+}

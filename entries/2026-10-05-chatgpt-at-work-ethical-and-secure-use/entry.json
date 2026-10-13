@@ -11,9 +11,9 @@
     "secure",
     "use"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2025-11-18",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -22,5 +22,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "notion_id": "2a1f64f699d980abbac5dd037127b10c",
+  "rating": 1
 }

@@ -1,0 +1,27 @@
+{
+  "id": "2024-01-01-ai-for-everyone",
+  "topic": "AI for Everyone",
+  "domain": "ai",
+  "platform": "DeepLearning.AI",
+  "source_type": "course",
+  "url": "https://www.coursera.org/learn/ai-for-everyone/home/module/1",
+  "tags": [
+    "ai strategy",
+    "deep learning",
+    "machine learning"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2026-08-12",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-01-01",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "63815d96e2bd4bf2b4e75e9cbca674b4"
+}

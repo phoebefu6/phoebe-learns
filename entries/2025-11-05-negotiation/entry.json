@@ -1,0 +1,25 @@
+{
+  "id": "2025-11-05-negotiation",
+  "topic": "Negotiation",
+  "domain": "comm",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/negotiation/intro-to-negotiation/",
+  "tags": [
+    "negotiation"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2025-11-15",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-11-05",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2a2f64f699d9807b8acee58a7f291e1c"
+}

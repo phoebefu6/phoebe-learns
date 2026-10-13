@@ -1,0 +1,26 @@
+{
+  "id": "2024-08-17-ai-model-deployment-on-aws",
+  "topic": "AI Model Deployment on AWS",
+  "domain": "ship",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/ai-model-deployment-on-aws/introduction-to-the-course/",
+  "tags": [
+    "aws",
+    "mlops"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-08-17",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "4b26820c73cb4248875ea5abe45e68b6"
+}

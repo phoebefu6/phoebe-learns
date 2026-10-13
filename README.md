@@ -21,11 +21,16 @@ dependency beyond Python 3.11's standard library. GitHub Pages serves the
 ```
 build.py                 renders the site (validates first)
 domains.json             the 18 learning domains, generated from the learn-with-phoebe hub
+domains-extra.json       6 learning-only domains from the Notion course library (edit by hand)
 templates/               base.html, index.html, entry.html, network.html
 entries/<id>/            one folder per entry: entry.json, notes.md, research.md, source/ (optional)
 scripts/validate.py      schema rules, usable standalone
 scripts/check_links.py   curls every url and doi in data.json
 scripts/import_365_tracker.py   one-off import of the 365 Data Science finish tracker
+scripts/sync_notion.py   Notion All Courses -> entries/ (see "Notion sync")
+scripts/add_course.py    adds one course link to Notion (run by the workflow)
+scripts/notion_lib.py    Notion API calls and the Notion -> site field mapping
+.github/workflows/notion.yml    daily sync, issue-form adds, rebuild and commit
 assets/                  d3 v7 (ISC licence) kept for provenance; network.html inlines it
 index.html network.html entries/<id>/index.html data.json   generated, committed
 ```
@@ -121,10 +126,37 @@ Badges: "First in <domain>" for the first finish in each domain that has entries
 milestones at 1, 5, 10, 25, 50 and 100 courses done. The most recently earned badge
 carries the peach accent.
 
-The homepage's add box and boss cards build commands for the `learning-buddy` skill
-(`learning buddy add to-do <url>`, `learning buddy start <id>`, `mark <id> done`) and
-copy them to the clipboard, or show them selected when the clipboard is unavailable.
-Nothing is sent anywhere.
+The homepage's add box opens the "Add a course" issue form with the link filled in
+(see "Notion sync"). The boss cards still build commands for the `learning-buddy` skill
+(`learning buddy start <id>`, `mark <id> done`) and copy them to the clipboard.
+
+## Notion sync
+
+Phoebe's Notion database **All Courses** (in the private page Course Library) is the
+source of truth for courses. The site follows it, one direction only.
+
+- `scripts/sync_notion.py` reads every row and writes `entries/`. Only course details
+  go public: title, domain, platform, status, rating, tags, link and end date. Notion
+  page bodies (her notes) are never read. Matching, skips and removals are described
+  at the top of the script.
+- Rows with no Domain, or titled "(duplicate?)", are skipped until fixed in Notion.
+- Done courses with no End Date carry `end_date_unknown: true`; they count as done
+  but add nothing to the weekly streak.
+- `rating` (1-5) comes from the Notion Rating column; 1 star is the default and is not shown.
+- Paste a link in the homepage box, press **Add to Notion**, then **Submit** on the form.
+  `.github/workflows/notion.yml` adds the row to Notion (as Not started, one star),
+  syncs, rebuilds and commits. It only acts on issues opened by `phoebefu6` with the
+  `add-course` label. It also runs daily at 01:17 UTC and from the Actions tab.
+
+One-time setup, done by Phoebe (the key never leaves her hands):
+
+1. https://www.notion.so/profile/integrations: **New integration**, type Internal,
+   workspace = hers, capabilities: read content, update content, insert content.
+   Copy the Internal Integration Secret.
+2. In Notion, open **All Courses** > `...` menu > **Connections** > add the integration.
+3. GitHub repo **Settings > Secrets and variables > Actions > New repository secret**:
+   name `NOTION_TOKEN`, value = the secret.
+4. **Actions** tab > **Notion sync** > **Run workflow** to check it works.
 
 ## First real entry
 

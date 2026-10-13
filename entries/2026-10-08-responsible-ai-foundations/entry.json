@@ -13,10 +13,10 @@
     "data-management",
     "eu-ai-act"
   ],
-  "status": "in-progress",
+  "status": "done",
   "hours": 6,
   "start_date": "2026-10-08",
-  "end_date": null,
+  "end_date": "2026-09-04",
   "supporting_doc": "notes.md",
   "main_ideas": [
     "Responsible AI is four disciplines, not one: ethics sets the principles (transparency, fairness, accountability), governance turns them into roles, committees and lifecycle checkpoints, security and risk management decide what can go wrong and how much risk the business will carry, and data management makes sure the inputs were sourced, licensed and validated before a model exists.",
@@ -788,5 +788,7 @@
   ],
   "research_status": "full",
   "created": "2026-10-08",
-  "updated": "2026-10-08"
+  "updated": "2026-10-13",
+  "notion_id": "3d1f64f699d9809b8a8adc938ce5df87",
+  "rating": 1
 }

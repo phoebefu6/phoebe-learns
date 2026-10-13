@@ -1,0 +1,25 @@
+{
+  "id": "2025-11-20-project-management",
+  "topic": "Project Management",
+  "domain": "lead",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "https://learn.365datascience.com/courses/project-management/what-is-a-project/",
+  "tags": [
+    "project management"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2026-05-25",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-11-20",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2b1f64f699d980448b95cc9ecf098932"
+}

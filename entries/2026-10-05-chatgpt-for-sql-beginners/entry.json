@@ -10,9 +10,9 @@
     "sql",
     "beginners"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2025-11-05",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -21,5 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "197f64f699d980f9aab6f399c1b9f6ab"
 }

@@ -1,0 +1,26 @@
+{
+  "id": "2025-01-14-the-machine-learning-process-a-z",
+  "topic": "The Machine Learning Process A-Z",
+  "domain": "ds",
+  "platform": "365 Data Science",
+  "source_type": "course",
+  "url": "",
+  "tags": [
+    "machine learning",
+    "mlops"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2025-01-14",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "17bf64f699d980e68862f277bf6a1f94"
+}

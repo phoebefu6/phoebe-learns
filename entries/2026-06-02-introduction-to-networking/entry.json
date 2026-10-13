@@ -1,0 +1,25 @@
+{
+  "id": "2026-06-02-introduction-to-networking",
+  "topic": "Introduction to Networking",
+  "domain": "deng",
+  "platform": "Coursera Plus",
+  "source_type": "course",
+  "url": "https://www.coursera.org/learn/introduction-to-networking-nvidia#modules",
+  "tags": [
+    "networking"
+  ],
+  "status": "to-do",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-06-02",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "373f64f699d980eab6feee86b0998d88"
+}

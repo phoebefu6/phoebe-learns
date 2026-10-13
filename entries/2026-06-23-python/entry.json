@@ -1,0 +1,25 @@
+{
+  "id": "2026-06-23-python",
+  "topic": "路飞Python",
+  "domain": "prog",
+  "platform": "路飞学城",
+  "source_type": "course",
+  "url": "https://www.luffycity.com",
+  "tags": [
+    "python"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-06-23",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "388f64f699d980f8828ac1977be5dfc2"
+}

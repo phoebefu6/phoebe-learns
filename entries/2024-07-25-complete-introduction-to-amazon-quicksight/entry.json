@@ -1,0 +1,28 @@
+{
+  "id": "2024-07-25-complete-introduction-to-amazon-quicksight",
+  "topic": "Complete Introduction to Amazon QuickSight",
+  "domain": "viz",
+  "platform": "Udemy",
+  "source_type": "course",
+  "url": "https://www.udemy.com/course/complete-introduction-to-aws-quicksight-2020-edition/learn/lecture/21441338#overview",
+  "tags": [
+    "aws",
+    "bi",
+    "data visualization",
+    "quicksight"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-25",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "ab07931c3c584d13aa2b4d2b6e3933ad"
+}

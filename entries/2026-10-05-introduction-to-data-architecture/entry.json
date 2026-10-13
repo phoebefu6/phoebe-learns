@@ -8,7 +8,7 @@
   "tags": [
     "data-architecture"
   ],
-  "status": "to-do",
+  "status": "in-progress",
   "start_date": null,
   "end_date": null,
   "supporting_doc": "notes.md",
@@ -19,5 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2aff64f699d9808e8021fed080ce56b4"
 }

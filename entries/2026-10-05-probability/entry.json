@@ -8,9 +8,9 @@
   "tags": [
     "probability"
   ],
-  "status": "to-do",
+  "status": "done",
   "start_date": null,
-  "end_date": null,
+  "end_date": "2025-02-14",
   "supporting_doc": "notes.md",
   "main_ideas": [],
   "key_points": [],
@@ -19,5 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-05"
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "78d78b78f2f240ae92ca7ccafe12a282"
 }

@@ -23,9 +23,10 @@ not a checkbox. The game state is computed from the entries: XP from course hour
 unfinished courses, conquest from finished ones.
 
 ## Operating Context
-Entries are written by the learning-buddy skill in Claude Code. The page cannot call Claude: the
-paste-a-link box and the card buttons copy exact commands she pastes into Claude Code
-(`learning buddy add to-do <url>`, `learning buddy start <id>`, `mark <id> done`).
+Courses live in the Notion database All Courses (source of truth) and sync to entries/ daily.
+The paste-a-link box opens a pre-filled GitHub issue form; a workflow adds the course to Notion
+and rebuilds. Research entries are still written by the learning-buddy skill in Claude Code, and
+the card buttons copy its commands (`learning buddy start <id>`, `mark <id> done`).
 Static GitHub Pages site, built by a stdlib Python build.py; every page embeds its data inline.
 
 ## Capabilities and Constraints

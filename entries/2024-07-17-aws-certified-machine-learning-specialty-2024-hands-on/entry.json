@@ -1,0 +1,27 @@
+{
+  "id": "2024-07-17-aws-certified-machine-learning-specialty-2024-hands-on",
+  "topic": "AWS Certified Machine Learning Specialty 2024 - Hands On!",
+  "domain": "ship",
+  "platform": "Udemy",
+  "source_type": "course",
+  "url": "https://www.udemy.com/course/aws-machine-learning/learn/lecture/16397664#overview",
+  "tags": [
+    "aws",
+    "certificate",
+    "mlops"
+  ],
+  "status": "in-progress",
+  "start_date": null,
+  "end_date": null,
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2024-07-17",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "4064bfce905e41b9b287f74462e4d1a9"
+}

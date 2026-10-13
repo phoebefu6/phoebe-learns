@@ -1,0 +1,28 @@
+{
+  "id": "2026-01-02-generative-ai-leader",
+  "topic": "Generative AI Leader",
+  "domain": "ai",
+  "platform": "Google",
+  "source_type": "course",
+  "url": "https://www.skills.google/paths/1951",
+  "tags": [
+    "ai agents",
+    "ai leadership",
+    "certificate",
+    "gen ai"
+  ],
+  "status": "done",
+  "start_date": null,
+  "end_date": "2026-05-25",
+  "supporting_doc": "notes.md",
+  "main_ideas": [],
+  "key_points": [],
+  "linked_references": [],
+  "support_readings": [],
+  "linked_courses": [],
+  "research_status": "none",
+  "created": "2026-01-02",
+  "updated": "2026-10-13",
+  "rating": 1,
+  "notion_id": "2dcf64f699d98012b16fef968da8dce7"
+}

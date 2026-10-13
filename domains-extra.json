@@ -1,0 +1,29 @@
+{
+  "_note": "Learning-only domains from Phoebe's Notion course library. They are not teaching buckets, so they live here instead of in the learn-with-phoebe hub. build.py appends them after domains.json. Edit by hand.",
+  "domains": [
+    {
+      "id": "fin",
+      "name": "Finance & Economics"
+    },
+    {
+      "id": "mkt",
+      "name": "Marketing & Branding"
+    },
+    {
+      "id": "think",
+      "name": "Thinking & Reasoning"
+    },
+    {
+      "id": "lang",
+      "name": "Languages"
+    },
+    {
+      "id": "teach",
+      "name": "Teaching & Training"
+    },
+    {
+      "id": "career",
+      "name": "Career & Exams"
+    }
+  ]
+}

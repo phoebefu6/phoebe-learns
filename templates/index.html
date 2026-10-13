@@ -11,7 +11,7 @@ FIRST VIEWPORT: the board owns the screen at 1280.
   - "Phoebe learns" in Poppins display;
   - the level number at poster scale with its rank and an XP bar set like a printed score track;
   - the three next-roll courses as large printed chance cards, stepped or fanned, each with platform, hours ("est." when estimated), reward XP, and the Start and Mark done copy buttons.
-- The START corner is a printed tile holding the paste box ("Add a square - paste a course link", the Copy for Claude button, the platform chips).
+- The START corner is a printed tile holding the paste box ("Add a square - paste a course link", the Add to Notion button, the platform chips).
 - The pawn stands on track[pawn_index], or on START when it is -1. The squares in next_ids carry ringed numerals 1, 2 and 3 joined by a dashed hand-drawn arrow.
 FORM: game board, chosen by Phoebe from three dealt structures.
 SIGNATURE INTERACTION: on first load the pawn hops square by square from START to its square once (about 1.2 s, a small arc per hop) and the level counts up. Hovering or focusing a square raises it (thicker ink outline, 1-2px lift, no shadow). The chance cards respond on hover. Under prefers-reduced-motion there is no hop and the final state shows at once.
@@ -309,12 +309,12 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
           <label class="lbl" for="add-url">Add a square - paste a course link</label>
           <div class="add-row">
             <input id="add-url" name="url" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="https://www.datacamp.com/courses/..." aria-describedby="add-msg add-note">
-            <button class="btn primary" type="submit" id="add-copy">Copy for Claude</button>
+            <button class="btn primary" type="submit" id="add-copy">Add to Notion</button>
           </div>
           <p class="add-msg" id="add-msg" role="status" aria-live="polite"></p>
           <div class="platforms" id="platforms" aria-label="Detected platform"></div>
           <div class="slot" id="add-slot"></div>
-          <p class="add-note" id="add-note">Claude reads the course page, fills the entry, and asks if anything is missing.</p>
+          <p class="add-note" id="add-note">Opens a short GitHub form with the link filled in. Press Submit: the course goes into Notion and lands on this board a few minutes later.</p>
         </form>
       </div>
       <div class="gb-next" aria-labelledby="next-h">
@@ -483,6 +483,8 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
     { name: 'DataCamp', hosts: ['datacamp.com'] },
     { name: 'Udemy', hosts: ['udemy.com'] },
     { name: 'DeepLearning.AI', hosts: ['deeplearning.ai'] },
+    { name: 'LinkedIn Learning', hosts: ['linkedin.com'] },
+    { name: 'Google', hosts: ['skills.google', 'cloudskillsboost.google'] },
     { name: 'Other', hosts: [] }
   ];
   var urlIn = document.getElementById('add-url'), msg = document.getElementById('add-msg');
@@ -529,7 +531,12 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
       return;
     }
     msg.textContent = ''; msg.classList.remove('err'); urlIn.removeAttribute('aria-invalid');
-    copyCommand('learning buddy add to-do ' + urlIn.value.trim(), addSlot, document.getElementById('add-copy'));
+    var issue = 'https://github.com/phoebefu6/phoebe-learns/issues/new?template=add-course.yml&title=' +
+      encodeURIComponent('Add course: ' + u.hostname.replace(/^www\./, '')) + '&url=' + encodeURIComponent(urlIn.value.trim());
+    var w = window.open(issue, '_blank', 'noopener');
+    addSlot.innerHTML = '<p class="said">' + (w ? 'Form opened in a new tab. Press Submit there.' :
+      'Pop-up blocked. <a href="' + esc(issue) + '" target="_blank" rel="noopener">Open the form</a> and press Submit.') + '</p>';
+    addSlot.setAttribute('data-command', issue);
   });
 
   // ------------------------------------------------------------- the board
@@ -1001,7 +1008,7 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
   var B = G.badges || [];
   function stamp(b) {
     var cls = 'stamp' + (b.earned ? ' earned' : '') + (b.latest ? ' latest' : '');
-    var sub = b.earned ? (b.latest ? 'New - earned ' : 'Earned ') + esc(b.earned_on) : esc(b.rule);
+    var sub = b.earned ? (b.latest ? 'New - earned' : 'Earned') + (b.earned_on ? ' ' + esc(b.earned_on) : '') : esc(b.rule);
     return '<li class="' + cls + '" data-badge="' + esc(b.id) + '"><span class="sn">' + esc(b.name) + '</span><span class="sr">' + sub + '</span></li>';
   }
   function group(kind, title) {
@@ -1039,6 +1046,7 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
     if (e.start_date && e.end_date) return e.start_date + ' to ' + e.end_date;
     if (e.start_date) return 'started ' + e.start_date;
     if (e.end_date) return 'finished ' + e.end_date;
+    if (e.status === 'done') return 'finished, date not recorded';
     return 'not started';
   }
   function entryHref(e) { return 'entries/' + encodeURIComponent(e.id) + '/index.html'; }
