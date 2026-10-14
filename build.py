@@ -258,8 +258,11 @@ def build_graph(entries: list[dict], names: dict) -> tuple[list[dict], list[dict
 # derived numbers from data.json["game"] and each entry's "game" block; it never
 # recomputes them.
 EST_HOURS = 1.5
+# XP counts from this day. Courses finished earlier stay filled on the board and keep their
+# badges, but earn no XP: Phoebe chose to start the game as a Beginner on this date.
+SEASON_START = "2026-10-14"
 LEVEL_THRESHOLDS = [0, 300, 800, 1500, 2500, 4000, 6000, 9000]
-RANKS = ["Curious", "Apprentice", "Analyst", "Practitioner", "Steward", "Architect", "Strategist", "Chief"]
+RANKS = ["Beginner", "Apprentice", "Analyst", "Practitioner", "Steward", "Architect", "Strategist", "Chief"]
 MILESTONES = [1, 5, 10, 25, 50, 100]
 
 
@@ -281,15 +284,17 @@ def course_xp(e: dict) -> dict:
     else:
         pct = 0
     full = round(hours * 100)
+    pre_season = status == "done" and (e.get("end_date") or "0000-00-00") < SEASON_START
     if status == "done":
-        xp = full
+        xp = 0 if pre_season else full
     elif status == "in-progress":
         xp = round(hours * 100 * pct / 100)
     else:
         xp = 0
     hp = 0.0 if status == "done" else hours * (1 - pct / 100)
     return {"hours": hours, "hours_estimated": not has_hours, "progress_pct": pct,
-            "xp": xp, "xp_full": full, "reward_xp": full - xp, "hp_hours": round(hp, 2)}
+            "xp": xp, "xp_full": full, "reward_xp": 0 if status == "done" else full - xp,
+            "hp_hours": round(hp, 2), "pre_season": pre_season}
 
 
 def level_for(xp: int) -> dict:
@@ -427,7 +432,7 @@ def game_state(entries: list[dict], domains: list[dict]) -> dict:
     lvl = level_for(total_xp)
     return {"xp": total_xp, **lvl, "board": board_state(entries, domains),
             "levels": [{"level": i + 1, "rank": r, "threshold": t} for i, (r, t) in enumerate(zip(RANKS, LEVEL_THRESHOLDS))],
-            "rule": {"xp_per_hour": 100, "est_hours": EST_HOURS},
+            "rule": {"xp_per_hour": 100, "est_hours": EST_HOURS, "season_start": SEASON_START},
             "done": sum(1 for e in entries if e["status"] == "done"),
             "in_progress": sum(1 for e in entries if e["status"] == "in-progress"),
             "to_do": sum(1 for e in entries if e["status"] == "to-do"),

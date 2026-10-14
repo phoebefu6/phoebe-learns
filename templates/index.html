@@ -943,7 +943,7 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
     var e = byId[a.getAttribute('data-id')]; if (!e || !geo) return;
     var i = +a.getAttribute('data-i'), gm = e.game || {}, est = gm.hours_estimated ? ' est.' : '';
     var line = STATUS_LABEL[e.status] + ' - ' + (e.domain_name || '') +
-      (e.status === 'done' ? ' - +' + fmtN(gm.xp) + ' XP' + est : ' - ' + fmtH(gm.hp_hours) + ' left' + est);
+      (e.status === 'done' ? (gm.pre_season ? ' - finished before Season 1' : ' - +' + fmtN(gm.xp) + ' XP' + est) : ' - ' + fmtH(gm.hp_hours) + ' left' + est);
     var nr = nextRank[e.id];
     tip.innerHTML = '<span class="tk">Square ' + (i + 1) + (nr ? ' - roll ' + nr : '') + (i === PAWN ? ' - your pawn' : '') + '</span><span class="tt">' + esc(e.topic) + '</span><span class="tl">' + esc(line) + '</span>';
     tip.hidden = false;

@@ -40,6 +40,7 @@ import notion_lib  # noqa: E402
 
 ENTRIES_DIR = REPO / "entries"
 TODAY = _dt.date.today().isoformat()
+RECENT = (_dt.date.today() - _dt.timedelta(days=7)).isoformat()
 STUB_MARK = "Synced from Notion (All Courses)"
 REPLACEMENTS = {"—": "-", "–": "-", "✗": "x", "✕": "x", "×": "x", "❌": "x"}
 
@@ -132,6 +133,11 @@ def sync(rows: list[dict], dry_run: bool) -> dict:
         if hit:
             folder, e = hit
             before = json.dumps(e, sort_keys=True)
+            if fields.get("end_date_unknown") and e.get("status") != "done":
+                # Marked Done in Notion without an End Date since the last sync: it finished
+                # between then and now, so record today rather than "unknown".
+                fields["end_date"] = TODAY
+                fields.pop("end_date_unknown")
             e.update(fields)
             if not fields.get("end_date_unknown"):
                 e.pop("end_date_unknown", None)
@@ -146,6 +152,10 @@ def sync(rows: list[dict], dry_run: bool) -> dict:
             continue
 
         added = row.get("added") or TODAY
+        if fields.get("end_date_unknown") and added >= RECENT:
+            # Added and finished within the last week: today is the honest finish date.
+            fields["end_date"] = TODAY
+            fields.pop("end_date_unknown")
         base = f"{added}-{slugify(title, row['id'])}"
         eid, n = base, 2
         while eid in taken:

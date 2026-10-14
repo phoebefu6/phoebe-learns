@@ -109,7 +109,9 @@ Two optional fields on `entry.json` feed it:
 
 XP per course:
 
-- `done`: `round(hours * 100)`
+- `done`: `round(hours * 100)`, but only when `end_date` is on or after `SEASON_START`
+  (2026-10-14, set in `build.py`). Courses finished earlier, or with no recorded date, stay
+  filled on the board and keep their badges but earn 0 XP: the game starts as a Beginner.
 - `in-progress`: `round(hours * 100 * progress_pct / 100)`
 - `to-do`: 0
 - No `hours`: use a 1.5 h estimate and set `hours_estimated: true`; the page prints
@@ -117,7 +119,7 @@ XP per course:
   finished or trivial: boss HP uses the same 1.5 h estimate.
 
 Boss HP is hours left, `hours * (1 - progress_pct / 100)`; the reward is the XP still
-to earn. Levels start at 0, 300, 800, 1500, 2500, 4000, 6000 and 9000 XP: Curious,
+to earn. Levels start at 0, 300, 800, 1500, 2500, 4000, 6000 and 9000 XP: Beginner,
 Apprentice, Analyst, Practitioner, Steward, Architect, Strategist, Chief.
 
 The weekly streak counts consecutive ISO weeks, ending at the current week, that hold
