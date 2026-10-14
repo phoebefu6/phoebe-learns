@@ -30,6 +30,7 @@ scripts/import_365_tracker.py   one-off import of the 365 Data Science finish tr
 scripts/sync_notion.py   Notion All Courses -> entries/ (see "Notion sync")
 scripts/add_course.py    adds one course link to Notion (run by the workflow)
 scripts/notion_lib.py    Notion API calls and the Notion -> site field mapping
+scripts/daily_pick.py    ticks Today's pick on one course in Notion each morning
 .github/workflows/notion.yml    daily sync, issue-form adds, rebuild and commit
 assets/                  d3 v7 (ISC licence) kept for provenance; network.html inlines it
 index.html network.html entries/<id>/index.html data.json   generated, committed

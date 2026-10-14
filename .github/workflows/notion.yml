@@ -2,7 +2,7 @@ name: Notion sync
 
 # Notion "All Courses" is the source of truth. This workflow:
 # - adds a course to Notion when Phoebe opens an "Add a course" issue (the site's paste box opens one),
-# - syncs Notion into entries/ every day and on demand,
+# - syncs Notion into entries/ every day and on demand, and ticks one course as Today's pick,
 # - rebuilds the site and commits it, which republishes GitHub Pages.
 # It needs one repository secret: NOTION_TOKEN (see README, "Notion sync").
 
@@ -50,6 +50,12 @@ jobs:
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: python3 scripts/sync_notion.py
+
+      - name: Pick today's course in Notion
+        if: github.event_name != 'issues'
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: python3 scripts/daily_pick.py
 
       - name: Build the site
         run: python3 build.py

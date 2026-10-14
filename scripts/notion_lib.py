@@ -139,6 +139,7 @@ def row_from_page(page: dict) -> dict:
         "url": (p.get("URL") or {}).get("url") or "",
         "end_date": (end.get("start") or "")[:10] or None,
         "added": (page.get("created_time") or "")[:10],
+        "pick": bool((p.get("Today's pick") or {}).get("checkbox")),
     }
 
 
@@ -153,6 +154,10 @@ def fetch_all_rows() -> list[dict]:
         if not res.get("has_more"):
             return rows
         cursor = res.get("next_cursor")
+
+
+def set_pick(page_id: str, on: bool) -> None:
+    _call("PATCH", f"/pages/{page_id}", {"properties": {"Today's pick": {"checkbox": on}}})
 
 
 def find_by_url(url: str) -> dict | None:
