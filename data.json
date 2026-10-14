@@ -101,6 +101,40 @@
  ],
  "entries": [
   {
+   "id": "2026-10-14-databricks-genie-fundamentals",
+   "topic": "Databricks Genie Fundamentals",
+   "domain": "deng",
+   "platform": "DataCamp",
+   "source_type": "course",
+   "url": "https://app.datacamp.com/learn/skill-tracks/databricks-genie-fundamentals",
+   "tags": [],
+   "status": "to-do",
+   "start_date": null,
+   "end_date": null,
+   "supporting_doc": "notes.md",
+   "main_ideas": [],
+   "key_points": [],
+   "linked_references": [],
+   "support_readings": [],
+   "linked_courses": [],
+   "research_status": "none",
+   "created": "2026-10-14",
+   "updated": "2026-10-14",
+   "rating": 1,
+   "notion_id": "3f9f64f699d98124ba42f5e8485db133",
+   "domain_name": "Data Engineering & Infra",
+   "game": {
+    "hours": 1.5,
+    "hours_estimated": true,
+    "progress_pct": 0,
+    "xp": 0,
+    "xp_full": 150,
+    "reward_xp": 150,
+    "hp_hours": 1.5,
+    "pre_season": false
+   }
+  },
+  {
    "id": "2026-10-05-working-with-text-files-in-python",
    "topic": "Working with Text Files in Python",
    "domain": "prog",
@@ -12642,6 +12676,7 @@
     "2026-10-05-building-data-ai-solutions-on-google-cloud",
     "2025-01-21-cloud-computing-essentials-benefits-services-platforms-security-and",
     "2025-04-28-cloud-computing-primer-for-semi-tech-and-business",
+    "2026-10-14-databricks-genie-fundamentals",
     "2025-02-14-explore-ai-for-data-engineering",
     "2025-04-28-information-technology-it-and-cloud-fundamentals-specialization",
     "2025-04-28-information-technology-fundamentals-for-everyone-specialization",
@@ -12895,132 +12930,132 @@
      "name": "Data Engineering & Infra",
      "pattern": 2,
      "start": 50,
-     "count": 25
+     "count": 26
     },
     {
      "id": "ai",
      "name": "AI & LLMs",
      "pattern": 3,
-     "start": 75,
+     "start": 76,
      "count": 34
     },
     {
      "id": "aiap",
      "name": "Applied AI",
      "pattern": 4,
-     "start": 109,
+     "start": 110,
      "count": 39
     },
     {
      "id": "viz",
      "name": "Visual Thinking & Storytelling",
      "pattern": 5,
-     "start": 148,
+     "start": 149,
      "count": 7
     },
     {
      "id": "dsec",
      "name": "Data Ops & Security",
      "pattern": 6,
-     "start": 155,
+     "start": 156,
      "count": 6
     },
     {
      "id": "gov",
      "name": "Data & AI Governance",
      "pattern": 7,
-     "start": 161,
+     "start": 162,
      "count": 16
     },
     {
      "id": "ship",
      "name": "Let's Ship It End to End",
      "pattern": 8,
-     "start": 177,
+     "start": 178,
      "count": 7
     },
     {
      "id": "prog",
      "name": "Programming & Dev Tools",
      "pattern": 9,
-     "start": 184,
+     "start": 185,
      "count": 17
     },
     {
      "id": "sys",
      "name": "System & Product Design",
      "pattern": 10,
-     "start": 201,
+     "start": 202,
      "count": 4
     },
     {
      "id": "emrg",
      "name": "Emerging Tech",
      "pattern": 11,
-     "start": 205,
+     "start": 206,
      "count": 10
     },
     {
      "id": "lead",
      "name": "Leadership & Decision-making",
      "pattern": 13,
-     "start": 215,
+     "start": 216,
      "count": 34
     },
     {
      "id": "biz",
      "name": "Entrepreneurship & Business",
      "pattern": 14,
-     "start": 249,
+     "start": 250,
      "count": 10
     },
     {
      "id": "comm",
      "name": "Communications",
      "pattern": 15,
-     "start": 259,
+     "start": 260,
      "count": 9
     },
     {
      "id": "prod",
      "name": "Productivity & Knowledge Systems",
      "pattern": 16,
-     "start": 268,
+     "start": 269,
      "count": 1
     },
     {
      "id": "fin",
      "name": "Finance & Economics",
      "pattern": 18,
-     "start": 269,
+     "start": 270,
      "count": 6
     },
     {
      "id": "mkt",
      "name": "Marketing & Branding",
      "pattern": 19,
-     "start": 275,
+     "start": 276,
      "count": 3
     },
     {
      "id": "think",
      "name": "Thinking & Reasoning",
      "pattern": 20,
-     "start": 278,
+     "start": 279,
      "count": 10
     },
     {
      "id": "teach",
      "name": "Teaching & Training",
      "pattern": 22,
-     "start": 288,
+     "start": 289,
      "count": 2
     },
     {
      "id": "career",
      "name": "Career & Exams",
      "pattern": 23,
-     "start": 290,
+     "start": 291,
      "count": 5
     }
    ],
@@ -13080,7 +13115,7 @@
   },
   "done": 66,
   "in_progress": 55,
-  "to_do": 174,
+  "to_do": 175,
   "streak": {
    "current": 0,
    "best": 9,
@@ -13402,6 +13437,24 @@
   ]
  },
  "nodes": [
+  {
+   "id": "e:2026-10-14-databricks-genie-fundamentals",
+   "type": "entry",
+   "label": "Databricks Genie Fundamentals",
+   "domain": "deng",
+   "domain_name": "Data Engineering & Infra",
+   "platform": "DataCamp",
+   "status": "to-do",
+   "tags": [],
+   "url": "https://app.datacamp.com/learn/skill-tracks/databricks-genie-fundamentals",
+   "entries": [
+    {
+     "id": "2026-10-14-databricks-genie-fundamentals",
+     "topic": "Databricks Genie Fundamentals"
+    }
+   ],
+   "degree": 0
+  },
   {
    "id": "e:2026-10-05-working-with-text-files-in-python",
    "type": "entry",
