@@ -6,8 +6,8 @@
 Run each morning by .github/workflows/notion.yml. The Learning Dashboard page in
 Notion shows the ticked course. How the pick is made:
 
-- Candidates are courses In progress or Not started (never Done, never a
-  "(duplicate?)" row).
+- Candidates are courses In progress or Not started that have a URL (never
+  Done, never a "(duplicate?)" row, never a course you cannot open).
 - In progress courses get 3 tickets each, Not started courses 1 ticket, plus one
   extra ticket per star above one. Finishing what is started comes first.
 - The draw is seeded by the date, so a re-run on the same day gives the same
@@ -32,7 +32,7 @@ WEIGHT = {"In progress": 3, "Not started": 1}
 def choose(rows: list[dict], day: str) -> dict | None:
     yesterday = {r["id"] for r in rows if r.get("pick")}
     pool = [r for r in rows
-            if r.get("status") in WEIGHT and r.get("title") and "(duplicate?)" not in r["title"]
+            if r.get("status") in WEIGHT and r.get("title") and r.get("url") and "(duplicate?)" not in r["title"]
             and r["id"] not in yesterday]
     if not pool:
         return None
