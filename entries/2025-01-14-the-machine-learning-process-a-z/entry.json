@@ -4,7 +4,7 @@
   "domain": "ds",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/learn-machine-learning-process-a-z/",
   "tags": [
     "machine learning",
     "mlops"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2025-01-14",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "17bf64f699d980e68862f277bf6a1f94"
 }

@@ -4,7 +4,7 @@
   "domain": "aiap",
   "platform": "Coursera Plus",
   "source_type": "course",
-  "url": "",
+  "url": "https://www.coursera.org/specializations/generative-ai-for-business-intelligence-analysts",
   "tags": [
     "bi",
     "gen ai",
@@ -21,7 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2025-02-11",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "197f64f699d980f9b8b1d955c9aba298"
 }

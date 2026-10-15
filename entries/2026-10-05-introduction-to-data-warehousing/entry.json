@@ -4,7 +4,7 @@
   "domain": "deng",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/introduction-to-data-warehousing/introduction-to-the-course/",
   "tags": [
     "data-warehousing"
   ],
@@ -19,7 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "225f64f699d98061bc20f740e35af752"
 }

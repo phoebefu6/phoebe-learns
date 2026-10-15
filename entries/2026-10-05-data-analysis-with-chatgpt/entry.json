@@ -4,7 +4,7 @@
   "domain": "aiap",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/data-analysis-with-chatgpt/the-limitations-of-chatgpt-advanced-data-analysis/",
   "tags": [
     "data-analysis",
     "chatgpt"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "363f64f699d980c19fe6e421ae7b28bb"
 }

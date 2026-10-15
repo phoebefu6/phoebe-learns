@@ -4,7 +4,7 @@
   "domain": "ai",
   "platform": "Databricks",
   "source_type": "course",
-  "url": "",
+  "url": "https://www.databricks.com/training/catalog/generative-ai-fundamentals-accreditation-1811",
   "tags": [
     "databricks",
     "gen ai",
@@ -21,7 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2024-12-09",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "157f64f699d980ceb76fc8c08a7c1882",
   "end_date_unknown": true

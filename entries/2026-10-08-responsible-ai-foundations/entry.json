@@ -4,7 +4,7 @@
   "domain": "gov",
   "platform": "DataCamp",
   "source_type": "course",
-  "url": "https://www.datacamp.com/tracks/responsible-ai-foundations",
+  "url": "https://app.datacamp.com/learn/skill-tracks/responsible-ai-foundations",
   "tags": [
     "responsible-ai",
     "ai-ethics",
@@ -788,7 +788,7 @@
   ],
   "research_status": "full",
   "created": "2026-10-08",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "notion_id": "3d1f64f699d9809b8a8adc938ce5df87",
   "rating": 1
 }

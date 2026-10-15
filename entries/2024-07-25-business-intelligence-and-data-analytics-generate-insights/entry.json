@@ -4,7 +4,7 @@
   "domain": "data",
   "platform": "Coursera Plus",
   "source_type": "course",
-  "url": "",
+  "url": "https://www.coursera.org/learn/business-intelligence-data-analytics",
   "tags": [
     "bi",
     "data analysis"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2024-07-25",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "b3ca194d338c44ecb1f1fa136b12aab4"
 }

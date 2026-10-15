@@ -4,7 +4,7 @@
   "domain": "ai",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/ai-agent-architecture/agentic-workflows-vs-ai-agents/",
   "tags": [
     "agent",
     "architecture"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "2c9f64f699d980f086bce10a4bf9d519"
 }

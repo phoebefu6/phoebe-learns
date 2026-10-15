@@ -4,7 +4,7 @@
   "domain": "ai",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/introduction-to-vector-databases-with-pinecone/",
   "tags": [
     "vector-databases",
     "pinecone"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "3f9f64f699d981aa9c83cea42947c157"
 }

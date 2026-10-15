@@ -4,7 +4,7 @@
   "domain": "aiap",
   "platform": "Coursera Plus",
   "source_type": "course",
-  "url": "",
+  "url": "https://www.coursera.org/specializations/generative-ai-for-data-scientists",
   "tags": [
     "gen ai",
     "specialization"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2025-02-01",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "18df64f699d98017a298d19eb95bac5d"
 }

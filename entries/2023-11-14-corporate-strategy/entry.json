@@ -4,7 +4,7 @@
   "domain": "biz",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/corporate-strategy/",
   "tags": [
     "strategy"
   ],
@@ -19,7 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2023-11-14",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "bb28c9efea184f6f89601f2716133b1d"
 }

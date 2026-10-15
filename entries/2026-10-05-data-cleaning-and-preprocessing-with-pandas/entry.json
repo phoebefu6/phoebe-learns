@@ -4,7 +4,7 @@
   "domain": "ds",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/data-cleaning-and-preprocessing-with-pandas/",
   "tags": [
     "data-cleaning",
     "preprocessing",
@@ -21,7 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "3f9f64f699d9815ab4a3c7e9541654b1"
 }

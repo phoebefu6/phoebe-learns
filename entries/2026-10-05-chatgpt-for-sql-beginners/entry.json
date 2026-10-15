@@ -4,7 +4,7 @@
   "domain": "aiap",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/chatgpt-for-sql-beginners/who-is-this-course-for/",
   "tags": [
     "chatgpt",
     "sql",
@@ -21,7 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "197f64f699d980f9aab6f399c1b9f6ab"
 }

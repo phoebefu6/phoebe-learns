@@ -4,7 +4,7 @@
   "domain": "career",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/sql-for-data-science-interviews/",
   "tags": [
     "data-science",
     "sql",
@@ -21,7 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "3f9f64f699d98183a49cd868f28ffe43"
 }

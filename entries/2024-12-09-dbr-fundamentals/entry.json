@@ -4,7 +4,7 @@
   "domain": "deng",
   "platform": "Databricks",
   "source_type": "course",
-  "url": "",
+  "url": "https://www.databricks.com/resources/learn/training/databricks-fundamentals",
   "tags": [
     "cloud",
     "databricks"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2024-12-09",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "157f64f699d980bea767d4e553e07764",
   "end_date_unknown": true

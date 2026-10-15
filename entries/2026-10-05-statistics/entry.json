@@ -4,7 +4,7 @@
   "domain": "ds",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/statistics/",
   "tags": [
     "statistics"
   ],
@@ -19,7 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "3f9f64f699d981bd8237e56b09452923"
 }

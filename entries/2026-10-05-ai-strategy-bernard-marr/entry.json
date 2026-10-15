@@ -4,7 +4,7 @@
   "domain": "lead",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/ai-strategy/",
   "tags": [
     "ai-strategy"
   ],
@@ -19,7 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-14",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "3f9f64f699d9812d8613fc5d08a96161"
 }

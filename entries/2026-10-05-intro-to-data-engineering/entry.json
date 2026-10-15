@@ -4,7 +4,7 @@
   "domain": "deng",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/preview/intro-to-data-engineering/",
   "tags": [
     "data-engineering"
   ],
@@ -19,7 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "144f64f699d980568250fb394e0ca46a"
 }

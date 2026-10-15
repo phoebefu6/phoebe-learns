@@ -4,7 +4,7 @@
   "domain": "data",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://365datascience.com/courses/introduction-to-business-analytics/",
   "tags": [
     "data analysis",
     "excel",
@@ -21,7 +21,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2021-10-25",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "cf866fef71c3419b83fdf9e486a92c50",
   "end_date_unknown": true

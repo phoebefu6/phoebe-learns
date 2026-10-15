@@ -4,7 +4,7 @@
   "domain": "ai",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/introduction-to-hugging-face/course-introduction/",
   "tags": [
     "hugging-face"
   ],
@@ -19,7 +19,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "2aff64f699d980328393d05477bd7acb"
 }

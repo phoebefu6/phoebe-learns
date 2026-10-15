@@ -4,7 +4,7 @@
   "domain": "ai",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/evaluating-ai-agents-from-metrics-to-real-world-impact/what-this-course-covers/",
   "tags": [
     "ai-agents",
     "evaluating",
@@ -22,7 +22,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "notion_id": "2a4f64f699d980caa625c1108ecfffc6",
   "rating": 1
 }

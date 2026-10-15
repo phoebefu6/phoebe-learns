@@ -4,7 +4,7 @@
   "domain": "gov",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/preview/chatgpt-at-work-ethical-and-secure-chatgpt-use/",
   "tags": [
     "chatgpt",
     "ethical",
@@ -22,7 +22,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "notion_id": "2a1f64f699d980abbac5dd037127b10c",
   "rating": 1
 }

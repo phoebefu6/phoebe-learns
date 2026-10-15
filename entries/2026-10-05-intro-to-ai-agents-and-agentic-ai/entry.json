@@ -4,7 +4,7 @@
   "domain": "ai",
   "platform": "365 Data Science",
   "source_type": "course",
-  "url": "",
+  "url": "https://learn.365datascience.com/courses/intro-to-ai-agents-and-agentic-ai/what-does-the-course-cover/",
   "tags": [
     "ai-agents",
     "agentic-ai"
@@ -20,7 +20,7 @@
   "linked_courses": [],
   "research_status": "none",
   "created": "2026-10-05",
-  "updated": "2026-10-13",
+  "updated": "2026-10-15",
   "rating": 1,
   "notion_id": "280f64f699d980d1b436ea84255a800f"
 }
