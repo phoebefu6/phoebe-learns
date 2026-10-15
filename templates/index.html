@@ -30,6 +30,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 .controls .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
 .controls .row .kicker{min-width:72px}
 .controls .chips{display:flex;flex-wrap:wrap;gap:6px}
+.search{display:flex;gap:8px;align-items:center;flex:1 1 100%}
+.search input{flex:1 1 240px;min-width:0;font:inherit;font-size:15px;padding:8px 10px;border:1px solid var(--ink);border-radius:2px;background:var(--paper);color:var(--ink)}
+.search input::placeholder{color:var(--muted)}
+.search input:focus{outline:2px solid var(--plum);outline-offset:1px;border-color:var(--plum)}
+.search kbd{font:inherit;font-size:12px;color:var(--muted);border:1px solid var(--hair);border-radius:2px;padding:1px 6px}
 .view-toggle{display:inline-flex;border:1px solid var(--plum);border-radius:2px}
 .view-toggle .btn{border:0;border-radius:0;color:var(--ink)}
 .view-toggle .btn+.btn{border-left:1px solid var(--plum)}
@@ -393,7 +398,14 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
 </svg>
 </section>
 
-<section class="block controls" aria-label="Filters">
+<section class="block controls" id="find" aria-label="Search and filters">
+  <div class="row">
+    <label class="kicker" for="q">Search</label>
+    <div class="search">
+      <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Course name or paste a course link" aria-describedby="showing">
+      <kbd aria-hidden="true">/</kbd>
+    </div>
+  </div>
   <div class="row">
     <span class="kicker">View</span>
     <div class="view-toggle" role="group" aria-label="View">
@@ -1036,7 +1048,36 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
     var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
     if (saved && saved.f) { state.view = saved.view === 'table' ? 'table' : 'board'; ['domain', 'platform', 'status', 'tag'].forEach(function (g) { if (Array.isArray(saved.f[g])) state.f[g] = saved.f[g]; }); }
   } catch (e) {}
-  function persist() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function persist() { try { localStorage.setItem(KEY, JSON.stringify({ view: state.view, f: state.f })); } catch (e) {} }
+
+  // ------------------------------------------------------------- search
+  // Matches the course name or its link. A pasted link is compared without
+  // https://, www. and the ?query/#hash part, so a tracking-laden URL still finds the course.
+  var qIn = document.getElementById('q');
+  state.q = '';
+  try { state.q = new URLSearchParams(location.search).get('q') || ''; } catch (e) {}
+  qIn.value = state.q;
+  function normUrl(u) { return String(u || '').toLowerCase().trim().replace(/^https?:\/\//, '').replace(/^www\./, '').split(/[?#]/)[0].replace(/\/+$/, ''); }
+  function normText(t) { return String(t || '').toLowerCase().normalize('NFKC').replace(/\s+/g, ' ').trim(); }
+  function matchesQuery(e, q) {
+    if (!q) return true;
+    if (/^(https?:\/\/|www\.)/i.test(q) || /^[a-z0-9-]+(\.[a-z0-9-]+)+\//i.test(q)) {
+      var nq = normUrl(q), nu = normUrl(e.url);
+      return !!nu && (nu.indexOf(nq) >= 0 || nq.indexOf(nu) >= 0);
+    }
+    var t = normText(e.topic), u = normUrl(e.url);
+    return normText(q).split(' ').every(function (w) { return t.indexOf(w) >= 0 || u.indexOf(w) >= 0; });
+  }
+  qIn.addEventListener('input', function () { state.q = qIn.value; render(); });
+  document.addEventListener('keydown', function (ev) {
+    var tag = (ev.target && ev.target.tagName) || '';
+    if (ev.key === '/' && !/INPUT|TEXTAREA|SELECT/.test(tag) && !ev.metaKey && !ev.ctrlKey) {
+      ev.preventDefault();
+      document.getElementById('find').scrollIntoView({ block: 'start' });
+      qIn.focus(); qIn.select();
+    }
+    if (ev.key === 'Escape' && ev.target === qIn && qIn.value) { qIn.value = ''; state.q = ''; render(); }
+  });
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function statusChip(id) {
     var s = STATUS.filter(function (x) { return x.id === id; })[0] || STATUS[0];
@@ -1079,6 +1120,7 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
   document.getElementById('clear').addEventListener('click', function (ev) {
     ev.preventDefault();
     state.f = { domain: [], platform: [], status: [], tag: [] };
+    state.q = ''; qIn.value = '';
     render();
   });
   document.querySelectorAll('[data-view]').forEach(function (b) {
@@ -1089,6 +1131,7 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
   function visible() {
     return entries.filter(function (e) {
       var f = state.f;
+      if (!matchesQuery(e, state.q.trim())) return false;
       if (f.domain.length && f.domain.indexOf(e.domain) < 0) return false;
       if (f.platform.length && f.platform.indexOf(e.platform) < 0) return false;
       if (f.status.length && f.status.indexOf(e.status) < 0) return false;
@@ -1124,7 +1167,7 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
       var body = byDomain(items).map(function (g) {
         return '<div class="group-header">' + esc(g.name) + '</div>' + g.items.map(card).join('');
       }).join('');
-      return '<section class="column" data-status="' + s.id + '"><header><span class="' + s.glyph + '"></span>' + s.label + '<span class="count num">' + items.length + '</span></header>' + (body || '<p class="empty">Nothing here with these filters.</p>') + '</section>';
+      return '<section class="column" data-status="' + s.id + '"><header><span class="' + s.glyph + '"></span>' + s.label + '<span class="count num">' + items.length + '</span></header>' + (body || '<p class="empty">Nothing here with this search or these filters.</p>') + '</section>';
     }).join('');
   }
   function renderTable(list) {
@@ -1146,7 +1189,13 @@ section.sheet>h2{font-size:clamp(22px,2.6vw,28px);font-weight:500;max-width:30ch
       b.classList.toggle('active', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
     document.querySelectorAll('[data-view]').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-view') === state.view); });
-    document.getElementById('showing').textContent = 'showing ' + list.length + ' of ' + entries.length;
+    var q = state.q.trim();
+    document.getElementById('showing').textContent = 'showing ' + list.length + ' of ' + entries.length + (q ? ' matching "' + q + '"' : '');
+    try {
+      var url = new URL(location.href);
+      if (q) url.searchParams.set('q', q); else url.searchParams.delete('q');
+      history.replaceState(null, '', url);
+    } catch (e) {}
     document.getElementById('board').classList.toggle('hidden', state.view !== 'board');
     document.getElementById('table').classList.toggle('hidden', state.view !== 'table');
     if (state.view === 'board') renderBoard(list); else renderTable(list);

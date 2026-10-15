@@ -10,8 +10,8 @@ Notion is the source of truth for courses. One direction only: Notion -> site.
 - Only course details go public: title, domain, platform, status, rating, tags,
   link and end date. Page bodies (Phoebe's Notion notes) are never read.
 - A Notion row matches an existing entry by notion_id, then by link, then by
-  title. A match updates status, end_date, rating, domain, platform and
-  notion_id. Topic, tags, notes and research written on the site are kept.
+  title. A match updates status, end_date, rating, domain, platform, link
+  (when Notion has one) and notion_id. Topic, tags, notes and research written on the site are kept.
 - A row with no match becomes a new entry with research_status "none" and a
   stub notes.md.
 - Skipped: rows with no title, titles marked "(duplicate?)", and rows with no
@@ -90,6 +90,10 @@ def synced_fields(row: dict) -> dict:
         "platform": notion_lib.PLATFORM_TO_SITE.get(row.get("platform") or "", row.get("platform") or "Other"),
         "notion_id": row["id"],
     }
+    url = (row.get("url") or "").strip()
+    if url.startswith("http"):
+        # The link is required in Notion, so Notion's value wins whenever it has one.
+        f["url"] = url
     if status == "done" and not end:
         f["end_date_unknown"] = True
     return f
